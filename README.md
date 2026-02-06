@@ -15,6 +15,7 @@ A module for the Nuxt module [@nuxt/content](https://content.nuxt.com/) to integ
 
 
 - [✨  Release Notes](https://github.com/hanyujie2002/nuxt-toc/releases)
+- [🚀 Nuxt 4 Requirements](./NUXT4_REQUIREMENTS.md)
 <!-- - 🏀 Online playground -->
 <!-- - 📖  Documentation -->
 

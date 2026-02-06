@@ -14,6 +14,7 @@
 用于 Nuxt Content 项目中目录（TOC）组件的 Nuxt 模块。
 
 - [✨  发布说明](https://github.com/hanyujie2002/nuxt-toc/releases)
+- [🚀 Nuxt 4 要求](./NUXT4_REQUIREMENTS.md)
 
 ## 特性 ✨
 
