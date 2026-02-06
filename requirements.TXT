@@ -1,0 +1,83 @@
+# Project Requirements
+
+## nuxt-toc - Table of Contents Module for Nuxt Content
+
+### Overview
+A Nuxt.js module that integrates a table of contents (TOC) component for Nuxt Content projects.
+
+### System Requirements
+
+#### Runtime Dependencies
+- **@nuxt/kit**: ^3.12.4
+  - Core Nuxt toolkit for module development
+
+#### Peer Dependencies
+- **Nuxt**: ^3.12.4 or higher
+- **@nuxt/content**: v2.x.x (current version v2.7.2 not compatible with @nuxt/content v3)
+- **Vue**: ^3.5.3 or higher
+- **Node.js**: Compatible with the package manager npm@10.8.1
+
+#### Development Dependencies
+- TypeScript: latest
+- ESLint: ^9.10.0 with Nuxt and Vue plugins
+- Prettier: ^3.3.3
+- Vitest: ^2.0.3 for testing
+- vue-tsc: ^2.0.26 for type checking
+- Tailwind CSS: ^3.4.10 (for styling examples)
+
+### Functional Requirements
+
+#### Core Features
+1. **Table of Contents Generation**: Automatically generate TOC from Nuxt Content
+2. **Active Section Highlighting**: Highlight the currently active section in the TOC
+3. **Customizable Styling**: Support for custom CSS classes and IDs
+4. **Accessibility**: Full ARIA support for screen readers
+5. **Navigation**: Smooth navigation to content sections via TOC links
+6. **Flexible Display**: Toggle sublist visibility and title display options
+
+#### Component Props
+- `toc`: Optional pre-fetched TOC data (JSON)
+- `path`: Content path for TOC generation (defaults to current URI)
+- `isSublistShown`: Boolean to show/hide sublists (default: true)
+- `isTitleShownWithNoContent`: Boolean to show title when TOC is empty (default: false)
+- `title`: Customizable TOC title (default: "Table of Contents")
+
+#### Styling Support
+- Predefined CSS classes for TOC elements
+- Support for Tailwind CSS
+- Customizable active item styling
+- Flexible indentation and layout options
+
+### Technical Requirements
+
+#### Build System
+- Module builder: @nuxt/module-builder ^0.8.1
+- Support for both ESM and CommonJS exports
+- TypeScript support with type declarations
+
+#### Testing
+- Unit testing with Vitest
+- Type checking with vue-tsc
+- Test utilities from @nuxt/test-utils
+
+#### Code Quality
+- ESLint configuration with Nuxt and Vue plugins
+- Prettier for code formatting
+- Consistent code style enforcement
+
+### Installation Requirements
+- Installable via `npx nuxi module add nuxt-toc`
+- NPM package distribution
+- Proper semantic versioning
+
+### Browser Compatibility
+- Modern browsers supporting ES modules
+- Vue 3 compatible browsers
+- CSS features: border properties, color styling, list styling
+
+### License
+- MIT License - Free and open source
+
+### Future Compatibility Note
+- Version 3.0.0 upgrade planned for @nuxt/content v3 compatibility
+- Current version (v2.7.2) requires @nuxt/content v2.x.x
