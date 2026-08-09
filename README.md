@@ -1,5 +1,9 @@
 **Languages:** [中文](./README_zh.md)
 
+<p align="center">
+  <img src="./logo.png" alt="nuxt-toc logo" width="120" height="120" />
+</p>
+
 # Table of Contents for @nuxt/content
 
 [![npm version][npm-version-src]][npm-version-href] [![npm downloads][npm-downloads-src]][npm-downloads-href] [![License][license-src]][license-href] [![Nuxt][nuxt-src]][nuxt-href]
@@ -8,7 +12,9 @@ A Nuxt module that adds a table of contents component for [@nuxt/content](https:
 
 > **Compatible with `@nuxt/content` v2 and v3**, on **Nuxt 4** (or Nuxt ≥ 3.16).
 
-- [✨ Release Notes](https://github.com/hanyujie2002/nuxt-toc/releases)
+- [Documentation](https://thaikolja.github.io/nuxt-toc/)
+- [Release notes](https://github.com/thaikolja/nuxt-toc/releases)
+
 
 ## Features
 

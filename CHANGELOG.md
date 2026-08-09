@@ -4,18 +4,35 @@
 
 ### ⚠️ Breaking Changes
 
-- Target **Nuxt 4** (peer: `nuxt` `^3.16.0 || ^4.0.0`)
-- Module config key is now `nuxtToc` with option `collection` (default `'content'`)
-- Removed internal `CustomQuery` helper; auto-fetch uses version-specific plugins
-- Playground replaced with a minimal Nuxt 4 + Content v3 demo
+- Target **Nuxt 4** (peer: `nuxt` `^3.16.0 || ^4.0.0`; primary host Nuxt 4)
+- Module config key is now **`nuxtToc`** with option `collection` (default `'content'`)
+- Removed internal `CustomQuery` helper; auto-fetch uses version-specific plugins (`fetch-v2` / `fetch-v3`)
+- Single heavy blog playground replaced by **dual** minimal apps under `playgrounds/`
+- Development package manager standardized on **Bun** (`bun.lock`)
 
 ### 🚀 Enhancements
 
-- **Dual support** for `@nuxt/content` **v2 and v3** (peer: `^2 \|\| ^3`)
-- Auto-detects Content major and registers `queryContent` (v2) or `queryCollection` (v3) fetch plugin
-- `TableOfContents` still accepts prefetched `page.body.toc` on both majors
-- New `collection` prop/option for Content v3 auto-fetch
-- `AGENTS.md` for agent/maintainer guidance
+- **Dual support** for `@nuxt/content` **v2 and v3** (peer: `^2 || ^3`)
+- Auto-detects Content major from host `node_modules` and registers one fetch plugin
+- `TableOfContents` accepts prefetched `page.body.toc` on both majors
+- Props: `toc`, `path`, `collection`, `isSublistShown`, `isTitleShownWithNoContent`, `title`
+- Empty-state UX: loading message, missing-path message, optional title-only when empty
+- IntersectionObserver rebuilds when TOC/path changes; reliable unmount cleanup
+- Dual playgrounds: Content v3 (`:3000`) and Content v2 (`:3001`) with `/`, `/auto-fetch`, `/props`
+- VitePress developer docs (`docs/`) with GitHub Pages workflow
+- Branding via root **`logo.png`** (playgrounds + docs)
+
+### 📖 Documentation
+
+- `AGENTS.md` for maintainers and coding agents
+- VitePress site: guide, API, Content v2/v3, recipes, migration, contributing
+- README / README_zh updated for dual Content and Bun
+
+### 🏡 Chore
+
+- TypeScript tooling configs (`build.config.ts`, `eslint.config.ts`)
+- CI on Bun; docs deploy workflow (`.github/workflows/docs.yml`)
+
 
 ## v2.7.2
 

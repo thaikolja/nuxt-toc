@@ -22,4 +22,14 @@ describe('playground content-v2 (Nuxt 4 + @nuxt/content v2)', async () => {
     expect(html).toContain('Table of Contents')
     expect(html).toContain('toc-container')
   })
+
+  it('renders custom props demo', async () => {
+    const html = await $fetch('/props')
+    expect(html).toContain('Custom parameters')
+    expect(html).toContain('Custom TOC title')
+    expect(html).toContain('Alpha section')
+    expect(html).toContain('Still show me')
+    expect(html).toContain('props-demo')
+    expect(html).toContain('isSublistShown')
+  })
 })

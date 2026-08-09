@@ -1,11 +1,34 @@
+<script setup lang="ts">
+import logo from '~/assets/logo.png'
+</script>
+
 <template>
   <div class="layout">
     <header class="header">
-      <strong>nuxt-toc</strong>
+      <NuxtLink
+        to="/"
+        class="brand"
+      >
+        <img
+          :src="logo"
+          alt="nuxt-toc"
+          class="logo"
+          width="36"
+          height="36"
+        >
+        <strong>nuxt-toc</strong>
+      </NuxtLink>
       <span class="muted">Nuxt 4 · @nuxt/content <b>v2</b></span>
       <nav class="nav">
-        <NuxtLink to="/">:toc prop</NuxtLink>
-        <NuxtLink to="/auto-fetch">auto-fetch</NuxtLink>
+        <NuxtLink to="/">
+          :toc prop
+        </NuxtLink>
+        <NuxtLink to="/auto-fetch">
+          auto-fetch
+        </NuxtLink>
+        <NuxtLink to="/props">
+          props
+        </NuxtLink>
       </nav>
     </header>
     <NuxtPage />
@@ -35,10 +58,23 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  align-items: baseline;
+  align-items: center;
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid #334155;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.logo {
+  border-radius: 0.4rem;
+  display: block;
 }
 
 .muted {

@@ -24,6 +24,9 @@ dist
 .vercel_build_output
 .build-*
 .netlify
+docs/.vitepress/cache
+docs/.vitepress/dist
+
 
 # Env
 .env

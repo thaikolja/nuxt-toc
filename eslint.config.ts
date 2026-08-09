@@ -15,6 +15,8 @@ export default createConfigForNuxt({
       'playgrounds/**/.nuxt/**',
       'playgrounds/**/.output/**',
       'playgrounds/**/node_modules/**',
+      'docs/.vitepress/cache/**',
+      'docs/.vitepress/dist/**',
       '**/.data/**',
     ],
   })
