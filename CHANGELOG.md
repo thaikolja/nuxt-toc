@@ -1,5 +1,21 @@
 # Changelog
 
+## v3.0.0
+
+### ⚠️ Breaking Changes
+
+- Target **Nuxt 4** (peer: `nuxt` `^3.16.0 || ^4.0.0`)
+- Module config key is now `nuxtToc` with option `collection` (default `'content'`)
+- Removed internal `CustomQuery` helper; auto-fetch uses version-specific plugins
+- Playground replaced with a minimal Nuxt 4 + Content v3 demo
+
+### 🚀 Enhancements
+
+- **Dual support** for `@nuxt/content` **v2 and v3** (peer: `^2 \|\| ^3`)
+- Auto-detects Content major and registers `queryContent` (v2) or `queryCollection` (v3) fetch plugin
+- `TableOfContents` still accepts prefetched `page.body.toc` on both majors
+- New `collection` prop/option for Content v3 auto-fetch
+- `AGENTS.md` for agent/maintainer guidance
 
 ## v2.7.2
 
@@ -313,7 +329,8 @@
 
 ### 📖 Documentation
 
-- Update readme with info of new prop and a new example ([e126cb9](https://github.com/hanyujie2002/nuxt-toc/commit/e126cb9))
+- Update readme with info of new prop and a new example
+  ([e126cb9](https://github.com/hanyujie2002/nuxt-toc/commit/e126cb9))
 
 ### ❤️ Contributors
 
@@ -325,7 +342,8 @@
 
 ### 🩹 Fixes
 
-- Resolved title being rendered with no content in toc ([8ca38b1](https://github.com/hanyujie2002/nuxt-toc/commit/8ca38b1))
+- Resolved title being rendered with no content in toc
+  ([8ca38b1](https://github.com/hanyujie2002/nuxt-toc/commit/8ca38b1))
 
 ### ❤️ Contributors
 
@@ -482,7 +500,8 @@
 
 ### 🚀 Enhancements
 
-- Implemented is-sublist-nested prop and renamed show-sub-list to is-sub-list-shown ([cd5f867](https://github.com/hanyujie2002/nuxt-toc/commit/cd5f867))
+- Implemented is-sublist-nested prop and renamed show-sub-list to is-sub-list-shown
+  ([cd5f867](https://github.com/hanyujie2002/nuxt-toc/commit/cd5f867))
 
 ### ❤️ Contributors
 
