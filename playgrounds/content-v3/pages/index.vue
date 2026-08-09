@@ -9,13 +9,8 @@ const { data: page } = await useAsyncData(route.path, () =>
 <template>
   <div class="page">
     <article class="content">
-      <ContentRenderer
-        v-if="page"
-        :value="page"
-      />
-      <p v-else>
-        Content not found.
-      </p>
+      <ContentRenderer v-if="page" :value="page" />
+      <p v-else>Content not found.</p>
     </article>
 
     <aside class="toc">

@@ -11,8 +11,7 @@ export default defineNuxtPlugin(() => {
       nuxtTocFetch: async (path: string, _collection?: string) => {
         try {
           return await queryContent(path).findOne()
-        }
-        catch {
+        } catch {
           return null
         }
       },

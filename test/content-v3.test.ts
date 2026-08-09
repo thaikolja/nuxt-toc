@@ -33,4 +33,12 @@ describe('playground content-v3 (Nuxt 4 + @nuxt/content v3)', async () => {
     expect(html).toContain('isSublistShown')
     expect(html).toContain('Collection content')
   })
+
+  it('renders settings page with depth controls', async () => {
+    const html = await $fetch('/settings')
+    expect(html).toContain('Module settings')
+    expect(html).toContain('depth')
+    expect(html).toContain('Level one alpha')
+    expect(html).toContain('Live TOC')
+  })
 })

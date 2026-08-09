@@ -1,19 +1,19 @@
 # Compatibility
 
-| Package | Supported |
-|---------|-----------|
-| `nuxt` | `^3.16.0 \|\| ^4.0.0` (primary: Nuxt 4) |
-| `@nuxt/content` | `^2.0.0 \|\| ^3.0.0` |
-| Vue | 3.x |
+| Package         | Supported                               |
+| --------------- | --------------------------------------- |
+| `nuxt`          | `^3.16.0 \|\| ^4.0.0` (primary: Nuxt 4) |
+| `@nuxt/content` | `^2.0.0 \|\| ^3.0.0`                    |
+| Vue             | 3.x                                     |
 
 ## Dual Content majors
 
 The module detects `@nuxt/content`’s major version from `node_modules` and registers **one** fetch plugin:
 
-| Major | Plugin | API |
-|-------|--------|-----|
-| 2 | `fetch-v2` | `queryContent(path).findOne()` |
-| 3 | `fetch-v3` | `queryCollection(collection).path(path).first()` |
+| Major | Plugin     | API                                              |
+| ----- | ---------- | ------------------------------------------------ |
+| 2     | `fetch-v2` | `queryContent(path).findOne()`                   |
+| 3     | `fetch-v3` | `queryCollection(collection).path(path).first()` |
 
 v2 and v3 **cannot** share a single `node_modules` tree. This repo keeps separate playground apps under `playgrounds/content-v2` and `playgrounds/content-v3`.
 

@@ -33,8 +33,7 @@ describe('detectContentMajor', () => {
     try {
       writeFileSync(join(dir, 'package.json'), JSON.stringify({ name: 'fake', private: true }))
       expect(detectContentMajor(dir)).toBe(null)
-    }
-    finally {
+    } finally {
       rmSync(dir, { recursive: true, force: true })
     }
   })
@@ -50,8 +49,7 @@ describe('detectContentMajor', () => {
         JSON.stringify({ name: '@nuxt/content', version: '2.13.4' }),
       )
       expect(detectContentMajor(dir)).toBe(2)
-    }
-    finally {
+    } finally {
       rmSync(dir, { recursive: true, force: true })
     }
   })
@@ -67,8 +65,7 @@ describe('detectContentMajor', () => {
         JSON.stringify({ name: '@nuxt/content', version: '3.15.2' }),
       )
       expect(detectContentMajor(dir)).toBe(3)
-    }
-    finally {
+    } finally {
       rmSync(dir, { recursive: true, force: true })
     }
   })

@@ -19,8 +19,7 @@ export function detectContentMajor(rootDir: string): ContentMajor | null {
         if (major === 2 || major === 3) {
           return major
         }
-      }
-      catch {
+      } catch {
         return null
       }
     }

@@ -9,9 +9,7 @@ export default defineConfig({
   base,
   cleanUrls: true,
   lastUpdated: true,
-  ignoreDeadLinks: [
-    /^https?:\/\/localhost/,
-  ],
+  ignoreDeadLinks: [/^https?:\/\/localhost/],
   head: [
     ['link', { rel: 'icon', href: `${base}logo.png`, type: 'image/png' }],
     ['meta', { name: 'theme-color', content: '#0b1220' }],
@@ -132,9 +130,7 @@ export default defineConfig({
         },
       ],
     },
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/thaikolja/nuxt-toc' },
-    ],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/thaikolja/nuxt-toc' }],
     footer: {
       message: 'Released under the MIT License.',
       copyright: 'nuxt-toc contributors',

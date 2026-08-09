@@ -3,9 +3,7 @@ const { data: page } = await useAsyncData('props-demo-v2', () =>
   queryContent('/props-demo').findOne(),
 )
 
-const { data: emptyPage } = await useAsyncData('empty-v2', () =>
-  queryContent('/empty').findOne(),
-)
+const { data: emptyPage } = await useAsyncData('empty-v2', () => queryContent('/empty').findOne())
 
 const title = ref('Custom TOC title')
 const showSublist = ref(true)
@@ -24,77 +22,38 @@ const showTitleWhenEmpty = ref(true)
       <div class="controls">
         <label>
           title
-          <input
-            v-model="title"
-            type="text"
-          >
+          <input v-model="title" type="text" />
         </label>
         <label class="check">
-          <input
-            v-model="showSublist"
-            type="checkbox"
-          >
+          <input v-model="showSublist" type="checkbox" />
           isSublistShown
         </label>
         <label class="check">
-          <input
-            v-model="showTitleWhenEmpty"
-            type="checkbox"
-          >
+          <input v-model="showTitleWhenEmpty" type="checkbox" />
           isTitleShownWithNoContent
         </label>
       </div>
 
-      <h2
-        id="live-preview"
-        class="section-label"
-      >
-        Live preview (pass-in :toc)
-      </h2>
-      <ContentRenderer
-        v-if="page"
-        :value="page"
-      />
+      <h2 id="live-preview" class="section-label">Live preview (pass-in :toc)</h2>
+      <ContentRenderer v-if="page" :value="page" />
 
-      <h2
-        id="empty-preview"
-        class="section-label"
-      >
-        Empty TOC + title flag
-      </h2>
-      <ContentRenderer
-        v-if="emptyPage"
-        :value="emptyPage"
-      />
+      <h2 id="empty-preview" class="section-label">Empty TOC + title flag</h2>
+      <ContentRenderer v-if="emptyPage" :value="emptyPage" />
     </article>
 
     <aside class="toc-column">
       <section class="panel">
-        <p class="panel-label">
-          :toc + custom title / sublist
-        </p>
-        <TableOfContents
-          :toc="page?.body?.toc"
-          :title="title"
-          :is-sublist-shown="showSublist"
-        />
+        <p class="panel-label">:toc + custom title / sublist</p>
+        <TableOfContents :toc="page?.body?.toc" :title="title" :is-sublist-shown="showSublist" />
       </section>
 
       <section class="panel">
-        <p class="panel-label">
-          path("/props-demo") auto-fetch
-        </p>
-        <TableOfContents
-          path="/props-demo"
-          :title="title"
-          :is-sublist-shown="showSublist"
-        />
+        <p class="panel-label">path("/props-demo") auto-fetch</p>
+        <TableOfContents path="/props-demo" :title="title" :is-sublist-shown="showSublist" />
       </section>
 
       <section class="panel">
-        <p class="panel-label">
-          empty :toc + isTitleShownWithNoContent
-        </p>
+        <p class="panel-label">empty :toc + isTitleShownWithNoContent</p>
         <TableOfContents
           :toc="emptyPage?.body?.toc ?? { links: [] }"
           title="Still show me"

@@ -15,10 +15,14 @@
 - **Dual support** for `@nuxt/content` **v2 and v3** (peer: `^2 || ^3`)
 - Auto-detects Content major from host `node_modules` and registers one fetch plugin
 - `TableOfContents` accepts prefetched `page.body.toc` on both majors
-- Props: `toc`, `path`, `collection`, `isSublistShown`, `isTitleShownWithNoContent`, `title`
+- Props: `toc`, `path`, `collection`, `depth`, `isSublistShown`, `isTitleShownWithNoContent`, `title`
+- **`depth`**: controls how deep nested TOC link trees are shown (module option + prop)
+- **`scrollSpy`**, **`rootMargin`**, **`smooth`**, **`scrollOffset`**: scroll-spy and click-scroll controls
 - Empty-state UX: loading message, missing-path message, optional title-only when empty
+- Performance: observe only TOC heading ids, rAF-batched intersection updates, skip rebuild when unchanged
 - IntersectionObserver rebuilds when TOC/path changes; reliable unmount cleanup
-- Dual playgrounds: Content v3 (`:3000`) and Content v2 (`:3001`) with `/`, `/auto-fetch`, `/props`
+- Dual playgrounds: Content v3 (`:3000`) and Content v2 (`:3001`) with `/`, `/auto-fetch`, `/props`, `/settings`
+
 - VitePress developer docs (`docs/`) with GitHub Pages workflow
 - Branding via root **`logo.png`** (playgrounds + docs)
 
@@ -32,7 +36,6 @@
 
 - TypeScript tooling configs (`build.config.ts`, `eslint.config.ts`)
 - CI on Bun; docs deploy workflow (`.github/workflows/docs.yml`)
-
 
 ## v2.7.2
 

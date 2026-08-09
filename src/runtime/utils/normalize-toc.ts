@@ -33,9 +33,5 @@ export function normalizeToc(doc: unknown): Toc | null {
 }
 
 function isToc(value: unknown): value is Toc {
-  return (
-    !!value
-    && typeof value === 'object'
-    && Array.isArray((value as Toc).links)
-  )
+  return !!value && typeof value === 'object' && Array.isArray((value as Toc).links)
 }

@@ -5,30 +5,16 @@ import logo from '~/assets/logo.png'
 <template>
   <div class="layout">
     <header class="header">
-      <NuxtLink
-        to="/"
-        class="brand"
-      >
-        <img
-          :src="logo"
-          alt="nuxt-toc"
-          class="logo"
-          width="36"
-          height="36"
-        >
+      <NuxtLink to="/" class="brand">
+        <img :src="logo" alt="nuxt-toc" class="logo" width="36" height="36" />
         <strong>nuxt-toc</strong>
       </NuxtLink>
       <span class="muted">Nuxt 4 · @nuxt/content <b>v2</b></span>
       <nav class="nav">
-        <NuxtLink to="/">
-          :toc prop
-        </NuxtLink>
-        <NuxtLink to="/auto-fetch">
-          auto-fetch
-        </NuxtLink>
-        <NuxtLink to="/props">
-          props
-        </NuxtLink>
+        <NuxtLink to="/"> :toc prop </NuxtLink>
+        <NuxtLink to="/auto-fetch"> auto-fetch </NuxtLink>
+        <NuxtLink to="/props"> props </NuxtLink>
+        <NuxtLink to="/settings"> settings </NuxtLink>
       </nav>
     </header>
     <NuxtPage />
@@ -38,7 +24,12 @@ import logo from '~/assets/logo.png'
 <style>
 :root {
   color-scheme: dark;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    sans-serif;
   line-height: 1.6;
   background: #0f172a;
   color: #e2e8f0;

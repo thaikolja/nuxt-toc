@@ -1,14 +1,22 @@
 export default defineNuxtConfig({
   modules: ['../../src/module', '@nuxt/content'],
   devtools: { enabled: true },
-  compatibilityDate: '2025-01-01',
-  future: {
-    compatibilityVersion: 4,
-  },
-  // Content v2 module options (no collections)
   content: {
     highlight: {
       theme: 'github-dark',
     },
+    markdown: {
+      toc: {
+        depth: 4,
+        searchDepth: 4,
+      },
+    },
+  },
+  future: {
+    compatibilityVersion: 4,
+  },
+  compatibilityDate: '2025-01-01',
+  nuxtToc: {
+    depth: 2,
   },
 })

@@ -23,10 +23,7 @@ bun add @nuxt/content@^2
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: [
-    'nuxt-toc',
-    '@nuxt/content',
-  ],
+  modules: ['nuxt-toc', '@nuxt/content'],
   nuxtToc: {
     // Content v3 auto-fetch only
     collection: 'content',

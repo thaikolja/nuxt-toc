@@ -42,6 +42,8 @@ bun run dev:v3
 bun run dev:v2
 bun run docs:dev
 bun run test
+bun run lint
+bun run check   # lint + format:check + test
 ```
 
 Do not commit `package-lock.json` / `pnpm-lock.yaml`; use `bun.lock`.
@@ -63,18 +65,25 @@ bun run lint
 
 ## Component props (must keep working)
 
-| Prop | Default | Notes |
-|------|---------|--------|
-| `toc` | `null` | Pass-in; skips auto-fetch |
-| `path` | `''` | Auto-fetch path (else route path) |
-| `collection` | `''` | v3 only; else module option / `content` |
-| `isSublistShown` | `true` | Hide nested children when false |
-| `isTitleShownWithNoContent` | `false` | Show title when links empty |
-| `title` | `'Table of Contents'` | Heading text |
+| Prop                        | Default               | Notes                                   |
+| --------------------------- | --------------------- | --------------------------------------- |
+| `toc`                       | `null`                | Pass-in; skips auto-fetch               |
+| `path`                      | `''`                  | Auto-fetch path (else route path)       |
+| `collection`                | `''`                  | v3 only; else module option / `content` |
+| `depth`                     | module default `2`    | Max link-tree depth (`1` = top only)    |
+| `isSublistShown`            | `true`                | When false, forces depth `1` (legacy)   |
+| `isTitleShownWithNoContent` | `false`               | Show title when links empty             |
+| `title`                     | `'Table of Contents'` | Heading text                            |
+| `scrollSpy`                 | module `true`         | IntersectionObserver highlighting       |
+| `rootMargin`                | module default        | Observer root margin                    |
+| `smooth`                    | module `false`        | Smooth scroll on click                  |
+| `scrollOffset`              | module `0`            | Sticky header offset (px)               |
 
-Module option: `nuxtToc.collection` (default `'content'`).
+Module options: `collection`, `depth`, `scrollSpy`, `rootMargin`, `smooth`, `scrollOffset`.
 
-Verify on **both** playgrounds via `/props` after changes.
+Depth logic: `src/runtime/utils/limit-toc-depth.ts`. Scroll helpers: `scroll-to-heading.ts`. UI: `TocTree.vue`.
+
+Verify on **both** playgrounds via `/props` and `/settings` after changes.
 
 ## Architecture rules
 

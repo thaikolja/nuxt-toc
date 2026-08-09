@@ -13,8 +13,7 @@ export default defineNuxtPlugin(() => {
           return await queryCollection(collection as 'content')
             .path(path)
             .first()
-        }
-        catch {
+        } catch {
           return null
         }
       },

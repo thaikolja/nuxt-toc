@@ -1,4 +1,5 @@
 import { createConfigForNuxt } from '@nuxt/eslint-config/flat'
+import prettierConfig from 'eslint-config-prettier'
 
 export default createConfigForNuxt({
   features: {
@@ -12,11 +13,21 @@ export default createConfigForNuxt({
   .prepend({
     ignores: [
       'dist/**',
+      'coverage/**',
       'playgrounds/**/.nuxt/**',
       'playgrounds/**/.output/**',
       'playgrounds/**/node_modules/**',
+      'playgrounds/**/bun.lock',
       'docs/.vitepress/cache/**',
       'docs/.vitepress/dist/**',
       '**/.data/**',
+      '**/*.md',
     ],
+  })
+  .append(prettierConfig)
+  .append({
+    files: ['playgrounds/**/*.{vue,ts,js}'],
+    rules: {
+      'vue/multi-word-component-names': 'off',
+    },
   })

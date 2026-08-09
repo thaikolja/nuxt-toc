@@ -3,9 +3,7 @@ const route = useRoute()
 
 // Content for this route lives at content/auto-fetch.md (path: /auto-fetch).
 // TableOfContents auto-fetches the same path via queryContent (no :toc prop).
-const { data: page } = await useAsyncData(route.path, () =>
-  queryContent(route.path).findOne(),
-)
+const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
 </script>
 
 <template>
@@ -19,14 +17,13 @@ const { data: page } = await useAsyncData(route.path, () =>
         prop — it loads TOC with
         <code>queryContent</code>
         for
-        <code>{{ route.path }}</code>.
+        <code>{{ route.path }}</code
+        >.
       </p>
-      <ContentRenderer
-        v-if="page"
-        :value="page"
-      />
+      <ContentRenderer v-if="page" :value="page" />
       <p v-else class="note">
-        Content not found for <code>{{ route.path }}</code>.
+        Content not found for <code>{{ route.path }}</code
+        >.
       </p>
     </article>
 

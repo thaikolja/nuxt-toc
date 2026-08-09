@@ -18,9 +18,9 @@
 <TableOfContents path="/guide/intro" collection="docs" />
 ```
 
-| Prop | Role |
-|------|------|
-| `path` | Document path (default: current route) |
+| Prop         | Role                                                           |
+| ------------ | -------------------------------------------------------------- |
+| `path`       | Document path (default: current route)                         |
 | `collection` | Content **v3** collection (default: module option / `content`) |
 
 If Content is not installed or the document has no TOC links, the component shows an empty/loading state (or title-only when `isTitleShownWithNoContent` is true).

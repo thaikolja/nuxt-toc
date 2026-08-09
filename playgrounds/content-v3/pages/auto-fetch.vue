@@ -19,14 +19,13 @@ const { data: page } = await useAsyncData(route.path, () =>
         prop — it loads TOC with
         <code>queryCollection</code>
         for
-        <code>{{ route.path }}</code>.
+        <code>{{ route.path }}</code
+        >.
       </p>
-      <ContentRenderer
-        v-if="page"
-        :value="page"
-      />
+      <ContentRenderer v-if="page" :value="page" />
       <p v-else class="note">
-        Content not found for <code>{{ route.path }}</code>.
+        Content not found for <code>{{ route.path }}</code
+        >.
       </p>
     </article>
 

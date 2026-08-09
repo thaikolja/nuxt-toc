@@ -1,21 +1,14 @@
 <script setup lang="ts">
 const route = useRoute()
 
-const { data: page } = await useAsyncData(route.path, () =>
-  queryContent(route.path).findOne(),
-)
+const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
 </script>
 
 <template>
   <div class="page">
     <article class="content">
-      <ContentRenderer
-        v-if="page"
-        :value="page"
-      />
-      <p v-else>
-        Content not found.
-      </p>
+      <ContentRenderer v-if="page" :value="page" />
+      <p v-else>Content not found.</p>
     </article>
 
     <aside class="toc">

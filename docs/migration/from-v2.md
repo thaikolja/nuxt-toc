@@ -1,11 +1,11 @@
 # Migrating from nuxt-toc 2.x
 
-| v2.x | v3.0.0 |
-|------|--------|
-| Content v2 only | Content v2 **or** v3 |
-| Internal CustomQuery | Version-specific plugins |
-| Config key loosely `nuxt-toc` | **`nuxtToc`** |
-| Heavy blog playground | Dual minimal playgrounds |
+| v2.x                          | v3.0.0                   |
+| ----------------------------- | ------------------------ |
+| Content v2 only               | Content v2 **or** v3     |
+| Internal CustomQuery          | Version-specific plugins |
+| Config key loosely `nuxt-toc` | **`nuxtToc`**            |
+| Heavy blog playground         | Dual minimal playgrounds |
 
 Update config:
 
