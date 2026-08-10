@@ -1,3 +1,9 @@
+---
+title: nuxt-toc changelog and release notes
+description: >-
+  Release highlights for nuxt-toc v3.0.0 including Nuxt 4 support, dual Content majors, nuxtToc config, dual playgrounds, and npm-based development.
+---
+
 # Changelog
 
 See the repository root [CHANGELOG.md](https://github.com/thaikolja/nuxt-toc/blob/main/CHANGELOG.md) for full release history.

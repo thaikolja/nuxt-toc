@@ -1,3 +1,9 @@
+---
+title: Set up nuxt-toc with Content v3
+description: >-
+  Install @nuxt/content v3, define content.config.ts collections, register nuxt-toc, and start rendering TableOfContents in Nuxt 4 apps.
+---
+
 # Content v3 setup
 
 1. Install `@nuxt/content@^3` and `nuxt-toc`

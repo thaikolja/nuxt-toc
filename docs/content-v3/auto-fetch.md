@@ -1,3 +1,9 @@
+---
+title: Auto-fetch table of contents (Content v3)
+description: >-
+  How the fetch-v3 plugin loads documents with queryCollection when :toc is omitted, including path, collection, and empty-state behavior.
+---
+
 # Auto-fetch (v3)
 
 When `toc` is omitted, the module’s `fetch-v3` plugin runs:

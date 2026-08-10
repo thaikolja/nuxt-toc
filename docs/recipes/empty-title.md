@@ -1,3 +1,9 @@
+---
+title: Show TOC title when links are empty
+description: >-
+  Keep a Table of Contents heading visible when a page has no headings using isTitleShownWithNoContent on TableOfContents.
+---
+
 # Empty title state
 
 When a page has no h2/h3 headings, Content may produce empty `links`.

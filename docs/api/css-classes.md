@@ -1,3 +1,9 @@
+---
+title: TableOfContents CSS classes and IDs
+description: >-
+  Public CSS selectors for customizing nuxt-toc appearance, including title, container, link, and active-state class hooks for your theme.
+---
+
 # CSS classes and IDs
 
 See [Styling contract](/guide/styling) for the full table.

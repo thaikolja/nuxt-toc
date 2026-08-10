@@ -1,22 +1,77 @@
 import { defineConfig } from 'vitepress'
 
 // GitHub Pages project site: https://<user>.github.io/nuxt-toc/
+const siteUrl = 'https://thaikolja.github.io/nuxt-toc'
 const base = process.env.GITHUB_ACTIONS ? '/nuxt-toc/' : '/'
+
+const siteDescription =
+  'Table of Contents component for Nuxt Content (v2 and v3) with active section highlighting, depth control, and sticky docs layouts.'
 
 export default defineConfig({
   title: 'nuxt-toc',
-  description: 'Table of Contents module for Nuxt Content v2 and v3',
+  description: siteDescription,
+  titleTemplate: ':title · nuxt-toc',
+  lang: 'en-US',
   base,
   cleanUrls: true,
   lastUpdated: true,
   ignoreDeadLinks: [/^https?:\/\/localhost/],
+  sitemap: {
+    hostname: siteUrl,
+  },
   head: [
     ['link', { rel: 'icon', href: `${base}logo.png`, type: 'image/png' }],
     ['meta', { name: 'theme-color', content: '#0b1220' }],
+    [
+      'meta',
+      {
+        name: 'keywords',
+        content:
+          'nuxt, nuxt module, nuxt content, table of contents, toc, vue, markdown, scroll-spy, documentation',
+      },
+    ],
+    ['meta', { name: 'author', content: 'nuxt-toc contributors' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:site_name', content: 'nuxt-toc' }],
+    ['meta', { property: 'og:locale', content: 'en_US' }],
     ['meta', { property: 'og:title', content: 'nuxt-toc' }],
-    ['meta', { property: 'og:description', content: 'TOC component for Nuxt Content v2 and v3' }],
-    ['meta', { property: 'og:image', content: `${base}logo.png` }],
+    ['meta', { property: 'og:description', content: siteDescription }],
+    ['meta', { property: 'og:image', content: `${siteUrl}/logo.png` }],
+    ['meta', { property: 'og:url', content: siteUrl }],
+    ['meta', { name: 'twitter:card', content: 'summary' }],
+    ['meta', { name: 'twitter:title', content: 'nuxt-toc' }],
+    ['meta', { name: 'twitter:description', content: siteDescription }],
+    ['meta', { name: 'twitter:image', content: `${siteUrl}/logo.png` }],
   ],
+  transformPageData(pageData) {
+    const relative = pageData.relativePath.replace(/\\/g, '/')
+    const path =
+      relative === 'index.md' ? '' : relative.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
+    const url = path ? `${siteUrl}/${path}` : siteUrl
+    const pageTitle = pageData.title || pageData.frontmatter.title || 'nuxt-toc'
+    const pageDescription =
+      pageData.description || pageData.frontmatter.description || siteDescription
+    // Prefer string descriptions (folded YAML may arrive as string already).
+    const description =
+      typeof pageDescription === 'string'
+        ? pageDescription.replace(/\s+/g, ' ').trim()
+        : siteDescription
+
+    const titleWithSite =
+      pageTitle === 'nuxt-toc' || pageTitle.includes('nuxt-toc —')
+        ? pageTitle
+        : `${pageTitle} · nuxt-toc`
+
+    pageData.frontmatter.head ??= []
+    pageData.frontmatter.head.push(
+      ['link', { rel: 'canonical', href: url }],
+      ['meta', { property: 'og:url', content: url }],
+      ['meta', { property: 'og:title', content: titleWithSite }],
+      ['meta', { property: 'og:description', content: description }],
+      ['meta', { name: 'twitter:title', content: titleWithSite }],
+      ['meta', { name: 'twitter:description', content: description }],
+    )
+  },
   themeConfig: {
     logo: '/logo.png',
     siteTitle: 'nuxt-toc',

@@ -1,3 +1,9 @@
+---
+title: queryContent with TableOfContents
+description: >-
+  Use queryContent and page.body.toc to pass a prefetched table of contents into TableOfContents on Content v2 projects.
+---
+
 # queryContent
 
 ```ts

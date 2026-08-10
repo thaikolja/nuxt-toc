@@ -1,3 +1,9 @@
+---
+title: Install nuxt-toc in a Nuxt project
+description: >-
+  Install nuxt-toc with nuxi or npm, register it with @nuxt/content, and configure Content v2 or v3 so TableOfContents works in your Nuxt app.
+---
+
 # Installation
 
 ## Module

@@ -1,3 +1,9 @@
+---
+title: Quick start with TableOfContents
+description: >-
+  Render a table of contents in minutes: pass page.body.toc from queryCollection (v3) or queryContent (v2), or use auto-fetch with the path prop.
+---
+
 # Quick start
 
 ## Content v3

@@ -1,3 +1,9 @@
+---
+title: Migrate Nuxt Content apps v2 to v3
+description: >-
+  Move a Nuxt Content app from v2 to v3 while keeping TableOfContents: collections, queryCollection, ContentRenderer, and pass-in :toc.
+---
+
 # Migrating your app: Content v2 → v3
 
 1. Upgrade `@nuxt/content` to ^3

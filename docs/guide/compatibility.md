@@ -1,3 +1,9 @@
+---
+title: Nuxt and Content compatibility
+description: >-
+  Supported Nuxt, Vue, and @nuxt/content versions for nuxt-toc. How dual Content v2/v3 detection works and what to expect on Nuxt 3.16+ and Nuxt 4.
+---
+
 # Compatibility
 
 | Package         | Supported                               |

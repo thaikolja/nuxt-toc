@@ -1,3 +1,9 @@
+---
+title: nuxtToc module options reference
+description: >-
+  Configure defaults under nuxtToc in nuxt.config: collection, depth, scrollSpy, rootMargin, smooth, and scrollOffset for the TableOfContents component.
+---
+
 # Module options
 
 Configured under `nuxtToc` in `nuxt.config.ts` (config key is camelCase `nuxtToc`).

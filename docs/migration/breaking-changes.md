@@ -1,3 +1,9 @@
+---
+title: nuxt-toc v3.0.0 breaking changes
+description: >-
+  Breaking changes in nuxt-toc 3.0.0: peers, nuxtToc config, removed CustomQuery, npm tooling, kit range, and stable CSS id contract.
+---
+
 # Breaking changes (v3.0.0)
 
 - Peer **Nuxt** `^3.16 \|\| ^4` (primary Nuxt 4 tooling)

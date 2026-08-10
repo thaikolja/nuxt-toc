@@ -1,3 +1,9 @@
+---
+title: Accessibility of TableOfContents
+description: >-
+  ARIA roles, heading levels, list semantics, and heading id requirements so nuxt-toc stays usable with keyboard navigation and screen readers.
+---
+
 # Accessibility
 
 - Title uses `role="heading"` and `aria-level="2"`

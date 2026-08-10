@@ -1,3 +1,9 @@
+---
+title: Build and preview the docs site
+description: >-
+  Develop and build the VitePress documentation for nuxt-toc, and understand how GitHub Pages deploys from the docs workflow.
+---
+
 # Docs site
 
 Developer docs use [VitePress](https://vitepress.dev/) in `docs/`.

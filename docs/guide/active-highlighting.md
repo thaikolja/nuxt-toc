@@ -1,3 +1,9 @@
+---
+title: Active section highlighting (scroll-spy)
+description: >-
+  How nuxt-toc scroll-spy works with IntersectionObserver, rootMargin, active CSS classes, rebuilds on TOC changes, and cleanup on unmount.
+---
+
 # Active highlighting
 
 On the client, `TableOfContents` creates an `IntersectionObserver` for `h2[id]` and `h3[id]` elements.

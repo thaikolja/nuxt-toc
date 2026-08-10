@@ -1,3 +1,9 @@
+---
+title: nuxtToc public runtime config API
+description: >-
+  Public runtimeConfig.nuxtToc fields set by the module, including defaults and detected contentMajor for Content v2 or v3 debugging.
+---
+
 # Runtime config
 
 The module writes public runtime config:

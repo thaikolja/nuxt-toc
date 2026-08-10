@@ -1,3 +1,9 @@
+---
+title: Hide nested TOC links (flat outline)
+description: >-
+  Show only top-level headings in TableOfContents with isSublistShown false or depth 1 for a flatter on-this-page outline.
+---
+
 # Hide nested links
 
 ```vue

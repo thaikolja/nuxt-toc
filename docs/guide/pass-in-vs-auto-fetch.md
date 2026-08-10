@@ -1,3 +1,9 @@
+---
+title: Pass-in TOC vs auto-fetch modes
+description: >-
+  Choose pass-in :toc (recommended) or auto-fetch by path. Compare performance, SSR behavior, and when path and collection props apply in nuxt-toc.
+---
+
 # Pass-in vs auto-fetch
 
 ## Pass-in (recommended)

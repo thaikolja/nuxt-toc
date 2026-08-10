@@ -1,3 +1,9 @@
+---
+title: TOC with multiple Content collections
+description: >-
+  Point TableOfContents at blog vs docs Content v3 collections using the collection prop for multi-source documentation sites.
+---
+
 # Multiple collections (v3)
 
 ```ts

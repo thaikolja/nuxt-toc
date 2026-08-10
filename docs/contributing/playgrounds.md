@@ -1,3 +1,9 @@
+---
+title: Contributor playgrounds for Content v2/v3
+description: >-
+  Use dual content-v2 and content-v3 playgrounds to verify TableOfContents behavior across Content majors during development.
+---
+
 # Playgrounds
 
 | Path                     | Stack              | Port | Command          |

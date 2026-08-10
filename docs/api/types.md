@@ -1,3 +1,9 @@
+---
+title: TOC TypeScript types reference
+description: >-
+  TypeScript interfaces used by nuxt-toc: Toc, TocLink, and related shapes for pass-in table of contents data from Nuxt Content.
+---
+
 # Types
 
 ```ts

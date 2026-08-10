@@ -1,3 +1,9 @@
+---
+title: TableOfContents component props API
+description: >-
+  Full prop reference for TableOfContents: toc, path, collection, depth, scrollSpy, rootMargin, smooth, scrollOffset, title, and empty-state options.
+---
+
 # Props
 
 `TableOfContents` accepts the following props.

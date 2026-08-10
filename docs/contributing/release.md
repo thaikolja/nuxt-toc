@@ -1,3 +1,9 @@
+---
+title: Release process for nuxt-toc packages
+description: >-
+  Steps to release nuxt-toc: run checks, update the changelog, publish with npm, and keep compatibility notes for the 3.x line.
+---
+
 # Release process
 
 1. Ensure tests and `prepack` pass

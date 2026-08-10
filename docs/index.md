@@ -1,4 +1,7 @@
 ---
+title: nuxt-toc — TOC for Nuxt Content
+description: >-
+  Add an accessible, sticky table of contents to Nuxt Content v2 and v3 docs. Pass-in or auto-fetch TOC with active section highlighting.
 layout: home
 hero:
   name: nuxt-toc

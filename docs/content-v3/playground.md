@@ -1,3 +1,9 @@
+---
+title: Run the Content v3 demo playground
+description: >-
+  Run the local Content v3 playground for nuxt-toc on port 3000 to try pass-in, auto-fetch, props, and settings demos.
+---
+
 # Content v3 playground
 
 In this repository:

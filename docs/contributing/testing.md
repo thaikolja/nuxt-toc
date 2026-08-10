@@ -1,3 +1,9 @@
+---
+title: Testing nuxt-toc (unit and e2e)
+description: >-
+  Run unit and e2e tests for content major detection, TOC helpers, and both Content playgrounds before opening a pull request.
+---
+
 # Testing
 
 ```bash

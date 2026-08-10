@@ -1,3 +1,9 @@
+---
+title: Style TableOfContents with CSS hooks
+description: >-
+  Stable CSS IDs and classes for theming TableOfContents: #toc-title, #toc-container, .toc-link, .active-toc-item, and related hooks.
+---
+
 # Styling contract
 
 Public IDs and classes (stable for theming):

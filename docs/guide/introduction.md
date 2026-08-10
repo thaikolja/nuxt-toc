@@ -1,3 +1,9 @@
+---
+title: Introduction to the nuxt-toc module
+description: >-
+  Learn what nuxt-toc does: nested Content TOC links, optional auto-fetch for v2/v3, and IntersectionObserver active section highlighting for Nuxt docs layouts.
+---
+
 # Introduction
 
 **nuxt-toc** is a Nuxt module that registers a single component, `TableOfContents`, for use with [@nuxt/content](https://content.nuxt.com/).

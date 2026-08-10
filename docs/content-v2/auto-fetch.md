@@ -1,3 +1,9 @@
+---
+title: Auto-fetch table of contents (Content v2)
+description: >-
+  How the fetch-v2 plugin uses queryContent(path).findOne() when :toc is omitted, and when to set an explicit path prop.
+---
+
 # Auto-fetch (v2)
 
 The `fetch-v2` plugin runs:

@@ -1,3 +1,9 @@
+---
+title: queryCollection with TableOfContents
+description: >-
+  Pass TOC data from queryCollection into TableOfContents for Content v3. Recommended pass-in pattern with useAsyncData and ContentRenderer.
+---
+
 # queryCollection
 
 ```ts

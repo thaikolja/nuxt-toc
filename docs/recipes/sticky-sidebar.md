@@ -1,3 +1,9 @@
+---
+title: Sticky TOC sidebar layout recipe
+description: >-
+  Build a documentation layout with a sticky TableOfContents sidebar beside ContentRenderer using pass-in :toc for SSR-friendly outlines.
+---
+
 # Sticky sidebar
 
 ```vue

@@ -1,3 +1,9 @@
+---
+title: Full documentation page layout recipe
+description: >-
+  Assemble header, page nav, ContentRenderer, and sticky TableOfContents into a typical documentation shell for Nuxt Content sites.
+---
+
 # Docs layout
 
 Typical documentation shell:

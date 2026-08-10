@@ -1,3 +1,9 @@
+---
+title: Development setup for contributors
+description: >-
+  Clone nuxt-toc, install with npm, prepare playgrounds, run tests, and build the module package for local development.
+---
+
 # Development setup
 
 ```bash

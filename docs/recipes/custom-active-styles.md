@@ -1,3 +1,9 @@
+---
+title: Customize active TOC link styles
+description: >-
+  Override .active-toc-item and related classes to brand the current section highlight in your nuxt-toc sidebar theme.
+---
+
 # Custom active styles
 
 ```css

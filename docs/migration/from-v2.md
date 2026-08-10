@@ -1,3 +1,9 @@
+---
+title: Migrate from nuxt-toc 2.x to 3.0
+description: >-
+  Upgrade from nuxt-toc 2.x to 3.0.0: dual Content support, nuxtToc config key, plugin-based auto-fetch, and dual playgrounds.
+---
+
 # Migrating from nuxt-toc 2.x
 
 | v2.x                          | v3.0.0                   |
