@@ -1,20 +1,21 @@
 {
-  "name": "nuxt-toc",
-  "version": "3.0.0",
-  "description": "Table of Contents component for Nuxt Content (v2 and v3)",
-  "repository": {
+  "name":                 "nuxt-toc",
+  "version":              "3.0.0",
+  "description":          "Table of Contents component for Nuxt Content (v2 and v3)",
+  "repository":           {
     "type": "git",
-    "url": "git+https://github.com/thaikolja/nuxt-toc.git"
+    "url":  "git+https://github.com/thaikolja/nuxt-toc.git"
   },
-  "homepage": "https://thaikolja.github.io/nuxt-toc/",
-  "bugs": {
+  "homepage":             "https://thaikolja.github.io/nuxt-toc/",
+  "bugs":                 {
     "url": "https://github.com/thaikolja/nuxt-toc/issues"
   },
-  "author": "Kolja Nolte",
-  "contributors": [
-    "Hanyu Jie"
+  "author":               "thaikolja",
+  "contributors":         [
+    "Hanyu Jie",
+    "Kolja Nolte"
   ],
-  "keywords": [
+  "keywords":             [
     "nuxt",
     "nuxt-module",
     "nuxt-content",
@@ -26,88 +27,88 @@
     "scroll-spy",
     "documentation"
   ],
-  "license": "MIT",
-  "type": "module",
-  "exports": {
+  "license":              "MIT",
+  "type":                 "module",
+  "exports":              {
     ".": {
-      "types": "./dist/types.d.mts",
+      "types":  "./dist/types.d.mts",
       "import": "./dist/module.mjs"
     }
   },
-  "main": "./dist/module.mjs",
-  "types": "./dist/types.d.mts",
-  "files": [
+  "main":                 "./dist/module.mjs",
+  "types":                "./dist/types.d.mts",
+  "files":                [
     "dist"
   ],
-  "sideEffects": [
+  "sideEffects":          [
     "**/*.css",
     "**/*.vue"
   ],
-  "scripts": {
-    "prepack": "nuxt-module-build prepare && nuxt-module-build build",
-    "prepublishOnly": "npm run check && npm run prepack",
-    "dev": "npm run dev:v3",
-    "dev:v3": "nuxi dev playgrounds/content-v3 --port 3000",
-    "dev:v2": "nuxi dev playgrounds/content-v2 --port 3001",
-    "dev:build": "npm run dev:build:v3 && npm run dev:build:v2",
-    "dev:build:v3": "nuxi build playgrounds/content-v3",
-    "dev:build:v2": "nuxi build playgrounds/content-v2",
-    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && npm run playgrounds:install && npm run playgrounds:prepare",
+  "scripts":              {
+    "prepack":             "nuxt-module-build prepare && nuxt-module-build build",
+    "prepublishOnly":      "npm run check && npm run prepack",
+    "dev":                 "npm run dev:v3",
+    "dev:v3":              "nuxi dev playgrounds/content-v3 --port 3000",
+    "dev:v2":              "nuxi dev playgrounds/content-v2 --port 3001",
+    "dev:build":           "npm run dev:build:v3 && npm run dev:build:v2",
+    "dev:build:v3":        "nuxi build playgrounds/content-v3",
+    "dev:build:v2":        "nuxi build playgrounds/content-v2",
+    "dev:prepare":         "nuxt-module-build build --stub && nuxt-module-build prepare && npm run playgrounds:install && npm run playgrounds:prepare",
     "playgrounds:install": "npm install --prefix playgrounds/content-v3 && npm install --prefix playgrounds/content-v2",
     "playgrounds:prepare": "nuxi prepare playgrounds/content-v3 && nuxi prepare playgrounds/content-v2",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
-    "release": "npm run check && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "test": "vitest run",
-    "test:watch": "vitest watch",
-    "test:coverage": "vitest run --coverage",
-    "test:types": "vue-tsc --noEmit",
-    "check": "npm run lint && npm run format:check && npm run test"
+    "docs:dev":            "vitepress dev docs",
+    "docs:build":          "vitepress build docs",
+    "docs:preview":        "vitepress preview docs",
+    "release":             "npm run check && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "lint":                "eslint .",
+    "lint:fix":            "eslint . --fix",
+    "format":              "prettier --write .",
+    "format:check":        "prettier --check .",
+    "test":                "vitest run",
+    "test:watch":          "vitest watch",
+    "test:coverage":       "vitest run --coverage",
+    "test:types":          "vue-tsc --noEmit",
+    "check":               "npm run lint && npm run format:check && npm run test"
   },
-  "dependencies": {
+  "dependencies":         {
     "@nuxt/kit": ">=3.16.0 <5.0.0"
   },
-  "peerDependencies": {
+  "peerDependencies":     {
     "@nuxt/content": "^2.0.0 || ^3.0.0",
-    "nuxt": "^3.16.0 || ^4.0.0"
+    "nuxt":          "^3.16.0 || ^4.0.0"
   },
   "peerDependenciesMeta": {
     "@nuxt/content": {
       "optional": true
     }
   },
-  "devDependencies": {
-    "@nuxt/devtools": "^3.4.1",
-    "@nuxt/eslint-config": "^1.17.0",
-    "@nuxt/module-builder": "^1.0.3",
-    "@nuxt/schema": "^4.5.2",
-    "@nuxt/test-utils": "^4.1.0",
-    "@types/node": "^24.3.0",
-    "@vitest/coverage-v8": "^4.1.0",
-    "changelogen": "^0.6.2",
-    "eslint": "^9.39.0",
+  "devDependencies":      {
+    "@nuxt/devtools":         "^3.4.1",
+    "@nuxt/eslint-config":    "^1.17.0",
+    "@nuxt/module-builder":   "^1.0.3",
+    "@nuxt/schema":           "^4.5.2",
+    "@nuxt/test-utils":       "^4.1.0",
+    "@types/node":            "^24.3.0",
+    "@vitest/coverage-v8":    "^4.1.0",
+    "changelogen":            "^0.6.2",
+    "eslint":                 "^9.39.0",
     "eslint-config-prettier": "^10.1.0",
-    "happy-dom": "^20.11.2",
-    "jiti": "^2.6.0",
-    "nuxt": "^4.5.2",
-    "prettier": "^3.6.0",
-    "typescript": "^5.9.3",
-    "vitepress": "^1.6.3",
-    "vitest": "^4.1.0",
-    "vue": "^3.5.41",
-    "vue-tsc": "^3.3.9"
+    "happy-dom":              "^20.11.2",
+    "jiti":                   "^2.6.0",
+    "nuxt":                   "^4.5.2",
+    "prettier":               "^3.6.0",
+    "typescript":             "^5.9.3",
+    "vitepress":              "^1.6.3",
+    "vitest":                 "^4.1.0",
+    "vue":                    "^3.5.41",
+    "vue-tsc":                "^3.3.9"
   },
-  "packageManager": "npm@10.9.2",
-  "engines": {
+  "packageManager":       "npm@10.9.2",
+  "engines":              {
     "node": ">=20.0.0"
   },
-  "publishConfig": {
-    "access": "public",
+  "publishConfig":        {
+    "access":   "public",
     "registry": "https://registry.npmjs.org/"
   }
 }
