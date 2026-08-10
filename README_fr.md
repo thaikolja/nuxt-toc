@@ -7,7 +7,7 @@
 
 Table des matières (Table of Contents) pour les fichiers créés avec [@nuxt/content](https://content.nuxt.com/). Cette version est compatible avec @nuxt/content v2 et v3.
 
-**Documentation complète :** [https://thaikolja.github.io/nuxt-toc/](https://thaikolja.github.io/nuxt-toc/)
+**Documentation complète :** [https://docs.kolja-nolte.com/nuxt-toc/](https://docs.kolja-nolte.com/nuxt-toc/)
 
 [English](./README.md) · [中文](./README_zh.md) · [Deutsch](./README_de.md) · [Español](./README_es.md) · [Français](./README_fr.md) · [فارسی](./README_fa.md)
 
@@ -107,7 +107,7 @@ export default defineNuxtConfig({
 
 ## Documentation
 
-Pour en savoir plus sur `nuxt-toc`, son usage et son style, consultez [la documentation complète](https://thaikolja.github.io/nuxt-toc). Guides, recettes et plus encore.
+Pour en savoir plus sur `nuxt-toc`, son usage et son style, consultez [la documentation complète](https://docs.kolja-nolte.com/nuxt-toc). Guides, recettes et plus encore.
 
 ## Auteurs
 

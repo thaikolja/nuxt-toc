@@ -7,7 +7,7 @@
 
 فهرست مطالب (Table of Contents) برای فایل‌هایی که با [@nuxt/content](https://content.nuxt.com/) ساخته شده‌اند. این نسخه با @nuxt/content v2 و v3 سازگار است.
 
-**مستندات کامل:** [https://thaikolja.github.io/nuxt-toc/](https://thaikolja.github.io/nuxt-toc/)
+**مستندات کامل:** [https://docs.kolja-nolte.com/nuxt-toc/](https://docs.kolja-nolte.com/nuxt-toc/)
 
 [English](./README.md) · [中文](./README_zh.md) · [Deutsch](./README_de.md) · [Español](./README_es.md) · [Français](./README_fr.md) · [فارسی](./README_fa.md)
 
@@ -107,7 +107,7 @@ export default defineNuxtConfig({
 
 ## مستندات
 
-برای یادگیری بیشتر درباره `nuxt-toc`، نحوه استفاده و استایل‌دهی، [مستندات کامل](https://thaikolja.github.io/nuxt-toc) را ببینید. راهنماها، دستورالعمل‌ها و موارد بیشتر آنجا هستند.
+برای یادگیری بیشتر درباره `nuxt-toc`، نحوه استفاده و استایل‌دهی، [مستندات کامل](https://docs.kolja-nolte.com/nuxt-toc) را ببینید. راهنماها، دستورالعمل‌ها و موارد بیشتر آنجا هستند.
 
 ## نویسندگان
 

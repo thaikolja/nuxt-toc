@@ -1,8 +1,10 @@
 import { defineConfig } from 'vitepress'
 
-// GitHub Pages project site: https://<user>.github.io/nuxt-toc/
-const siteUrl = 'https://thaikolja.github.io/nuxt-toc'
-const base = process.env.GITHUB_ACTIONS ? '/nuxt-toc/' : '/'
+// Canonical public docs (Cloudflare Pages hub): https://docs.kolja-nolte.com/nuxt-toc/
+// Also mirrored on GitHub Pages: https://thaikolja.github.io/nuxt-toc/
+const siteUrl = process.env.DOCS_SITE_URL ?? 'https://docs.kolja-nolte.com/nuxt-toc'
+// Subpath deploy needs `/nuxt-toc/`; local `docs:dev` uses `/`.
+const base = process.env.DOCS_BASE ?? (process.env.CI ? '/nuxt-toc/' : '/')
 
 const siteDescription =
   'Table of Contents component for Nuxt Content (v2 and v3) with active section highlighting, depth control, and sticky docs layouts.'
