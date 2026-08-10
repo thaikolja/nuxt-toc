@@ -1,0 +1,8 @@
+# Safety net — `files` in package.json already limits the publish set to dist/.
+# Keep this in sync if you ever expand `files`.
+
+*
+!dist/**
+!LICENSE
+!README.md
+!package.json

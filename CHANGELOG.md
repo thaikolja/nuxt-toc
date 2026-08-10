@@ -1,5 +1,42 @@
 # Changelog
 
+## v3.0.0
+
+### ⚠️ Breaking Changes
+
+- Target **Nuxt 4** (peer: `nuxt` `^3.16.0 || ^4.0.0`; primary host Nuxt 4)
+- Module config key is now **`nuxtToc`** with option `collection` (default `'content'`)
+- Removed internal `CustomQuery` helper; auto-fetch uses version-specific plugins (`fetch-v2` / `fetch-v3`)
+- Single heavy blog playground replaced by **dual** minimal apps under `playgrounds/`
+- Development package manager standardized on **npm** (`package-lock.json`)
+- Public styling ids remain **`#toc-title`** / **`#toc-container`** (stable vs v2)
+
+### 🚀 Enhancements
+
+- **Dual support** for `@nuxt/content` **v2 and v3** (peer: `^2 || ^3`)
+- Auto-detects Content major from host `node_modules` and registers one fetch plugin
+- `TableOfContents` accepts prefetched `page.body.toc` on both majors
+- Props: `toc`, `path`, `collection`, `depth`, `isSublistShown`, `isTitleShownWithNoContent`, `title`
+- **`depth`**: controls how deep nested TOC link trees are shown (module option + prop)
+- **`scrollSpy`**, **`rootMargin`**, **`smooth`**, **`scrollOffset`**: scroll-spy and click-scroll controls
+- Empty-state UX: loading message, missing-path message, optional title-only when empty
+- Performance: observe only TOC heading ids, rAF-batched intersection updates, skip rebuild when unchanged
+- IntersectionObserver rebuilds when TOC/path changes; reliable unmount cleanup
+- Dual playgrounds: Content v3 (`:3000`) and Content v2 (`:3001`) with `/`, `/auto-fetch`, `/props`, `/settings`
+
+### 📖 Documentation
+
+- `AGENTS.md` for maintainers and coding agents
+- VitePress site: guide, API, Content v2/v3, recipes, migration, contributing
+- Slim multi-language READMEs (en, zh, de, es, fr, fa) with npm/CI shields + link to GitHub Pages docs
+- Branding via root **`logo.png`** (playgrounds + docs)
+
+### 🏡 Chore
+
+- TypeScript tooling configs (`build.config.ts`, `eslint.config.ts`)
+- CI on npm (lint, format, tests, pack dry-run); docs deploy workflow
+- Production package metadata (`homepage`, `bugs`, `publishConfig`, `sideEffects`)
+- Removed unused `screenshots/` assets
 
 ## v2.7.2
 
@@ -313,7 +350,8 @@
 
 ### 📖 Documentation
 
-- Update readme with info of new prop and a new example ([e126cb9](https://github.com/hanyujie2002/nuxt-toc/commit/e126cb9))
+- Update readme with info of new prop and a new example
+  ([e126cb9](https://github.com/hanyujie2002/nuxt-toc/commit/e126cb9))
 
 ### ❤️ Contributors
 
@@ -325,7 +363,8 @@
 
 ### 🩹 Fixes
 
-- Resolved title being rendered with no content in toc ([8ca38b1](https://github.com/hanyujie2002/nuxt-toc/commit/8ca38b1))
+- Resolved title being rendered with no content in toc
+  ([8ca38b1](https://github.com/hanyujie2002/nuxt-toc/commit/8ca38b1))
 
 ### ❤️ Contributors
 
@@ -482,7 +521,8 @@
 
 ### 🚀 Enhancements
 
-- Implemented is-sublist-nested prop and renamed show-sub-list to is-sub-list-shown ([cd5f867](https://github.com/hanyujie2002/nuxt-toc/commit/cd5f867))
+- Implemented is-sublist-nested prop and renamed show-sub-list to is-sub-list-shown
+  ([cd5f867](https://github.com/hanyujie2002/nuxt-toc/commit/cd5f867))
 
 ### ❤️ Contributors
 

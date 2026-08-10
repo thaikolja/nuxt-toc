@@ -1,0 +1,22 @@
+export default defineNuxtConfig({
+  modules: ['../../src/module', '@nuxt/content'],
+  devtools: { enabled: true },
+  content: {
+    build: {
+      markdown: {
+        toc: {
+          depth: 4,
+          searchDepth: 4,
+        },
+      },
+    },
+  },
+  future: {
+    compatibilityVersion: 4,
+  },
+  compatibilityDate: '2025-01-01',
+  nuxtToc: {
+    collection: 'content',
+    depth: 2,
+  },
+})

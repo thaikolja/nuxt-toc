@@ -1,0 +1,14 @@
+{
+  "name": "nuxt-toc-playground-content-v2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxi dev --port 3001",
+    "build": "nuxi build",
+    "prepare": "nuxi prepare"
+  },
+  "dependencies": {
+    "@nuxt/content": "^2.13.4",
+    "nuxt": "^4.5.2"
+  }
+}

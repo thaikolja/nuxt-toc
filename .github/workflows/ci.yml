@@ -8,38 +8,77 @@ on:
     branches:
       - main
 
-jobs:
-  lint:
-    runs-on: ubuntu-latest
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
+jobs:
+  quality:
+    name: lint · format · types
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: corepack enable
+
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
+          cache: npm
 
       - name: Install dependencies
-        run: npx nypm@latest i
+        run: npm ci
 
-      - name: Lint
+      - name: Prepare module types
+        run: npx nuxt-module-build prepare
+
+      - name: ESLint
         run: npm run lint
 
-  test:
-    runs-on: ubuntu-latest
+      - name: Prettier
+        run: npm run format:check
 
+      - name: Typecheck
+        run: npm run test:types
+
+  test:
+    name: unit + e2e
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: corepack enable
+
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
+          cache: npm
 
       - name: Install dependencies
-        run: npx nypm@latest i
+        run: npm ci
 
-      - name: Playground prepare
+      - name: Prepare module and playgrounds
         run: npm run dev:prepare
 
       - name: Test
         run: npm run test
+
+      - name: Build package
+        run: npm run prepack
+
+  pack:
+    name: npm pack dry-run
+    needs: [quality, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run prepack
+
+      - name: Pack
+        run: npm pack --dry-run

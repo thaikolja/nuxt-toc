@@ -1,5 +1,10 @@
 # Dependencies
 node_modules
+pnpm-lock.yaml
+yarn.lock
+bun.lock
+bun.lockb
+*.tgz
 
 # Logs
 *.log*
@@ -13,39 +18,40 @@ node_modules
 **/.yarn/cache
 **/.yarn/*state*
 
-# Generated dirs
+# Generated
 dist
-
-# Nuxt
 .nuxt
 .output
 .data
 .vercel_build_output
 .build-*
 .netlify
+docs/.vitepress/cache
+docs/.vitepress/dist
 
 # Env
 .env
+.env.*
 
 # Testing
 reports
 coverage
 *.lcov
 .nyc_output
+html
 
-# VSCode
+# Editors
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
-
-# Intellij idea
+AGENTS.md
 *.iml
 .idea
 
-# OSX
+# OS
 .DS_Store
 .AppleDouble
 .LSOverride

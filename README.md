@@ -1,296 +1,116 @@
-> [!IMPORTANT]
->
-> The released version of this module, v2.7.2, **is not compatible** with the current version of Nuxt Content, [@nuxt/content v3](https://content.nuxt.com/). To use this module, you must downgrade to [@nuxt/content v2.x.x](https://v2.content.nuxt.com/). The upgrade of this module to v3.0.0 to be compatible with @nuxt/content v3 is currently in active development.
+# nuxt-toc
 
----
+[![npm version](https://img.shields.io/npm/v/nuxt-toc?style=flat&colorA=18181B&colorB=28CF8D)](https://www.npmjs.com/package/nuxt-toc) [![npm downloads](https://img.shields.io/npm/dm/nuxt-toc?style=flat&colorA=18181B&colorB=28CF8D)](https://www.npmjs.com/package/nuxt-toc) [![License](https://img.shields.io/npm/l/nuxt-toc?style=flat&colorA=18181B&colorB=28CF8D)](https://github.com/thaikolja/nuxt-toc/blob/main/LICENSE) [![CI](https://img.shields.io/github/actions/workflow/status/thaikolja/nuxt-toc/ci.yml?branch=main&style=flat&colorA=18181B&label=ci)](https://github.com/thaikolja/nuxt-toc/actions/workflows/ci.yml)
 
-**Languages:** [中文](./README_zh.md)
+Use a Table of Contents for files created with **[@nuxt/content](https://content.nuxt.com/)** module. This version is compatible with **@nuxt/content** v2 and v3.
 
-# Table of Contents for @nuxt/content
+**Full documentation:** [https://thaikolja.github.io/nuxt-toc/](https://thaikolja.github.io/nuxt-toc/)
 
-[![npm version][npm-version-src]][npm-version-href] [![npm downloads][npm-downloads-src]][npm-downloads-href] [![License][license-src]][license-href] [![Nuxt][nuxt-src]][nuxt-href]
+☀︎ [English](./README.md) · [中文](./README_zh.md) · [Deutsch](./README_de.md) · [Español](./README_es.md) · [Français](./README_fr.md) · [فارسی](./README_fa.md)
 
-A module for the Nuxt module [@nuxt/content](https://content.nuxt.com/) to integrate a table of contents component inside your Nuxt Content projects.
+## Features
 
+- Content **v2** (`queryContent`) and **v3** (`queryCollection`)
+- Pass-in `:toc` (recommended) or optional auto-fetch
+- Nested link depth control
+- Active section highlighting (scroll-spy)
+- Optional smooth scroll + sticky-header offset
+- Stable CSS class/id hooks for theming
+- Accessible list markup
 
+## Install
 
-- [✨  Release Notes](https://github.com/hanyujie2002/nuxt-toc/releases)
-<!-- - 🏀 Online playground -->
-<!-- - 📖  Documentation -->
-
-## Features ✨
-
-- 🎨 **Highly Customizable**: Tailor it to fit your unique needs.
-- 🔍 **Active TOC Highlighting**: Easily see which section you're in.
-- 📦 **Out of the Box**: Ready to use with minimal setup.
-- 🔗 **Section Links**: Navigate seamlessly within your content.
-- ♿ **ARIA Support**: Ensures accessibility for all users.
-- 🆓 **Free and Open Source (MIT License)**: Enjoy the freedom to use, modify, and distribute.
-
-## Quick Start 🔧
-
-1. Install the module to your Nuxt application:
+### Step 1: Setup
 
 ```bash
+# Adding to existing site
 npx nuxi module add nuxt-toc
+
+# Or install manually
+npm install nuxt-toc
 ```
 
-2. Add `<TableOfContents />` at where you need the TOC.
+### Step 2: Add module to Nuxt
 
-```vue
-<template>
-    <ContentDoc />
-    <TableOfContents />
-</template>
+If you installed `nuxt-toc` via `nuxi module`, you can skip this step.
+
+```ts
+// nuxt.config.ts
+export default defineNuxtConfig({
+  modules: ['nuxt-toc', '@nuxt/content'],
+})
 ```
 
-You can also pass in TOC yourself to prevent duplicate fetching.
+## Usage
+
+Prefer passing TOC from your page query. Make sure to use the correct version to match your @nuxt/content version.
 
 ```vue
-<template>
-    <ContentRenderer :value="data" />
-    <TableOfContents :toc="data.body.toc" />
-</template>
-
-<script setup>
+<script setup lang="ts">
 const route = useRoute()
+// @nuxt/content v3:
+const { data: page } = await useAsyncData(route.path, () =>
+  queryCollection('content').path(route.path).first(),
+)
 
-const { data } = await useAsyncData('home', () => queryContent(route.path).findOne())
+// @nuxt/content v2
+// queryContent(route.path).findOne()
 </script>
+
+<template>
+  <ContentRenderer v-if="page" :value="page" />
+  <TableOfContents :toc="page?.body?.toc" />
+</template>
+```
+
+Or auto-fetch by path:
+
+```vue
+<TableOfContents path="/docs/intro" />
 ```
 
 ## Props
 
-| **Prop**           | **Type** | **Default** | **Description**                                                                                     |
-|--------------------|----------|-------------|-----------------------------------------------------------------------------------------------------|
-| `toc`                  | JSON | `null`              | Use the provided `toc` data. **If `toc` is passed in, this component will not fetch TOC info itself and `path` prop will be ignored**.|
-| `path`             | String   | `''`        | The path to the content for which the TOC is generated. **Defaults to using the current URI if not set**.                                    |
-| `isSublistShown`   | Boolean  | `true`      | Determines whether the sublist within the TOC is shown.                                             |
-| `isTitleShownWithNoContent` | Boolean  | `false`     | Determines whether the title is shown even if there is no content in the TOC.                                  |
-| `title`            | String   | `'Table of Contents'` | The title of the TOC.                                                                               |
+| Prop                        | Type          | Default               | Description                                                            |
+| --------------------------- | ------------- | --------------------- | ---------------------------------------------------------------------- |
+| `toc`                       | `Toc \| null` | `null`                | Prefetched TOC (`page.body.toc`). Skips fetch when set.                |
+| `path`                      | `string`      | `''`                  | Auto-fetch path (default: current route).                              |
+| `collection`                | `string`      | `''`                  | Content **v3** collection (default: `nuxtToc.collection` / `content`). |
+| `depth`                     | `number`      | `2`                   | Max nesting depth of the link tree (`1` = top-level only).             |
+| `isSublistShown`            | `boolean`     | `true`                | When `false`, forces depth `1`.                                        |
+| `isTitleShownWithNoContent` | `boolean`     | `false`               | Keep showing the title when there are no links.                        |
+| `title`                     | `string`      | `'Table of Contents'` | Heading text.                                                          |
+| `scrollSpy`                 | `boolean`     | `true`                | Active-section highlighting.                                           |
+| `rootMargin`                | `string`      | `'0px 0px -80% 0px'`  | IntersectionObserver `rootMargin`.                                     |
+| `smooth`                    | `boolean`     | `false`               | Smooth scroll on link click.                                           |
+| `scrollOffset`              | `number`      | `0`                   | Scroll offset in px (sticky header).                                   |
 
-## Styling
+## Module options
 
-| **ID/Class**                | **Type** | **Description**                                                                                     |
-|-----------------------------|----------|-----------------------------------------------------------------------------------------------------|
-| `toc-container`             | ID       | The container for the table of contents (TOC).                                                      |
-| `toc-title`                 | ID       | The title of the table of contents.                                                                 |
-| `toc-item`                  | Class    | General class for TOC items.                                                                        |
-| `toc-topitem`               | Class    | Specific class for top-level TOC items.                                                             |
-| `active-toc-item`           | Class    | Applied to active TOC items.                                                                        |
-| `active-toc-topitem`        | Class    | Applied to active top-level TOC items.                                                              |
-| `toc-link`                  | Class    | General class for TOC links.                                                                        |
-| `toc-toplink`               | Class    | Specific class for top-level TOC links.                                                             |
-| `toc-sublist`               | Class    | Styles the sublist within the TOC.                                                                  |
-| `toc-subitem`               | Class    | Specific class for sub-level TOC items.                                                             |
-| `active-toc-subitem`        | Class    | Applied to active sub-level TOC items.                                                              |
-| `toc-sublink`               | Class    | Specific class for sub-level TOC links.                                                             |
-| `toc-item-${link.id}`       | ID       | Dynamically generated ID for each TOC item, based on the `link.id`.                                 |
-| `toc-topitem-and-sublist`   | Class    | Styles the top-level TOC items and their sublists.                                                  |
+Customize `nuxt-toc` via the following settings (values used here are default values).
 
-> [!NOTE]
-> The default styling of the `<TableOfContents />` component is:
->
-> ```css
-> .active-toc-item {
->   color: #fef08a;
-> }
->
-> .toc-sublist-item {
->   padding-left: 1rem;
-> }
->
-> a {
->   text-decoration: none;
->   color: inherit;
-> }
->
-> ul,
-> ol {
->   list-style: none;
->   padding: 0;
->   margin: 0;
-> }
-> ```
->
-> You can customize the style or reset it with:
->
-> ```css
-> .active-toc-item {
->   color: initial;
-> }
->
-> .toc-sublist-item {
->   padding-left: initial;
-> }
->
-> a {
->   text-decoration: underline;
->   color: initial;
-> }
->
-> ul,
-> ol {
->   list-style: initial;
->   padding: initial;
->   margin: initial;
-> }
-> ```
-
-## Cookbook
-
-### Example One
-
-Custom color for active items and custom padding for subitems
-
-```vue
-<template>
-    <ContentDoc />
-    <TableOfContents />
-</template>
-
-<style>
-/* Styling for active Table of Contents items */
-.active-toc-item {
-  color: #4ade80;
-}
-
-/* Indentation for second-level Table of Contents items */
-.toc-sublist-item {
-  padding-left: 1.5rem;
-}
-</style>
-
-<!-- Or with Tailwind CSS
-<style>
-.active-toc-item {
-  @apply text-green-300
-}
-
-.toc-sublist-item {
-  @apply pl-1.5
-}
-</style>
--->
+```ts
+export default defineNuxtConfig({
+  nuxtToc: {
+    collection: 'content',
+    depth: 2,
+    scrollSpy: true,
+    rootMargin: '0px 0px -80% 0px',
+    smooth: false,
+    scrollOffset: 0,
+  },
+})
 ```
 
-Result:
+## Documentation
 
-<div align="center">
-  <img src="./screenshots/example.png" alt="example">
-</div>
+To learn more about `nuxt-toc` and how to use or style it, check out [the full documentation](https://thaikolja.github.io/nuxt-toc). You will find guides, recipes, and more.
 
-### Example Two
+## Authors
 
-Having a bar at left of each item
-
-```vue
-<template>
-    <ContentDoc />
-    <TableOfContents />
-</template>
-
-<style>
-.toc-item {
-  border-left-width: 2px;
-  border-left-style: solid;
-  border-color: #e5e7eb;
-  padding-left: 0.25rem /* 4px */;
-}
-
-.active-toc-item {
-  color: #60a5fa;
-  border-color: #60a5fa;
-}
-
-.toc-sublist-item {
-  padding-left: 1rem;
-}
-</style>
-
-<!-- Or with Tailwind CSS
-<style>
-.toc-item {
-  @apply border-l-2 pl-1
-}
-
-.active-toc-item {
-  @apply text-blue-400 border-blue-400
-}
-
-.toc-sublist-item {
-  @apply pl-4
-}
-</style>
--->
-```
-
-Result:
-
-<div align="center">
-  <img src="./screenshots/example1.png" alt="example1">
-</div>
-
-### Example Three
-
-First level titles be active when any of it's second level titles be active.
-
-```vue
-<template>
-    <ContentDoc />
-    <TableOfContents />
-</template>
-
-<style>
-/* Sublist item is contained in sub list, which is top item's sibling */
-.active-toc-item, .toc-topitem:has(+ .toc-sublist .active-toc-sublist-item) {
-  color: #60a5fa
-}
-
-.active-toc-sublist-item {
-  color: #4ade80
-}
-
-.toc-sublist-item {
-  padding-left: 1rem /* 16px */;
-}
-</style>
-
-<!-- Or with Tailwind CSS
-<style>
-.active-toc-item, .toc-topitem:has(+ .toc-sublist .active-toc-sublist-item) {
-  @apply text-blue-400
-}
-
-.active-toc-sublist-item {
-  @apply text-green-400
-}
-
-.toc-sublist-item {
-  @apply pl-4
-}
-</style>
--->
-```
-
-Result:
-
-<div align="center">
-  <img src="./screenshots/example2.png" alt="example2">
-</div>
+- [hanyujie2002](https://github.com/hanyujie2002)
+- [thaikolja](https://github.com/thaikolja)
 
 ## License
 
-This project is under [MIT](https://raw.githubusercontent.com/hanyujie2002/nuxt-toc/refs/heads/main/LICENSE) license.
-
-[npm-version-src]: https://img.shields.io/npm/v/nuxt-toc/latest.svg?style=flat&colorA=020420&colorB=00DC82
-[npm-version-href]: https://npmjs.com/package/nuxt-toc
-
-[npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-toc.svg?style=flat&colorA=020420&colorB=00DC82
-[npm-downloads-href]: https://npmjs.com/package/nuxt-toc
-
-[license-src]: https://img.shields.io/npm/l/nuxt-toc.svg?style=flat&colorA=020420&colorB=00DC82
-[license-href]: https://npmjs.com/package/nuxt-toc
-
-[nuxt-src]: https://img.shields.io/badge/Nuxt-020420?logo=nuxt.js
-[nuxt-href]: https://nuxt.com
+This project is licensed under the [MIT License](/LICENSE).

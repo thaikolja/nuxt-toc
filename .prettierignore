@@ -1,0 +1,16 @@
+dist
+coverage
+node_modules
+.nuxt
+.output
+.data
+bun.lock
+bun.lockb
+docs/.vitepress/cache
+docs/.vitepress/dist
+playgrounds/**/node_modules
+playgrounds/**/.nuxt
+CHANGELOG.md
+*.png
+*.jpg
+*.ico
