@@ -13,14 +13,16 @@ describe('playground content-v2 (Nuxt 4 + @nuxt/content v2)', async () => {
     expect(html).toContain('v2')
     expect(html).toContain('Table of Contents')
     expect(html).toContain('Getting started')
-    expect(html).toContain('toc-container')
+    expect(html).toContain('id="toc-container"')
+    expect(html).toContain('id="toc-title"')
   })
 
   it('renders auto-fetch TOC page', async () => {
     const html = await $fetch('/auto-fetch')
     expect(html).toContain('Auto-fetch demo')
     expect(html).toContain('Table of Contents')
-    expect(html).toContain('toc-container')
+    expect(html).toContain('id="toc-container"')
+    expect(html).toContain('id="toc-title"')
   })
 
   it('renders custom props demo', async () => {

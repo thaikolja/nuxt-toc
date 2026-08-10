@@ -3,9 +3,9 @@
 In this repository:
 
 ```bash
-bun install
-bun run dev:prepare
-bun run dev:v3
+npm install
+npm run dev:prepare
+npm run dev:v3
 ```
 
 - URL: http://localhost:3000

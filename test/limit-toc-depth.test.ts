@@ -32,33 +32,43 @@ describe('limitTocDepth', () => {
 
   it('depth 1 keeps top-level only', () => {
     const result = limitTocDepth(sample, 1)!
+    const [first, second] = result.links
     expect(result.links).toHaveLength(2)
-    expect(result.links[0].children).toBeUndefined()
-    expect(result.links[1].children).toBeUndefined()
+    expect(first?.children).toBeUndefined()
+    expect(second?.children).toBeUndefined()
     expect(result.links.map(l => l.id)).toEqual(['a', 'b'])
   })
 
   it('depth 2 keeps one nested level', () => {
     const result = limitTocDepth(sample, 2)!
-    expect(result.links[0].children).toHaveLength(2)
-    expect(result.links[0].children![0].children).toBeUndefined()
-    expect(result.links[0].children!.map(c => c.id)).toEqual(['a1', 'a2'])
+    const first = result.links[0]!
+    expect(first.children).toHaveLength(2)
+    expect(first.children?.[0]?.children).toBeUndefined()
+    expect(first.children?.map(c => c.id)).toEqual(['a1', 'a2'])
   })
 
   it('depth 3 keeps two nested levels', () => {
     const result = limitTocDepth(sample, 3)!
-    expect(result.links[0].children![0].children).toEqual([{ id: 'a1a', text: 'A1a' }])
+    expect(result.links[0]?.children?.[0]?.children).toEqual([{ id: 'a1a', text: 'A1a' }])
   })
 
   it('clamps depth below 1 to 1', () => {
     const result = limitTocDepth(sample, 0)!
-    expect(result.links[0].children).toBeUndefined()
+    expect(result.links[0]?.children).toBeUndefined()
   })
 
   it('does not mutate the original tree', () => {
     limitTocDepth(sample, 1)
-    expect(sample.links[0].children).toBeDefined()
-    expect(sample.links[0].children![0].children).toBeDefined()
+    expect(sample.links[0]?.children).toBeDefined()
+    expect(sample.links[0]?.children?.[0]?.children).toBeDefined()
+  })
+
+  it('returns the same reference when depth already covers the tree', () => {
+    const shallow: Toc = {
+      links: [{ id: 'only', text: 'Only' }],
+    }
+    expect(limitTocDepth(shallow, 2)).toBe(shallow)
+    expect(limitTocDepth(sample, 10)).toBe(sample)
   })
 })
 

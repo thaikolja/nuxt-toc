@@ -5,12 +5,11 @@ node_modules
 .output
 .data
 bun.lock
-package-lock.json
+bun.lockb
 docs/.vitepress/cache
 docs/.vitepress/dist
 playgrounds/**/node_modules
 playgrounds/**/.nuxt
-playgrounds/**/bun.lock
 CHANGELOG.md
 *.png
 *.jpg

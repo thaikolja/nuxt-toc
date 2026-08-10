@@ -1,8 +1,10 @@
 # Dependencies
 node_modules
-package-lock.json
 pnpm-lock.yaml
 yarn.lock
+bun.lock
+bun.lockb
+*.tgz
 
 # Logs
 *.log*
@@ -27,7 +29,6 @@ dist
 docs/.vitepress/cache
 docs/.vitepress/dist
 
-
 # Env
 .env
 .env.*
@@ -37,6 +38,7 @@ reports
 coverage
 *.lcov
 .nyc_output
+html
 
 # Editors
 .vscode/*
@@ -45,6 +47,7 @@ coverage
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
+AGENTS.md
 *.iml
 .idea
 

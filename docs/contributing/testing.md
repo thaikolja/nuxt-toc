@@ -1,7 +1,7 @@
 # Testing
 
 ```bash
-bun run test
+npm run test
 ```
 
 - `test/detect-content-major.test.ts` — version detection
@@ -9,4 +9,4 @@ bun run test
 - `test/content-v3.test.ts` — e2e against content-v3 playground
 - `test/content-v2.test.ts` — e2e against content-v2 playground
 
-Run `bun run dev:prepare` before e2e so playgrounds have dependencies and the module stub.
+Run `npm run dev:prepare` before e2e so playgrounds have dependencies and the module stub.

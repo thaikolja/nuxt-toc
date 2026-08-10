@@ -5,17 +5,17 @@
 ```bash
 npx nuxi module add nuxt-toc
 # or
-bun add nuxt-toc
+npm install nuxt-toc
 ```
 
 Ensure **@nuxt/content** is installed as a peer:
 
 ```bash
 # Content v3 (recommended for new apps)
-bun add @nuxt/content@^3
+npm install @nuxt/content@^3
 
 # or Content v2
-bun add @nuxt/content@^2
+npm install @nuxt/content@^2
 ```
 
 ## Register the module

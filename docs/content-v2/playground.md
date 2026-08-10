@@ -1,9 +1,9 @@
 # Content v2 playground
 
 ```bash
-bun install
-bun run dev:prepare
-bun run dev:v2
+npm install
+npm run dev:prepare
+npm run dev:v2
 ```
 
 - URL: http://localhost:3001

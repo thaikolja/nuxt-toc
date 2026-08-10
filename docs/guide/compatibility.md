@@ -19,4 +19,4 @@ v2 and v3 **cannot** share a single `node_modules` tree. This repo keeps separat
 
 ## Runtime dependency note
 
-The published package depends on `@nuxt/kit` ^4. For Nuxt 3.16 hosts, verify your lockfile resolves kit consistently; Nuxt 4 is the primary supported host for this major.
+The published package depends on `@nuxt/kit` `>=3.16.0 <5.0.0` so Nuxt 3.16+ and Nuxt 4 hosts can resolve a matching kit. Nuxt 4 remains the primary supported host for this major; on Nuxt 3, keep `@nuxt/kit` aligned with your Nuxt version in the lockfile.

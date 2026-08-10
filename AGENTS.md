@@ -22,7 +22,7 @@ active section with IntersectionObserver.
 - `src/runtime/components/TableOfContents.vue` — public UI + props + observer
 - `src/runtime/utils/normalize-toc.ts` — TOC shape normalization
 - `src/runtime/types.ts` — TOC / `$nuxtTocFetch` types
-- `playgrounds/content-v3/` — Nuxt 4 + Content v3 (`/`, `/auto-fetch`, `/props`)
+- `playgrounds/content-v3/` — Nuxt 4 + Content v3 (`/`, `/auto-fetch`, `/props`, `/settings`)
 - `playgrounds/content-v2/` — Nuxt 4 + Content v2 (same routes)
 - `docs/` — VitePress developer documentation (GitHub Pages)
 - `test/` — unit + e2e against both playgrounds
@@ -33,34 +33,35 @@ active section with IntersectionObserver.
 
 ## Package manager
 
-Local development uses **Bun** (`packageManager`: `bun@1.3.14`).
+Local development and CI use **npm** (`packageManager`: `npm@10.9.2`).
 
 ```bash
-bun install
-bun run dev:prepare
-bun run dev:v3
-bun run dev:v2
-bun run docs:dev
-bun run test
-bun run lint
-bun run check   # lint + format:check + test
+npm install
+npm run dev:prepare   # stub module + generate types + both playgrounds
+npm run dev:v3
+npm run dev:v2
+npm run docs:dev
+npm run test
+npm run lint
+npm run check         # lint + format:check + test
+npm run prepack       # production dist/ for npm publish
 ```
 
-Do not commit `package-lock.json` / `pnpm-lock.yaml`; use `bun.lock`.
+Commit `package-lock.json`. Do not use or commit Bun/pnpm lockfiles.
 
 ## Commands
 
 ```bash
-bun install
-bun run dev:prepare   # stub module + install/prepare both playgrounds
-bun run dev           # alias for dev:v3 (port 3000)
-bun run dev:v3        # Content v3 playground
-bun run dev:v2        # Content v2 playground (port 3001)
-bun run docs:dev      # VitePress
-bun run docs:build
-bun run test
-bun run prepack
-bun run lint
+npm install
+npm run dev:prepare   # stub module + install/prepare both playgrounds
+npm run dev           # alias for dev:v3 (port 3000)
+npm run dev:v3        # Content v3 playground
+npm run dev:v2        # Content v2 playground (port 3001)
+npm run docs:dev      # VitePress
+npm run docs:build
+npm run test
+npm run prepack
+npm run lint
 ```
 
 ## Component props (must keep working)
@@ -114,10 +115,12 @@ Verify on **both** playgrounds via `/props` and `/settings` after changes.
 - **Do** verify `dev:v3`, `dev:v2`, and `/props` on both.
 - **Do** run `dev:prepare` after module or dependency changes.
 - **Do** keep `logo.png` in sync under playgrounds and `docs/public`.
+- **Do** use **npm** only for installs and scripts.
 - **Don't** hard-import `queryCollection` in code paths used on Content v2.
 - **Don't** install both Content majors at the monorepo root.
 - **Don't** commit `node_modules` or hand-edit `dist/`.
+- **Don't** introduce Bun/pnpm lockfiles.
 
 ## Release note
 
-v3.0.0: Nuxt 4, dual Content v2/v3, `nuxtToc` config key, Bun, dual playgrounds, VitePress docs.
+v3.0.0: Nuxt 4, dual Content v2/v3, `nuxtToc` config key, dual playgrounds, VitePress docs, npm.

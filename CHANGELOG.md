@@ -8,7 +8,8 @@
 - Module config key is now **`nuxtToc`** with option `collection` (default `'content'`)
 - Removed internal `CustomQuery` helper; auto-fetch uses version-specific plugins (`fetch-v2` / `fetch-v3`)
 - Single heavy blog playground replaced by **dual** minimal apps under `playgrounds/`
-- Development package manager standardized on **Bun** (`bun.lock`)
+- Development package manager standardized on **npm** (`package-lock.json`)
+- Public styling ids remain **`#toc-title`** / **`#toc-container`** (stable vs v2)
 
 ### 🚀 Enhancements
 
@@ -23,19 +24,19 @@
 - IntersectionObserver rebuilds when TOC/path changes; reliable unmount cleanup
 - Dual playgrounds: Content v3 (`:3000`) and Content v2 (`:3001`) with `/`, `/auto-fetch`, `/props`, `/settings`
 
-- VitePress developer docs (`docs/`) with GitHub Pages workflow
-- Branding via root **`logo.png`** (playgrounds + docs)
-
 ### 📖 Documentation
 
 - `AGENTS.md` for maintainers and coding agents
 - VitePress site: guide, API, Content v2/v3, recipes, migration, contributing
-- README / README_zh updated for dual Content and Bun
+- Slim multi-language READMEs (en, zh, de, es, fr, fa) with npm/CI shields + link to GitHub Pages docs
+- Branding via root **`logo.png`** (playgrounds + docs)
 
 ### 🏡 Chore
 
 - TypeScript tooling configs (`build.config.ts`, `eslint.config.ts`)
-- CI on Bun; docs deploy workflow (`.github/workflows/docs.yml`)
+- CI on npm (lint, format, tests, pack dry-run); docs deploy workflow
+- Production package metadata (`homepage`, `bugs`, `publishConfig`, `sideEffects`)
+- Removed unused `screenshots/` assets
 
 ## v2.7.2
 
