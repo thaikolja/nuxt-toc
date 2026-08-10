@@ -8,7 +8,7 @@
 >
 > For more information, check out the [full documentation](https://thaikolja.github.io/nuxt-toc/).
 
-**Languages:**  [🇺🇸 English](./README.md) · [🇹🇼 中文](./README_zh.md) · [🇩🇪 Deutsch](./README_de.md) · [🇪🇸 Español](./README_es.md) · [🇫🇷 Français](./README_fr.md) · [🇸🇦 فارسی](./README_fa.md)
+**Languages:** [🇺🇸 English](./README.md) · [🇹🇼 中文](./README_zh.md) · [🇩🇪 Deutsch](./README_de.md) · [🇪🇸 Español](./README_es.md) · [🇫🇷 Français](./README_fr.md) · [🇸🇦 فارسی](./README_fa.md)
 
 ## ⚡️ Features
 
@@ -52,8 +52,8 @@ Prefer passing the TOC from your page query. Make sure to use the correct versio
 ```vue
 <!-- MyPage.vue -->
 <script setup lang="ts">
-const route 					= useRoute()
-const { data: page } 	= await useAsyncData(route.path, () =>
+const route = useRoute()
+const { data: page } = await useAsyncData(route.path, () =>
   queryCollection('content').path(route.path).first(),
 )
 </script>
