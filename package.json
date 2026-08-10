@@ -44,7 +44,7 @@
     "**/*.vue"
   ],
   "scripts": {
-    "prepack": "nuxt-module-build build",
+    "prepack": "nuxt-module-build prepare && nuxt-module-build build",
     "prepublishOnly": "npm run check && npm run prepack",
     "dev": "npm run dev:v3",
     "dev:v3": "nuxi dev playgrounds/content-v3 --port 3000",
