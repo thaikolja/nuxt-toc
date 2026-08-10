@@ -1,13 +1,5 @@
-# Dual docs deploy — always update BOTH hosts when this repo changes:
-#   • GitHub Pages:  https://thaikolja.github.io/nuxt-toc/
-#   • Cloudflare:    https://docs.kolja-nolte.com/nuxt-toc/
-#
-# Cloudflare rebuilds the private multi-product monorepo first so sibling
-# paths (/secondary-title, /ai-image-renamer-cli, /viscribe-wordpress-plugin)
-# are not wiped.
-#
-# Secrets (Cloudflare job only):
-#   CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, DOCS_MONOREPO_TOKEN
+# Deploy VitePress docs to GitHub Pages:
+# https://thaikolja.github.io/nuxt-toc/
 
 name: docs
 
@@ -23,26 +15,17 @@ on:
       - '.github/workflows/docs.yml'
   workflow_dispatch:
 
-concurrency:
-  group: docs-all-hosts
-  cancel-in-progress: true
-
 permissions:
   contents: read
   pages: write
   id-token: write
 
-env:
-  DOCS_BASE: /nuxt-toc/
-  # Canonical SEO host (used for both builds so mirrors agree on canonical URL)
-  DOCS_SITE_URL: https://docs.kolja-nolte.com/nuxt-toc
-  CF_PAGES_PROJECT: docs-kolja-nolte-com
-  DOCS_MONOREPO_REF: docs
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
-  # ── Shared VitePress build (one artifact for both deploys) ─────────────
   build:
-    name: build VitePress
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -65,96 +48,21 @@ jobs:
         run: npm run docs:build
         env:
           CI: 'true'
-          DOCS_SITE_URL: ${{ env.DOCS_SITE_URL }}
-          DOCS_BASE: ${{ env.DOCS_BASE }}
+          DOCS_SITE_URL: https://thaikolja.github.io/nuxt-toc
+          DOCS_BASE: /nuxt-toc/
 
-      - name: Upload site artifact
-        uses: actions/upload-artifact@v4
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: vitepress-site
           path: docs/.vitepress/dist
-          retention-days: 3
 
-  # ── GitHub Pages mirror ────────────────────────────────────────────────
-  github-pages:
-    name: deploy → GitHub Pages
+  deploy:
     needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Download site artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: vitepress-site
-          path: site
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-  # ── Cloudflare hub (docs.kolja-nolte.com/nuxt-toc) ─────────────────────
-  cloudflare:
-    name: deploy → Cloudflare Pages
-    needs: build
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - name: Download site artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: vitepress-site
-          path: nuxt-toc-site
-
-      - name: Clone docs monorepo (GitLab)
-        env:
-          DOCS_MONOREPO_TOKEN: ${{ secrets.DOCS_MONOREPO_TOKEN }}
-        run: |
-          set -euo pipefail
-          if [ -z "${DOCS_MONOREPO_TOKEN:-}" ]; then
-            echo "::error::Missing secret DOCS_MONOREPO_TOKEN (GitLab PAT with read_repository)"
-            exit 1
-          fi
-          git clone --depth 1 --branch "${DOCS_MONOREPO_REF}" \
-            "https://oauth2:${DOCS_MONOREPO_TOKEN}@gitlab.com/thaikolja/kolja-nolte.com.git" \
-            docs-site
-          test -f docs-site/package.json
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-
-      - name: Build monorepo product docs
-        working-directory: docs-site
-        run: |
-          set -euo pipefail
-          bun run build
-          test -d dist/secondary-title
-          test -d dist/ai-image-renamer-cli
-          test -d dist/viscribe-wordpress-plugin
-
-      - name: Inject nuxt-toc into monorepo dist
-        run: |
-          set -euo pipefail
-          mkdir -p docs-site/dist/nuxt-toc
-          cp -R nuxt-toc-site/. docs-site/dist/nuxt-toc/
-          test -f docs-site/dist/nuxt-toc/index.html
-          ls -la docs-site/dist
-
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: >-
-            pages deploy docs-site/dist
-            --project-name=${{ env.CF_PAGES_PROJECT }}
-            --branch=main
-            --commit-dirty=true

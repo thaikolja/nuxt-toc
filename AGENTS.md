@@ -24,7 +24,7 @@ active section with IntersectionObserver.
 - `src/runtime/types.ts` — TOC / `$nuxtTocFetch` types
 - `playgrounds/content-v3/` — Nuxt 4 + Content v3 (`/`, `/auto-fetch`, `/props`, `/settings`)
 - `playgrounds/content-v2/` — Nuxt 4 + Content v2 (same routes)
-- `docs/` — VitePress docs (canonical: docs.kolja-nolte.com/nuxt-toc; mirror: GitHub Pages)
+- `docs/` — VitePress docs (GitHub Pages: thaikolja.github.io/nuxt-toc)
 - `test/` — unit + e2e against both playgrounds
 - `dist/` — `nuxt-module-build` output (do not hand-edit)
 
@@ -94,9 +94,7 @@ Verify on **both** playgrounds via `/props` and `/settings` after changes.
 4. Keep CSS class/id contract (`toc-container`, `active-toc-item`, etc.).
 5. IntersectionObserver: register `onUnmounted` in setup; rebuild when TOC/path changes; use reactive arrays for active ids.
 6. Do not expand playgrounds into full blogs unless requested.
-7. Docs live in `docs/`. One workflow (`.github/workflows/docs.yml`) deploys **both**
-   Cloudflare (`docs.kolja-nolte.com/nuxt-toc`) and GitHub Pages on every docs push.
-   The docs monorepo CI also rebuilds `/nuxt-toc` from GitHub when that hub is deployed.
+7. Docs live in `docs/`; deploy via `.github/workflows/docs.yml` (GitHub Pages only).
 
 ## Content consumer checklist
 

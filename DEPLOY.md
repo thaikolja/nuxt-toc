@@ -1,206 +1,86 @@
-# How to keep the docs in sync
+# Deploying the docs (GitHub Pages only)
 
-This file explains, in plain language, how nuxt-toc documentation is published and how you keep everything up to date.
+nuxt-toc documentation is published from this repository to **GitHub Pages**.
 
-## Where the docs live online
-
-You have **two public websites** for the same docs:
-
-| Name                        | URL                                    | What it is                                         |
-| --------------------------- | -------------------------------------- | -------------------------------------------------- |
-| **Main site (recommended)** | https://docs.kolja-nolte.com/nuxt-toc/ | Lives next to your other project docs (Cloudflare) |
-| **Mirror**                  | https://thaikolja.github.io/nuxt-toc/  | Backup copy on GitHub Pages                        |
-
-The **source** of the docs is always this repo: the `docs/` folder in **nuxt-toc**.
-
-You also have a **docs hub repo** (GitLab monorepo) that holds other projects (`secondary-title`, `ai-image-renamer-cli`, …) and deploys them together to Cloudflare under `docs.kolja-nolte.com`.
-
-```
-You edit docs here (nuxt-toc)
-        │
-        │  push to main
-        ▼
-   GitHub Actions
-        │
-        ├──► GitHub Pages   →  thaikolja.github.io/nuxt-toc/
-        │
-        └──► Cloudflare hub →  docs.kolja-nolte.com/nuxt-toc/
-              (also rebuilds your other project docs so they stay online)
-```
+**Live site:** https://thaikolja.github.io/nuxt-toc/
 
 ---
 
-## Everyday workflow (nuxt-toc — automatic)
+## How it works
 
-This is what you should use most of the time.
-
-### 1. Edit the docs
-
-```bash
-# work on the docs
-npm run docs:dev
+```
+Edit docs/  →  push to main  →  GitHub Actions  →  GitHub Pages
 ```
 
-Change files under `docs/`. Check them in the browser.
-
-### 2. Commit and push to `main`
-
-```bash
-git add docs/
-git commit -m "docs: your short message"
-git push origin main
-```
-
-### 3. GitHub does the rest
-
-Pushing to **`main`** (when docs-related files change) starts the **docs** workflow:
-
-1. Builds the VitePress site
-2. Deploys to **GitHub Pages**
-3. Rebuilds your other docs products from the monorepo
-4. Puts nuxt-toc under `/nuxt-toc/`
-5. Deploys everything to **Cloudflare**
-
-After a few minutes, both URLs should show the new content.
-
-**Manual run (optional):**  
-GitHub → **Actions** → **docs** → **Run workflow**.
+Source of truth: the `docs/` folder in this repo.  
+There is **no** Cloudflare hub or shared monorepo deploy for nuxt-toc.
 
 ---
 
-## One-time setup (do this once)
+## Everyday workflow
 
-Until these are set, the Cloudflare part of the workflow will fail (GitHub Pages may still work).
+1. Edit docs and preview locally:
 
-### A. GitHub secrets (this nuxt-toc repo)
+   ```bash
+   npm run docs:dev
+   ```
 
-Open: **GitHub → thaikolja/nuxt-toc → Settings → Secrets and variables → Actions → New repository secret**
+2. Commit and push to **`main`**:
 
-Add:
+   ```bash
+   git add docs/
+   git commit -m "docs: your message"
+   git push origin main
+   ```
 
-| Secret name             | What it is                                                                                         |
-| ----------------------- | -------------------------------------------------------------------------------------------------- |
-| `CLOUDFLARE_API_TOKEN`  | Cloudflare API token that can **edit Pages**                                                       |
-| `CLOUDFLARE_ACCOUNT_ID` | Your Cloudflare **account id**                                                                     |
-| `DOCS_MONOREPO_TOKEN`   | GitLab **personal access token** that can **read** the docs monorepo (`thaikolja/kolja-nolte.com`) |
+3. Wait for the **docs** workflow (Actions tab) to finish green.
 
-Quick CLI option:
+4. Open https://thaikolja.github.io/nuxt-toc/
 
-```bash
-gh secret set CLOUDFLARE_API_TOKEN
-gh secret set CLOUDFLARE_ACCOUNT_ID
-gh secret set DOCS_MONOREPO_TOKEN
-```
-
-### B. GitHub Pages enabled
-
-**Settings → Pages →** build from **GitHub Actions** (not “Deploy from a branch”).
-
-### C. Cloudflare project name
-
-The workflow deploys to the Pages project named:
-
-`docs-kolja-nolte-com`
-
-(that matches `docs-kolja-nolte-com.pages.dev`).  
-If your project name is different, change `CF_PAGES_PROJECT` in `.github/workflows/docs.yml`.
-
-### D. Docs monorepo (GitLab) — optional but recommended
-
-So that when you **only** update the monorepo (other projects), `/nuxt-toc` is not deleted:
-
-1. Commit and push `.gitlab-ci.yml` in the monorepo (branch `docs` or `main`).
-2. In GitLab → **Settings → CI/CD → Variables**, set:
-   - `CLOUDFLARE_API_TOKEN`
-   - `CLOUDFLARE_ACCOUNT_ID`
-
-That monorepo pipeline will:
-
-1. Build all monorepo products
-2. Clone **latest nuxt-toc from GitHub `main`**
-3. Build its docs and put them in `/nuxt-toc`
-4. Deploy the full hub to Cloudflare
+You can also run the workflow by hand: **Actions → docs → Run workflow**.
 
 ---
 
-## How the two repos work together
+## One-time setup
 
-| You change…                | What updates automatically                                                               |
-| -------------------------- | ---------------------------------------------------------------------------------------- |
-| **nuxt-toc** `main` (docs) | GitHub Pages **and** Cloudflare `/nuxt-toc` (plus rebuild of sibling docs on Cloudflare) |
-| **docs monorepo** (GitLab) | Cloudflare hub (all products + **fresh** nuxt-toc from GitHub `main`)                    |
-
-**Rule of thumb:**
-
-- Edit **nuxt-toc** docs only in the **nuxt-toc** repo (`docs/`).
-- Do **not** maintain a second hand-written copy of nuxt-toc docs in the monorepo.
-- The monorepo **pulls** nuxt-toc from GitHub when it deploys.
+1. Open **Settings → Pages**
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**
+3. That’s it — no API tokens or extra secrets
 
 ---
 
-## Local checks before you push
+## Local checks (optional)
 
 ```bash
-npm run docs:build      # build should succeed
-npm run format:check    # Prettier (CI runs this in the quality workflow)
-npm run check           # lint + format + tests (optional before big changes)
+npm run docs:build
+npm run format:check
 ```
 
-If `format:check` fails:
+If Prettier fails:
 
 ```bash
 npm run format
-git add -u
-git commit -m "style: format with Prettier"
 ```
 
 ---
 
-## If something breaks
+## Troubleshooting
 
-### Cloudflare job fails with “Missing DOCS_MONOREPO_TOKEN”
-
-→ Add the GitLab read token as a GitHub secret (see setup above).
-
-### Cloudflare job fails on wrangler / auth
-
-→ Check `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.  
-→ Token needs permission to deploy Pages.
-
-### GitHub Pages fails
-
-→ Confirm Pages is set to **GitHub Actions**.  
-→ Open the failed job under **Actions → docs**.
-
-### Other docs disappeared (`/secondary-title` etc.)
-
-Cloudflare always replaces the **whole** site.  
-A good deploy **rebuilds every product** then uploads them together.  
-Never upload only `/nuxt-toc` by hand without the other folders.
-
-Fix: re-run the **docs** workflow on nuxt-toc, or the monorepo GitLab pipeline.
-
-### Docs look old on one URL
-
-→ Hard refresh the browser.  
-→ Wait for the green check on the Actions (or GitLab) run.  
-→ Confirm you pushed to **`main`** (nuxt-toc) or **`docs`/`main`** (monorepo).
+| Problem             | What to try                                                 |
+| ------------------- | ----------------------------------------------------------- |
+| Workflow didn’t run | Did you push to `main`? Did you change files under `docs/`? |
+| Pages 404           | Settings → Pages → source must be **GitHub Actions**        |
+| Build fails         | Open the failed job log under **Actions → docs**            |
+| Old content         | Hard-refresh; wait for the green check on the latest run    |
 
 ---
 
-## Short checklist
+## Summary
 
-**First time**
-
-- [ ] GitHub secrets: Cloudflare token, account id, monorepo token
-- [ ] GitHub Pages uses Actions
-- [ ] (Optional) Monorepo GitLab CI + Cloudflare variables
-
-**Every docs change**
-
-- [ ] Edit `docs/` in **nuxt-toc**
-- [ ] `git push origin main`
-- [ ] Wait for **docs** workflow to finish green
-- [ ] Check both URLs
-
-That’s it: **push to main = both doc sites update** for nuxt-toc.
+| Item           | Value                                 |
+| -------------- | ------------------------------------- |
+| Host           | GitHub Pages only                     |
+| URL            | https://thaikolja.github.io/nuxt-toc/ |
+| Trigger        | Push to `main` (docs paths)           |
+| Workflow       | `.github/workflows/docs.yml`          |
+| Secrets needed | None                                  |

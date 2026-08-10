@@ -7,7 +7,7 @@
 
 为使用 [@nuxt/content](https://content.nuxt.com/) 创建的文件提供目录（Table of Contents）。此版本兼容 @nuxt/content v2 与 v3。
 
-**完整文档：** [https://docs.kolja-nolte.com/nuxt-toc/](https://docs.kolja-nolte.com/nuxt-toc/)
+**完整文档：** [https://thaikolja.github.io/nuxt-toc/](https://thaikolja.github.io/nuxt-toc/)
 
 [English](./README.md) · [中文](./README_zh.md) · [Deutsch](./README_de.md) · [Español](./README_es.md) · [Français](./README_fr.md) · [فارسی](./README_fa.md)
 
@@ -107,7 +107,7 @@ export default defineNuxtConfig({
 
 ## 文档
 
-想进一步了解 `nuxt-toc` 的用法与样式定制，请查看[完整文档](https://docs.kolja-nolte.com/nuxt-toc)。其中包含指南、示例等。
+想进一步了解 `nuxt-toc` 的用法与样式定制，请查看[完整文档](https://thaikolja.github.io/nuxt-toc)。其中包含指南、示例等。
 
 ## 作者
 

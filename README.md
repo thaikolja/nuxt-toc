@@ -4,7 +4,7 @@
 
 Use a Table of Contents for files created with **[@nuxt/content](https://content.nuxt.com/)** module. This version is compatible with **@nuxt/content** v2 and v3.
 
-**Full documentation:** [https://docs.kolja-nolte.com/nuxt-toc/](https://docs.kolja-nolte.com/nuxt-toc/)
+**Full documentation:** [https://thaikolja.github.io/nuxt-toc/](https://thaikolja.github.io/nuxt-toc/)
 
 ☀︎ [English](./README.md) · [中文](./README_zh.md) · [Deutsch](./README_de.md) · [Español](./README_es.md) · [Français](./README_fr.md) · [فارسی](./README_fa.md)
 
@@ -104,7 +104,7 @@ export default defineNuxtConfig({
 
 ## Documentation
 
-To learn more about `nuxt-toc` and how to use or style it, check out [the full documentation](https://docs.kolja-nolte.com/nuxt-toc). You will find guides, recipes, and more.
+To learn more about `nuxt-toc` and how to use or style it, check out [the full documentation](https://thaikolja.github.io/nuxt-toc). You will find guides, recipes, and more.
 
 ## Authors
 
