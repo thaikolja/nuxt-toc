@@ -1,0 +1,8 @@
+.VPFeature .icon {
+  color: var(--vp-c-brand-1);
+}
+
+.VPFeature .icon svg {
+  display: block;
+  flex-shrink: 0;
+}

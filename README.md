@@ -2,11 +2,11 @@
 
 [![npm version](https://img.shields.io/npm/v/nuxt-toc?style=flat&colorA=18181B&colorB=28CF8D)](https://www.npmjs.com/package/nuxt-toc) [![npm downloads](https://img.shields.io/npm/dm/nuxt-toc?style=flat&colorA=18181B&colorB=28CF8D)](https://www.npmjs.com/package/nuxt-toc) [![License](https://img.shields.io/npm/l/nuxt-toc?style=flat&colorA=18181B&colorB=28CF8D)](https://github.com/thaikolja/nuxt-toc/blob/main/LICENSE) [![CI](https://img.shields.io/github/actions/workflow/status/thaikolja/nuxt-toc/ci.yml?branch=main&style=flat&colorA=18181B&label=ci)](https://github.com/thaikolja/nuxt-toc/actions/workflows/ci.yml)
 
-**nuxt-toc** is a [Nuxt 3 and 4](https://nuxt.com/) module to display a table of contents (TOC) when using content created with the [@nuxt/content](https://content.nuxt.com/) module. Since `v.3.0.0`, nuxt-toc supports both versions of @nuxt/content, `v2` and `v3`. nuxt-toc is also compatible with Nuxt 3 and 4.
+**nuxt-toc** is a dedicated module for [**Nuxt 3 and 4**](https://nuxt.com/) designed to automatically generate and display a dynamic Table of Contents (TOC) for content managed with the [**@nuxt/content**](https://content.nuxt.com/) module. It parses your document headings to create an interactive and navigable TOC, improving content structure and user experience.
 
-> [!NOTE]
->
-> For more information, check out the [full documentation](https://thaikolja.github.io/nuxt-toc/).
+Starting from `v3.0.0`, **nuxt-toc** offers full, unified support for both `v2` and `v3` of `@nuxt/content`, ensuring seamless integration regardless of which content version you are using. The module is fully compatible with both Nuxt 3 and Nuxt 4.
+
+
 
 **Languages:** [🇺🇸 English](./README.md) · [🇹🇼 中文](./README_zh.md) · [🇩🇪 Deutsch](./README_de.md) · [🇪🇸 Español](./README_es.md) · [🇫🇷 Français](./README_fr.md) · [🇸🇦 فارسی](./README_fa.md)
 

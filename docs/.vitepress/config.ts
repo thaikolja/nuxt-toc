@@ -99,6 +99,7 @@ export default defineConfig({
           text: 'Getting started',
           items: [
             { text: 'Introduction', link: '/guide/introduction' },
+            { text: 'First time with Nuxt', link: '/guide/first-time-nuxt' },
             { text: 'Installation', link: '/guide/installation' },
             { text: 'Quick start', link: '/guide/quick-start' },
             { text: 'Compatibility', link: '/guide/compatibility' },
@@ -108,10 +109,19 @@ export default defineConfig({
         {
           text: 'Concepts',
           items: [
+            { text: 'Writing Content (headings → TOC)', link: '/guide/writing-content' },
             { text: 'Pass-in vs auto-fetch', link: '/guide/pass-in-vs-auto-fetch' },
+            { text: 'How it works', link: '/guide/how-it-works' },
             { text: 'Active highlighting', link: '/guide/active-highlighting' },
             { text: 'Styling contract', link: '/guide/styling' },
             { text: 'Accessibility', link: '/guide/accessibility' },
+          ],
+        },
+        {
+          text: 'Help',
+          items: [
+            { text: 'Troubleshooting', link: '/guide/troubleshooting' },
+            { text: 'FAQ', link: '/guide/faq' },
           ],
         },
       ],

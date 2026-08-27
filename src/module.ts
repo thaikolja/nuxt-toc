@@ -15,13 +15,13 @@ import {
   addComponent,
   addPlugin,
   logger,
-  hasNuxtModule,
-} from '@nuxt/kit'
+  hasNuxtModule
+}                             from '@nuxt/kit'
 // Figure out whether the host has Content v2 or v3 installed.
 import { detectContentMajor } from './utils/detect-content-major'
 
 // Re-export detection helpers for advanced consumers / tests.
-export type { ContentMajor } from './utils/detect-content-major'
+export type { ContentMajor }  from './utils/detect-content-major'
 export { detectContentMajor } from './utils/detect-content-major'
 
 /**
@@ -107,36 +107,36 @@ declare module 'nuxt/schema' {
  * @param options - Raw module options after Nuxt defaults merge
  */
 function normalizeOptions(
-  options: ModuleOptions,
+    options: ModuleOptions
 ): Required<
-  Pick<
-    ModuleOptions,
-    'collection' | 'depth' | 'scrollSpy' | 'rootMargin' | 'smooth' | 'scrollOffset'
-  >
+    Pick<
+        ModuleOptions,
+        'collection' | 'depth' | 'scrollSpy' | 'rootMargin' | 'smooth' | 'scrollOffset'
+    >
 > {
   // Collection must be a non-empty string.
   const collection =
-    typeof options.collection === 'string' && options.collection.trim()
-      ? options.collection.trim()
-      : 'content'
+            typeof options.collection === 'string' && options.collection.trim()
+                ? options.collection.trim()
+                : 'content'
 
   // Depth: positive integer, default 2.
   const rawDepth = Number(options.depth)
-  const depth = Number.isFinite(rawDepth) ? Math.max(1, Math.floor(rawDepth)) : 2
+  const depth    = Number.isFinite(rawDepth) ? Math.max(1, Math.floor(rawDepth)) : 2
 
   // Scroll offset: non-negative integer px.
-  const rawOffset = Number(options.scrollOffset)
+  const rawOffset    = Number(options.scrollOffset)
   const scrollOffset = Number.isFinite(rawOffset) ? Math.max(0, Math.floor(rawOffset)) : 0
 
   // rootMargin: non-empty CSS margin string.
   const rootMargin =
-    typeof options.rootMargin === 'string' && options.rootMargin.trim()
-      ? options.rootMargin.trim()
-      : '0px 0px -80% 0px'
+            typeof options.rootMargin === 'string' && options.rootMargin.trim()
+                ? options.rootMargin.trim()
+                : '0px 0px -80% 0px'
 
   // Booleans with sensible defaults.
   const scrollSpy = options.scrollSpy !== false
-  const smooth = !!options.smooth
+  const smooth    = !!options.smooth
 
   return { collection, depth, scrollSpy, rootMargin, smooth, scrollOffset }
 }
@@ -155,17 +155,17 @@ export default defineNuxtModule<ModuleOptions>({
     configKey: 'nuxtToc',
     // Rough Nuxt version floor (peer range is more precise).
     compatibility: {
-      nuxt: '>=3.16.0',
-    },
+      nuxt: '>=3.16.0'
+    }
   },
   // Defaults applied when the consumer omits options.
   defaults: {
-    collection: 'content',
-    depth: 2,
-    scrollSpy: true,
-    rootMargin: '0px 0px -80% 0px',
-    smooth: false,
-    scrollOffset: 0,
+    collection:   'content',
+    depth:        2,
+    scrollSpy:    true,
+    rootMargin:   '0px 0px -80% 0px',
+    smooth:       false,
+    scrollOffset: 0
   },
   // Runs once when the host app boots the module.
   setup(options, nuxt) {
@@ -181,20 +181,20 @@ export default defineNuxtModule<ModuleOptions>({
     // Soft-warn when the package is present but not registered as a Nuxt module.
     if (contentMajor && !hasNuxtModule('@nuxt/content', nuxt)) {
       logger.warn(
-        '[nuxt-toc] `@nuxt/content` is installed but not registered in `modules`. ' +
-          'Add `@nuxt/content` to `nuxt.config` modules, or pass `:toc` and skip auto-fetch.',
+          '[nuxt-toc] `@nuxt/content` is installed but not registered in `modules`. ' +
+          'Add `@nuxt/content` to `nuxt.config` modules, or pass `:toc` and skip auto-fetch.'
       )
     }
 
     // Build the full public config object first (typed for the IDE).
     const publicNuxtToc: NuxtTocPublicRuntimeConfig = {
-      collection: normalized.collection,
-      depth: normalized.depth,
-      scrollSpy: normalized.scrollSpy,
-      rootMargin: normalized.rootMargin,
-      smooth: normalized.smooth,
+      collection:   normalized.collection,
+      depth:        normalized.depth,
+      scrollSpy:    normalized.scrollSpy,
+      rootMargin:   normalized.rootMargin,
+      smooth:       normalized.smooth,
       scrollOffset: normalized.scrollOffset,
-      contentMajor,
+      contentMajor
     }
 
     // Publish defaults + detection result for the runtime component.
@@ -210,15 +210,15 @@ export default defineNuxtModule<ModuleOptions>({
     } else {
       // No Content (or unsupported major): pass-in `:toc` still works.
       logger.warn(
-        '[nuxt-toc] @nuxt/content v2 or v3 not found. ' +
-          'Auto-fetch is disabled; pass `:toc` from your page query instead.',
+          '[nuxt-toc] @nuxt/content v2 or v3 not found. ' +
+          'Auto-fetch is disabled; pass `:toc` from your page query instead.'
       )
     }
 
     // Register the public component as <TableOfContents />.
     addComponent({
-      name: 'TableOfContents',
-      filePath: resolver.resolve('./runtime/components/TableOfContents.vue'),
+      name:     'TableOfContents',
+      filePath: resolver.resolve('./runtime/components/TableOfContents.vue')
     })
-  },
+  }
 })
