@@ -2,41 +2,51 @@
 
 ## v3.0.0
 
+[compare changes](https://github.com/thaikolja/nuxt-toc/compare/v2.7.2...v3.0.0)
+
+> [!WARNING]
+>
+> Beginning with `v3.0.0`, the nuxt-toc module was reengineered to ensure compatibility with current and upcoming releases of Nuxt and [`@nuxt/content`](https://content.nuxt.com/). Although `v3.0.0` maintains backward compatibility with both `v2` and `v3` of the `@nuxt/content` module, your custom implementations used in `v2.x.x` may no longer function as expected. Please review the [official documentation](https://thaikolja.github.io/nuxt-toc/) and [submit a support ticket](https://github.com/thaikolja/nuxt-toc/issues/new) if the issue persists.
+
 ### ⚠️ Breaking Changes
 
-- Target **Nuxt 4** (peer: `nuxt` `^3.16.0 || ^4.0.0`; primary host Nuxt 4)
-- Module config key is now **`nuxtToc`** with option `collection` (default `'content'`)
-- Removed internal `CustomQuery` helper; auto-fetch uses version-specific plugins (`fetch-v2` / `fetch-v3`)
-- Single heavy blog playground replaced by **dual** minimal apps under `playgrounds/`
-- Development package manager standardized on **npm** (`package-lock.json`)
-- Public styling ids remain **`#toc-title`** / **`#toc-container`** (stable vs v2)
+- Target **Nuxt 4** (peer: `nuxt` `^3.16.0 || ^4.0.0`; primary host Nuxt 4) ([cca7907](https://github.com/thaikolja/nuxt-toc/commit/cca7907))
+- Module config key is now **`nuxtToc`** with option `collection` (default `'content'`) ([cca7907](https://github.com/thaikolja/nuxt-toc/commit/cca7907))
+- Removed internal `CustomQuery` helper; auto-fetch uses version-specific plugins (`fetch-v2` / `fetch-v3`) ([cca7907](https://github.com/thaikolja/nuxt-toc/commit/cca7907))
+- Single heavy blog playground replaced by **dual** minimal apps under `playgrounds/` ([cca7907](https://github.com/thaikolja/nuxt-toc/commit/cca7907))
+- Development package manager standardized on **npm** (`package-lock.json`) ([7b5e847](https://github.com/thaikolja/nuxt-toc/commit/7b5e847))
+- Public styling ids remain **`#toc-title`** / **`#toc-container`** (stable vs v2) ([cca7907](https://github.com/thaikolja/nuxt-toc/commit/cca7907))
 
 ### 🚀 Enhancements
 
-- **Dual support** for `@nuxt/content` **v2 and v3** (peer: `^2 || ^3`)
-- Auto-detects Content major from host `node_modules` and registers one fetch plugin
-- `TableOfContents` accepts prefetched `page.body.toc` on both majors
-- Props: `toc`, `path`, `collection`, `depth`, `isSublistShown`, `isTitleShownWithNoContent`, `title`
-- **`depth`**: controls how deep nested TOC link trees are shown (module option + prop)
-- **`scrollSpy`**, **`rootMargin`**, **`smooth`**, **`scrollOffset`**: scroll-spy and click-scroll controls
-- Empty-state UX: loading message, missing-path message, optional title-only when empty
-- Performance: observe only TOC heading ids, rAF-batched intersection updates, skip rebuild when unchanged
-- IntersectionObserver rebuilds when TOC/path changes; reliable unmount cleanup
-- Dual playgrounds: Content v3 (`:3000`) and Content v2 (`:3001`) with `/`, `/auto-fetch`, `/props`, `/settings`
+- **Dual support** for `@nuxt/content` **v2 and v3** (peer: `^2 || ^3`) ([cca7907](https://github.com/thaikolja/nuxt-toc/commit/cca7907))
+- Auto-detects Content major from host `node_modules` and registers one fetch plugin ([cca7907](https://github.com/thaikolja/nuxt-toc/commit/cca7907))
+- `TableOfContents` accepts prefetched `page.body.toc` on both majors ([cca7907](https://github.com/thaikolja/nuxt-toc/commit/cca7907))
+- Props: `toc`, `path`, `collection`, `depth`, `isSublistShown`, `isTitleShownWithNoContent`, `title` ([7d9ff76](https://github.com/thaikolja/nuxt-toc/commit/7d9ff76))
+- **`depth`**: controls how deep nested TOC link trees are shown (module option + prop) ([7d9ff76](https://github.com/thaikolja/nuxt-toc/commit/7d9ff76))
+- **`scrollSpy`**, **`rootMargin`**, **`smooth`**, **`scrollOffset`**: scroll-spy and click-scroll controls ([7d9ff76](https://github.com/thaikolja/nuxt-toc/commit/7d9ff76))
+- Empty-state UX: loading message, missing-path message, optional title-only when empty ([7b5e847](https://github.com/thaikolja/nuxt-toc/commit/7b5e847))
+- Performance: observe only TOC heading ids, rAF-batched intersection updates, skip rebuild when unchanged ([7d9ff76](https://github.com/thaikolja/nuxt-toc/commit/7d9ff76))
+- IntersectionObserver rebuilds when TOC/path changes; reliable unmount cleanup ([7d9ff76](https://github.com/thaikolja/nuxt-toc/commit/7d9ff76))
+- Dual playgrounds: Content v3 (`:3000`) and Content v2 (`:3001`) with `/`, `/auto-fetch`, `/props`, `/settings` ([7d9ff76](https://github.com/thaikolja/nuxt-toc/commit/7d9ff76))
 
 ### 📖 Documentation
 
-- `AGENTS.md` for maintainers and coding agents
-- VitePress site: guide, API, Content v2/v3, recipes, migration, contributing
-- Slim multi-language READMEs (en, zh, de, es, fr, fa) with npm/CI shields + link to GitHub Pages docs
-- Branding via root **`logo.png`** (playgrounds + docs)
+- `AGENTS.md` for maintainers and coding agents ([cca7907](https://github.com/thaikolja/nuxt-toc/commit/cca7907))
+- VitePress site: guide, API, Content v2/v3, recipes, migration, contributing ([df64690](https://github.com/thaikolja/nuxt-toc/commit/df64690))
+- Slim multi-language READMEs (en, zh, de, es, fr, fa) with npm/CI shields + link to GitHub Pages docs ([7b5e847](https://github.com/thaikolja/nuxt-toc/commit/7b5e847))
+- Branding via root **`logo.png`** (playgrounds + docs) ([df64690](https://github.com/thaikolja/nuxt-toc/commit/df64690))
 
 ### 🏡 Chore
 
-- TypeScript tooling configs (`build.config.ts`, `eslint.config.ts`)
-- CI on npm (lint, format, tests, pack dry-run); docs deploy workflow
-- Production package metadata (`homepage`, `bugs`, `publishConfig`, `sideEffects`)
-- Removed unused `screenshots/` assets
+- TypeScript tooling configs (`build.config.ts`, `eslint.config.ts`) ([cca7907](https://github.com/thaikolja/nuxt-toc/commit/cca7907))
+- CI on npm (lint, format, tests, pack dry-run); docs deploy workflow ([7b5e847](https://github.com/thaikolja/nuxt-toc/commit/7b5e847))
+- Production package metadata (`homepage`, `bugs`, `publishConfig`, `sideEffects`) ([7b5e847](https://github.com/thaikolja/nuxt-toc/commit/7b5e847))
+- Removed unused `screenshots/` assets ([7b5e847](https://github.com/thaikolja/nuxt-toc/commit/7b5e847))
+
+### ❤️ Contributors
+
+* Kolja Nolte ([thaikolja](https://github.com/thaikolja/))
 
 ## v2.7.2
 
@@ -640,4 +650,3 @@
 ## v1.0.1
 
 [compare changes](https://github.com/hanyujie2002/nuxt-toc/compare/v1.0.0...v1.0.1)
-
