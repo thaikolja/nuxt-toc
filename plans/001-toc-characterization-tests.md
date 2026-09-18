@@ -57,14 +57,14 @@ const sampleToc = {
 
 ## Commands you will need
 
-| Purpose | Command | Expected on success |
-| --- | --- | --- |
-| Install | `npm install` | exit 0, lockfile updated if you add `@vue/test-utils` |
-| Component tests | `npx vitest run test/table-of-contents.test.ts` | all new tests pass |
-| Full suite | `npm test` | all pass (e2e needs playgrounds prepared) |
-| Types | `npm run test:types` | exit 0 |
-| Lint | `npm run lint` | exit 0 |
-| Format | `npm run format:check` | exit 0 |
+| Purpose         | Command                                         | Expected on success                                   |
+| --------------- | ----------------------------------------------- | ----------------------------------------------------- |
+| Install         | `npm install`                                   | exit 0, lockfile updated if you add `@vue/test-utils` |
+| Component tests | `npx vitest run test/table-of-contents.test.ts` | all new tests pass                                    |
+| Full suite      | `npm test`                                      | all pass (e2e needs playgrounds prepared)             |
+| Types           | `npm run test:types`                            | exit 0                                                |
+| Lint            | `npm run lint`                                  | exit 0                                                |
+| Format          | `npm run format:check`                          | exit 0                                                |
 
 ## Suggested executor toolkit
 

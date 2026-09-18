@@ -10,16 +10,16 @@ v3.0.0 is the **Nuxt 4** major with dual Content v2/v3 runtime. It is stable and
 
 ## What breaks if you do not change anything
 
-| Area | v2.x tolerated | v3.0.0 requires |
-|---|---|---|
-| **Node** | 16/18 depending on Nuxt version | **`>=20.0.0`** (`package.json → engines`) |
-| **Nuxt** | `^3.x` loosely | **`^3.16.0 \|\| ^4.0.0`**, Nuxt 4 is primary host for this docs lineup |
-| **`@nuxt/content`** | v2 only | **`^2.0.0 \|\| ^3.0.0`** — v3 now supported, v1 not |
-| **Key under `nuxt.config.ts`** | Varied docs, often implicit | **`nuxtToc` (camelCase)** — `defineNuxtModule({ configKey: 'nuxtToc' })` in `src/module.ts:155` |
-| **Internal fetch** | `CustomQuery` helper built into the component | Removed — replaced by registered plugins `fetch-v2` / `fetch-v3` (one added at `setup()`) |
-| **Published runtime** | `quasar`? no, package lacked metadata | `homepage`, `bugs`, `publishConfig`, `sideEffects` set |
-| **Playground location** | Single heavy blog app | `playgrounds/content-v2` + `content-v3` — `dev:prepare` required |
-| **Package manager** | pnpm/npm mixed | **npm `10.9.2`** — `packageManager: npm@10.9.2`, `package-lock.json` committed, no pnpm/bun lockfiles |
+| Area                           | v2.x tolerated                                | v3.0.0 requires                                                                                       |
+| ------------------------------ | --------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **Node**                       | 16/18 depending on Nuxt version               | **`>=20.0.0`** (`package.json → engines`)                                                             |
+| **Nuxt**                       | `^3.x` loosely                                | **`^3.16.0 \|\| ^4.0.0`**, Nuxt 4 is primary host for this docs lineup                                |
+| **`@nuxt/content`**            | v2 only                                       | **`^2.0.0 \|\| ^3.0.0`** — v3 now supported, v1 not                                                   |
+| **Key under `nuxt.config.ts`** | Varied docs, often implicit                   | **`nuxtToc` (camelCase)** — `defineNuxtModule({ configKey: 'nuxtToc' })` in `src/module.ts:155`       |
+| **Internal fetch**             | `CustomQuery` helper built into the component | Removed — replaced by registered plugins `fetch-v2` / `fetch-v3` (one added at `setup()`)             |
+| **Published runtime**          | `quasar`? no, package lacked metadata         | `homepage`, `bugs`, `publishConfig`, `sideEffects` set                                                |
+| **Playground location**        | Single heavy blog app                         | `playgrounds/content-v2` + `content-v3` — `dev:prepare` required                                      |
+| **Package manager**            | pnpm/npm mixed                                | **npm `10.9.2`** — `packageManager: npm@10.9.2`, `package-lock.json` committed, no pnpm/bun lockfiles |
 
 ## Detailed changes
 

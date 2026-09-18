@@ -28,7 +28,7 @@ Type: `NuxtTocPublicRuntimeConfig` (`src/module.ts:73`) and augmentation on `@nu
 
 ```ts
 const config = useRuntimeConfig()
-console.log(config.public.nuxtToc.collection)   // 'content'
+console.log(config.public.nuxtToc.collection) // 'content'
 console.log(config.public.nuxtToc.contentMajor) // 2 | 3 | null
 ```
 
@@ -53,14 +53,14 @@ if (useRuntimeConfig().public.nuxtToc.contentMajor === null) {
 
 Inside `TableOfContents.vue:212` (`nuxtTocPublic`) the six user-tunable keys are read as fallback when a prop is `undefined` (example: `scrollSpyEnabled` at line 244, `resolvedRootMargin` at line 251, etc.):
 
-| Runtime value | Prop fallback | Normalization point |
-|---|---|---|
-| `collection` | `props.collection \|\| nuxtToc.collection \|\| 'content'` | `fetch-v3.ts:39` guards empty string again |
-| `depth` | `resolveEffectiveDepth(props.depth ?? nuxtToc.depth, isSublistShown)` | `limit-toc-depth.ts:113` |
-| `scrollSpy` | `props.scrollSpy ?? nuxtToc.scrollSpy` | `scrollSpy !== false` |
-| `rootMargin` | `props.rootMargin \|\| nuxtToc.rootMargin` | observer `options.rootMargin` |
-| `smooth` | `props.smooth ?? nuxtToc.smooth` → `!!` | `scroll-to-heading.ts:58` |
-| `scrollOffset` | `max(0, floor(props.scrollOffset ?? nuxtToc.scrollOffset))` | `scroll-to-heading.ts:50` |
+| Runtime value  | Prop fallback                                                         | Normalization point                        |
+| -------------- | --------------------------------------------------------------------- | ------------------------------------------ |
+| `collection`   | `props.collection \|\| nuxtToc.collection \|\| 'content'`             | `fetch-v3.ts:39` guards empty string again |
+| `depth`        | `resolveEffectiveDepth(props.depth ?? nuxtToc.depth, isSublistShown)` | `limit-toc-depth.ts:113`                   |
+| `scrollSpy`    | `props.scrollSpy ?? nuxtToc.scrollSpy`                                | `scrollSpy !== false`                      |
+| `rootMargin`   | `props.rootMargin \|\| nuxtToc.rootMargin`                            | observer `options.rootMargin`              |
+| `smooth`       | `props.smooth ?? nuxtToc.smooth` → `!!`                               | `scroll-to-heading.ts:58`                  |
+| `scrollOffset` | `max(0, floor(props.scrollOffset ?? nuxtToc.scrollOffset))`           | `scroll-to-heading.ts:50`                  |
 
 Passing a prop always wins over the runtime value; runtime value wins over the built-in default. See [Module options](/api/module-options) (how to set the runtime values) and [Props](/api/props) (per-component overrides).
 

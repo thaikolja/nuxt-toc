@@ -10,12 +10,12 @@ description: >-
 
 ## Supported versions
 
-| Package         | Supported                               | Primary target |
-| --------------- | --------------------------------------- | -------------- |
-| `nuxt`          | `^3.16.0 \|\| ^4.0.0`                     | **Nuxt 4**     |
-| `@nuxt/content` | `^2.0.0 \|\| ^3.0.0`                      | both           |
-| `vue`           | `3.x`                                   | —              |
-| `node`          | `>=20.0.0`                              | —              |
+| Package         | Supported             | Primary target |
+| --------------- | --------------------- | -------------- |
+| `nuxt`          | `^3.16.0 \|\| ^4.0.0` | **Nuxt 4**     |
+| `@nuxt/content` | `^2.0.0 \|\| ^3.0.0`  | both           |
+| `vue`           | `3.x`                 | —              |
+| `node`          | `>=20.0.0`            | —              |
 
 The published package declares `@nuxt/kit >=3.16 <5` as a dependency so Nuxt 3.16+ and Nuxt 4 hosts can both resolve a matching kit. Your `package.json` should still pin `nuxt` itself to `^3.16` or `^4`.
 
@@ -31,11 +31,11 @@ On `setup()` (`src/module.ts:171`), the module:
 2. **Publishes runtime config** at `runtimeConfig.public.nuxtToc.contentMajor` (`2`, `3`, or `null`) so the client can be inspected in Vue devtools.
 3. **Registers exactly one plugin** — never both (they import different queries and would break the tree):
 
-| Detected major | Plugin registered | Query used |
-| -------------- | ----------------- | ---------- |
-| `2` | `src/runtime/plugins/fetch-v2.ts` | `queryContent(path).findOne()` |
-| `3` | `src/runtime/plugins/fetch-v3.ts` | `queryCollection(collection).path(path).first()` |
-| `null` | none — logs a warning | Pass-in `:toc` still works |
+| Detected major | Plugin registered                 | Query used                                       |
+| -------------- | --------------------------------- | ------------------------------------------------ |
+| `2`            | `src/runtime/plugins/fetch-v2.ts` | `queryContent(path).findOne()`                   |
+| `3`            | `src/runtime/plugins/fetch-v3.ts` | `queryCollection(collection).path(path).first()` |
+| `null`         | none — logs a warning             | Pass-in `:toc` still works                       |
 
 The fetch plugins are added with `addPlugin()` and provide `$nuxtTocFetch` via `defineNuxtPlugin().provide`. The component (`src/runtime/components/TableOfContents.vue:295`) calls that function only when `:toc` is omitted — otherwise it reuses `normalizeToc(toc)`.
 
@@ -50,15 +50,15 @@ You can still use the **published module** from a **Nuxt 3.16+** host — just k
 
 ## Content v2 vs v3 differences that affect the TOC
 
-| Topic | v2 | v3 |
-|---|---|---|
-| Install | `npm install @nuxt/content@^2` | `npm install @nuxt/content@^3` |
-| Config file | none (put `.md` in `content/`) | `content.config.ts` with `defineCollection({ type: 'page', source: '**/*.md' })` |
-| Query in pages | `queryContent(path).findOne()` | `queryCollection('content').path(path).first()` |
-| Collection concept | no collections — `collection` prop is ignored | required — `nuxtToc.collection` / `collection` prop must match a `content.config.ts` key |
-| `ContentRenderer` | `ContentRenderer` or legacy `ContentDoc` | `ContentRenderer` |
-| TOC location | `page.body.toc.links` | `page.body.toc.links` — same shape on both majors |
-| TOC depth cap | set via `content.build.markdown.toc` (if exposed) | `defineCollection` / `content.build.markdown.toc: { depth, searchDepth }` |
+| Topic              | v2                                                | v3                                                                                       |
+| ------------------ | ------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Install            | `npm install @nuxt/content@^2`                    | `npm install @nuxt/content@^3`                                                           |
+| Config file        | none (put `.md` in `content/`)                    | `content.config.ts` with `defineCollection({ type: 'page', source: '**/*.md' })`         |
+| Query in pages     | `queryContent(path).findOne()`                    | `queryCollection('content').path(path).first()`                                          |
+| Collection concept | no collections — `collection` prop is ignored     | required — `nuxtToc.collection` / `collection` prop must match a `content.config.ts` key |
+| `ContentRenderer`  | `ContentRenderer` or legacy `ContentDoc`          | `ContentRenderer`                                                                        |
+| TOC location       | `page.body.toc.links`                             | `page.body.toc.links` — same shape on both majors                                        |
+| TOC depth cap      | set via `content.build.markdown.toc` (if exposed) | `defineCollection` / `content.build.markdown.toc: { depth, searchDepth }`                |
 
 See setup guides: [Content v3](/content-v3/setup) and [Content v2](/content-v2/setup).
 

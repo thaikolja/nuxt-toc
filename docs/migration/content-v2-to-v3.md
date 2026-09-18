@@ -59,10 +59,10 @@ Keep `useAsyncData(route.path, …)` so `page` is keyed by path and cached. Keep
 
 ## 4. Replace dropped components
 
-| v2 | v3 |
-|---|---|
-| `ContentDoc` | removed — use `ContentRenderer` with your fetched page |
-| `ContentRenderer / ContentDoc` hybrid patterns | `ContentRenderer` paired with an explicit query |
+| v2                                             | v3                                                     |
+| ---------------------------------------------- | ------------------------------------------------------ |
+| `ContentDoc`                                   | removed — use `ContentRenderer` with your fetched page |
+| `ContentRenderer / ContentDoc` hybrid patterns | `ContentRenderer` paired with an explicit query        |
 
 ```vue
 <template>

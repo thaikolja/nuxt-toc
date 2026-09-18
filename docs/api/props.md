@@ -12,19 +12,19 @@ Component source: `src/runtime/components/TableOfContents.vue:82`.
 
 ## Summary
 
-| Prop | Type | Default | Controls |
-|---|---|---|---|
-| [`toc`](#toc) | `Toc \| null` | `null` | Prefetched TOC — when set, no auto-fetch |
-| [`path`](#path) | `string` | `''` (→ `route.path`) | Document path for auto-fetch |
-| [`collection`](#collection) | `string` | `''` (→ `nuxtToc.collection` → `'content'`) | v3 collection — ignored on v2 |
-| [`depth`](#depth) | `number \| undefined` | `undefined` (→ `nuxtToc.depth` → `2`) | Max rendered link-tree depth |
-| [`isSublistShown`](#issublistshown) | `boolean` | `true` | Legacy flag; `false` forces `depth = 1` |
-| [`isTitleShownWithNoContent`](#istitleshownwithnocontent) | `boolean` | `false` | Keep title when links empty |
-| [`title`](#title) | `string` | `'Table of Contents'` | Heading above the list |
-| [`scrollSpy`](#scrollspy) | `boolean \| undefined` | `undefined` (→ `nuxtToc.scrollSpy` → `true`) | Highlight active section |
-| [`rootMargin`](#rootmargin) | `string \| undefined` | `undefined` (→ `nuxtToc.rootMargin` → `'0px 0px -80% 0px'`) | Observer active zone |
-| [`smooth`](#smooth) | `boolean \| undefined` | `undefined` (→ `nuxtToc.smooth` → `false`) | Smooth scroll on click |
-| [`scrollOffset`](#scrolloffset) | `number \| undefined` | `undefined` (→ `nuxtToc.scrollOffset` → `0`) | Sticky header offset (px) |
+| Prop                                                      | Type                   | Default                                                     | Controls                                 |
+| --------------------------------------------------------- | ---------------------- | ----------------------------------------------------------- | ---------------------------------------- |
+| [`toc`](#toc)                                             | `Toc \| null`          | `null`                                                      | Prefetched TOC — when set, no auto-fetch |
+| [`path`](#path)                                           | `string`               | `''` (→ `route.path`)                                       | Document path for auto-fetch             |
+| [`collection`](#collection)                               | `string`               | `''` (→ `nuxtToc.collection` → `'content'`)                 | v3 collection — ignored on v2            |
+| [`depth`](#depth)                                         | `number \| undefined`  | `undefined` (→ `nuxtToc.depth` → `2`)                       | Max rendered link-tree depth             |
+| [`isSublistShown`](#issublistshown)                       | `boolean`              | `true`                                                      | Legacy flag; `false` forces `depth = 1`  |
+| [`isTitleShownWithNoContent`](#istitleshownwithnocontent) | `boolean`              | `false`                                                     | Keep title when links empty              |
+| [`title`](#title)                                         | `string`               | `'Table of Contents'`                                       | Heading above the list                   |
+| [`scrollSpy`](#scrollspy)                                 | `boolean \| undefined` | `undefined` (→ `nuxtToc.scrollSpy` → `true`)                | Highlight active section                 |
+| [`rootMargin`](#rootmargin)                               | `string \| undefined`  | `undefined` (→ `nuxtToc.rootMargin` → `'0px 0px -80% 0px'`) | Observer active zone                     |
+| [`smooth`](#smooth)                                       | `boolean \| undefined` | `undefined` (→ `nuxtToc.smooth` → `false`)                  | Smooth scroll on click                   |
+| [`scrollOffset`](#scrolloffset)                           | `number \| undefined`  | `undefined` (→ `nuxtToc.scrollOffset` → `0`)                | Sticky header offset (px)                |
 
 ### `toc`
 
@@ -46,9 +46,11 @@ path?: string  // default ''
 - Ignored when `toc` is set.
 
 ::: tip Example
+
 ```vue
 <TableOfContents path="/docs/intro" title="On this page" />
 ```
+
 :::
 
 ### `collection`
@@ -76,9 +78,12 @@ resolveEffectiveDepth(depth ?? nuxtToc.depth, isSublistShown, 2)
 If `isSublistShown === false`, effective depth is always `1` regardless of `depth`.
 
 ```vue
-<TableOfContents :toc="page.body?.toc" :depth="1" />  <!-- flat -->
-<TableOfContents :toc="page.body?.toc" :depth="2" />  <!-- default: h2 + h3 -->
-<TableOfContents :toc="page.body?.toc" :depth="3" />  <!-- include h4 -->
+<TableOfContents :toc="page.body?.toc" :depth="1" />
+<!-- flat -->
+<TableOfContents :toc="page.body?.toc" :depth="2" />
+<!-- default: h2 + h3 -->
+<TableOfContents :toc="page.body?.toc" :depth="3" />
+<!-- include h4 -->
 ```
 
 ### `isSublistShown`
@@ -178,7 +183,13 @@ scrollOffset?: number | undefined  // default undefined — resolves to Math.max
 ### Scroll behavior with sticky header
 
 ```vue
-<TableOfContents :toc="page.body?.toc" :scroll-spy="true" root-margin="0px 0px -70% 0px" :scroll-offset="64" smooth />
+<TableOfContents
+  :toc="page.body?.toc"
+  :scroll-spy="true"
+  root-margin="0px 0px -70% 0px"
+  :scroll-offset="64"
+  smooth
+/>
 ```
 
 See also: [Module options](/api/module-options) (global defaults) and [CSS classes & IDs](/api/css-classes) (active-state hooks).

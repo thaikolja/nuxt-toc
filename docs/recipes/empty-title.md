@@ -32,9 +32,9 @@ No list is rendered — just the heading, with the same `#toc-title` id and ARIA
 
 ## Pass-in vs auto-fetch behavior
 
-| Mode | `links: []` + `isTitleShownWithNoContent` is `false` | with `true` |
-|---|---|---|
-| Pass-in | Renders nothing (`v-if="showTitleOnly"` false, `hasLinks` false) | Renders title only |
+| Mode       | `links: []` + `isTitleShownWithNoContent` is `false`                            | with `true`                                                                                       |
+| ---------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Pass-in    | Renders nothing (`v-if="showTitleOnly"` false, `hasLinks` false)                | Renders title only                                                                                |
 | Auto-fetch | “No headings found for /path.” (`.nuxt-toc--empty` message, no title-only mode) | Same title-only applies after `pending` — empty-message branch uses the same `showTitleOnly` gate |
 
 So the prop gives a consistent “always show the heading” outcome across both modes.
@@ -42,7 +42,7 @@ So the prop gives a consistent “always show the heading” outcome across both
 ## When to use it
 
 - A template that always reserves sidebar space for the TOC (the header stays visible even on short pages).
-- Pages you *expect* to have headings later — avoids a layout jolt when headings are added.
+- Pages you _expect_ to have headings later — avoids a layout jolt when headings are added.
 
 ## When not to use it
 

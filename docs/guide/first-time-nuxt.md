@@ -80,9 +80,10 @@ export default defineNuxtConfig({
 ```
 
 ::: tip Why two modules?
+
 - `@nuxt/content` parses `.md` files and exposes `queryCollection()` / `queryContent()` and `page.body.toc`.
 - `nuxt-toc` adds `<TableOfContents>` and the auto-fetch plugin. It cannot work without Content.
-:::
+  :::
 
 ## 4. Configure Content (v3) and write Markdown
 
@@ -96,8 +97,8 @@ import { defineContentConfig, defineCollection } from '@nuxt/content'
 export default defineContentConfig({
   collections: {
     content: defineCollection({
-      type: 'page',       // page collections have body.toc automatically
-      source: '**/*.md',  // grab every .md under content/
+      type: 'page', // page collections have body.toc automatically
+      source: '**/*.md', // grab every .md under content/
     }),
   },
 })
@@ -107,24 +108,28 @@ Now write your first Markdown page:
 
 ```md
 <!-- content/index.md -->
+
 ---
+
 title: Hello
 ---
 
-# Hello, Nuxt!      <!-- h1 — not in the TOC, only h2/h3 are -->
+# Hello, Nuxt! <!-- h1 — not in the TOC, only h2/h3 are -->
 
-## Installation     <!-- h2 — will appear as a top-level TOC entry -->
+## Installation <!-- h2 — will appear as a top-level TOC entry -->
 
-## Usage            <!-- h2 -->
+## Usage <!-- h2 -->
 
-### Rendering      <!-- h3 — nested under “Usage” when depth >= 2 -->
+### Rendering <!-- h3 — nested under “Usage” when depth >= 2 -->
 
 ### Custom styles
 ```
 
 ```md
 <!-- content/guide/intro.md -->
+
 ---
+
 title: Intro guide
 ---
 
@@ -156,7 +161,7 @@ const route = useRoute()
 
 // For Content v3:
 const { data: page } = await useAsyncData(route.path, () =>
-  queryCollection('content').path(route.path).first()
+  queryCollection('content').path(route.path).first(),
 )
 
 // For Content v2 use this instead:
@@ -172,14 +177,25 @@ const { data: page } = await useAsyncData(route.path, () =>
 
   <!-- Graceful 404 when nothing matches -->
   <div v-else class="not-found">
-    <p>No content found at <code>{{ route.path }}</code></p>
+    <p>
+      No content found at <code>{{ route.path }}</code>
+    </p>
     <NuxtLink to="/">Go home</NuxtLink>
   </div>
 </template>
 
 <style scoped>
-.layout { display: grid; grid-template-columns: minmax(0, 1fr) 16rem; gap: 2rem; }
-aside   { position: sticky; top: 1rem; max-height: calc(100vh - 2rem); overflow: auto; }
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 16rem;
+  gap: 2rem;
+}
+aside {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+}
 </style>
 ```
 

@@ -10,15 +10,15 @@ description: >-
 
 ## At a glance
 
-| Area | v2.x | v3.0.0 |
-|---|---|---|
-| Content | v2 only | **v2 or v3** from one install |
-| Internal fetch | `CustomQuery` helper in the component | **Version-specific plugins** (`fetch-v2` / `fetch-v3`) chosen at setup; never both |
-| Config key | Loosely `nuxt-toc` (docs varied) | Strictly **`nuxtToc`** (camelCase, `src/module.ts:155`) |
-| Styles | Early majors had `.toc-*` class churn | **Stable IDs**: `#toc-title`, `#toc-container`, `.toc-link`, `.active-toc-item` (preserved from v2.x) |
-| Playground | Single heavy blog app | **Dual minimal apps** `playgrounds/content-v2` (3001) + `content-v3` (3000), each with its own `node_modules` |
-| Package manager | pnpm / npm mixed | **npm only** (`npm@10.9.2`, commits `package-lock.json`) |
-| Published kit | loose | `@nuxt/kit >=3.16 <5` (Nuxt 4 primary) |
+| Area            | v2.x                                  | v3.0.0                                                                                                        |
+| --------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Content         | v2 only                               | **v2 or v3** from one install                                                                                 |
+| Internal fetch  | `CustomQuery` helper in the component | **Version-specific plugins** (`fetch-v2` / `fetch-v3`) chosen at setup; never both                            |
+| Config key      | Loosely `nuxt-toc` (docs varied)      | Strictly **`nuxtToc`** (camelCase, `src/module.ts:155`)                                                       |
+| Styles          | Early majors had `.toc-*` class churn | **Stable IDs**: `#toc-title`, `#toc-container`, `.toc-link`, `.active-toc-item` (preserved from v2.x)         |
+| Playground      | Single heavy blog app                 | **Dual minimal apps** `playgrounds/content-v2` (3001) + `content-v3` (3000), each with its own `node_modules` |
+| Package manager | pnpm / npm mixed                      | **npm only** (`npm@10.9.2`, commits `package-lock.json`)                                                      |
+| Published kit   | loose                                 | `@nuxt/kit >=3.16 <5` (Nuxt 4 primary)                                                                        |
 
 ## 1. Update install
 
@@ -38,9 +38,9 @@ export default defineNuxtConfig({
 
 // ✅ v3.0.0
 export default defineNuxtConfig({
-  modules: ['nuxt-toc', '@nuxt/content'],  // register both explicitly
+  modules: ['nuxt-toc', '@nuxt/content'], // register both explicitly
   nuxtToc: {
-    collection: 'content',   // v3 only; ignored on v2
+    collection: 'content', // v3 only; ignored on v2
     depth: 2,
     scrollSpy: true,
     rootMargin: '0px 0px -80% 0px',

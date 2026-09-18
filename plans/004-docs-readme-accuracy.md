@@ -62,10 +62,10 @@ HEAD `docs/guide/active-highlighting.md` line 9: “IntersectionObserver for `h2
 
 ## Commands you will need
 
-| Purpose | Command | Expected |
-| --- | --- | --- |
+| Purpose                           | Command                                                                 | Expected                                       |
+| --------------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------- |
 | Format md if prettier includes it | `npx prettier --check README.md README_*.md docs/api/runtime-config.md` | no errors (md may be ignored by prettier — OK) |
-| No src changes | `git diff --stat -- src/` | empty for this plan |
+| No src changes                    | `git diff --stat -- src/`                                               | empty for this plan                            |
 
 There is no markdown compiler in CI. Manual: the v2 fence must be valid Vue (no `constage`).
 

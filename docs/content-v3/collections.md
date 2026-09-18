@@ -20,14 +20,14 @@ export default defineContentConfig({
   collections: {
     // key "content" → queryCollection('content')
     content: defineCollection({
-      type: 'page',       // "page" documents include body.toc
-      source: '**/*.md',  // every .md under content/
+      type: 'page', // "page" documents include body.toc
+      source: '**/*.md', // every .md under content/
     }),
 
     // second collection example
     blog: defineCollection({
       type: 'page',
-      source: 'blog/**',  // only under content/blog/ (relative to content dir)
+      source: 'blog/**', // only under content/blog/ (relative to content dir)
     }),
   },
 })
@@ -45,7 +45,7 @@ When you omit `:toc`, the `fetch-v3` plugin calls `queryCollection(collection).p
 
 ```ts
 collection = props.collection || runtimeConfig.public.nuxtToc.collection || 'content'
-path       = props.path || route.path || '/'
+path = props.path || route.path || '/'
 ```
 
 So the chain is:
@@ -77,9 +77,13 @@ const page = await queryCollection('blog').path('/blog/hello').first()
 
 ```ts
 // content.config.ts
-collections: { content: defineCollection({ type: 'page', source: '**/*.md' }) }
+collections: {
+  content: defineCollection({ type: 'page', source: '**/*.md' })
+}
 // nuxt.config.ts
-nuxtToc: { collection: 'content' }  // or omit — 'content' is the default
+nuxtToc: {
+  collection: 'content'
+} // or omit — 'content' is the default
 ```
 
 ```vue
@@ -108,7 +112,9 @@ collections: {
 
 ```ts
 // nuxt.config.ts — docs is the primary collection
-nuxtToc: { collection: 'docs' }
+nuxtToc: {
+  collection: 'docs'
+}
 ```
 
 ```vue
@@ -120,11 +126,11 @@ nuxtToc: { collection: 'docs' }
 
 ## Common mistakes
 
-| Symptom | Cause |
-|---|---|
-| `collection "xyz" not found` | `content.config.ts` has no `xyz` key — spell it same as `defineCollection` |
-| File exists but `page == null` | `source` glob does not include the file (e.g. `docs/**` but file is at `content/guide.md`) |
+| Symptom                          | Cause                                                                                      |
+| -------------------------------- | ------------------------------------------------------------------------------------------ |
+| `collection "xyz" not found`     | `content.config.ts` has no `xyz` key — spell it same as `defineCollection`                 |
+| File exists but `page == null`   | `source` glob does not include the file (e.g. `docs/**` but file is at `content/guide.md`) |
 | TOC always empty with auto-fetch | Wrong collection → query returned `null`; the component shows “No content found for /path” |
-| `collection` seems to do nothing | You are on Content v2 or using pass-in mode — in both cases the prop is ignored |
+| `collection` seems to do nothing | You are on Content v2 or using pass-in mode — in both cases the prop is ignored            |
 
 Next: [queryCollection](/content-v3/query-collection) shows the pass-in query shape, and [Auto-fetch (v3)](/content-v3/auto-fetch) shows the path/collection runtime behavior.

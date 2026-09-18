@@ -20,7 +20,9 @@ description: >-
     <div role="heading" aria-level="2" class="toc-item …">
       <a role="link" href="#installation" class="toc-link">Installation</a>
     </div>
-    <ul class="toc-sublist" role="list"> …nested… </ul>
+    <ul class="toc-sublist" role="list">
+      …nested…
+    </ul>
   </li>
 </ul>
 ```
@@ -52,7 +54,8 @@ Every entry is an `<a href="#{id}" class="toc-link">` with `role="link"`. Becaus
 The TOC links and the headings they point to must share the same `id`. `@nuxt/content` generates these automatically from the heading text:
 
 ```md
-## Installation        → <h2 id="installation">
+## Installation → <h2 id="installation">
+
 ### System requirements → <h3 id="system-requirements">
 ```
 
@@ -62,23 +65,29 @@ This usually breaks when a custom prose component overrides `h2` and drops `id`:
 
 ```vue
 <!-- ❌ Broken: id never reaches the heading -->
-<template><h2 class="fancy">{{ text }}</h2></template>
+<template>
+  <h2 class="fancy">{{ text }}</h2>
+</template>
 
 <!-- ✅ Correct: forward id -->
-<script setup lang="ts"> defineProps<{ id?: string }>() </script>
-<template><h2 :id="id" class="fancy"><slot /></h2></template>
+<script setup lang="ts">
+defineProps<{ id?: string }>()
+</script>
+<template>
+  <h2 :id="id" class="fancy"><slot /></h2>
+</template>
 ```
 
 Rule: any override for `h2` / `h3` / `h4` must bind `:id="id"` (and ideally forward the rest of props/attrs).
 
 ## Keyboard behavior
 
-| Key | Expected | Why it works |
-|---|---|---|
-| `Tab` | Focus moves through TOC links in order | Native `<a href>` — no roving tab index needed |
-| `Enter` | Jump/scroll to the linked heading | Anchor default, intercepted only when `smooth` or `scrollOffset` is configured |
-| `Shift+Tab` | Move backward through links | Same native behavior |
-| Back button | Return to previous TOC hash | `scroll-to-heading.ts:62` uses `replaceState` so history is minimal and predictable |
+| Key         | Expected                               | Why it works                                                                        |
+| ----------- | -------------------------------------- | ----------------------------------------------------------------------------------- |
+| `Tab`       | Focus moves through TOC links in order | Native `<a href>` — no roving tab index needed                                      |
+| `Enter`     | Jump/scroll to the linked heading      | Anchor default, intercepted only when `smooth` or `scrollOffset` is configured      |
+| `Shift+Tab` | Move backward through links            | Same native behavior                                                                |
+| Back button | Return to previous TOC hash            | `scroll-to-heading.ts:62` uses `replaceState` so history is minimal and predictable |
 
 No custom key traps or roving focus is added — that would break standard browser handling. If you wrap the TOC in a `<nav>` region, you get an additional landmark for free (recommended but not emitted by default to keep markup minimal):
 

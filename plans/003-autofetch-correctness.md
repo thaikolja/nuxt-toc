@@ -54,12 +54,12 @@ Conventions: keep **exactly one** fetch plugin. Never import both Content APIs o
 
 ## Commands you will need
 
-| Purpose | Command | Expected |
-| --- | --- | --- |
-| New unit tests | `npx vitest run test/should-register-fetch-plugin.test.ts test/table-of-contents.test.ts` | pass |
-| Detect tests | `npx vitest run test/detect-content-major.test.ts` | pass |
-| Full suite | `npm test` | pass |
-| Types | `npm run test:types` | exit 0 |
+| Purpose        | Command                                                                                   | Expected |
+| -------------- | ----------------------------------------------------------------------------------------- | -------- |
+| New unit tests | `npx vitest run test/should-register-fetch-plugin.test.ts test/table-of-contents.test.ts` | pass     |
+| Detect tests   | `npx vitest run test/detect-content-major.test.ts`                                        | pass     |
+| Full suite     | `npm test`                                                                                | pass     |
+| Types          | `npm run test:types`                                                                      | exit 0   |
 
 ## Scope
 
@@ -142,9 +142,13 @@ Empty path still returns `null` (not an error). Successful not-found (`findOne()
 The component already does:
 
 ```ts
-watch(asyncError, (err) => {
-  if (err && shouldAutoFetch.value) autoFetchFailed.value = true
-}, { immediate: true })
+watch(
+  asyncError,
+  err => {
+    if (err && shouldAutoFetch.value) autoFetchFailed.value = true
+  },
+  { immediate: true },
+)
 ```
 
 **Verify**: `npx vitest run test/table-of-contents.test.ts` — case 7/8/9 still make sense. Add case: `fetchMock` **rejects** → UI shows `Could not load` / `.nuxt-toc--error`, not `No content found`. If `useAsyncData` mock swallows throws, update the mock so a rejected handler sets `error` and `autoFetchFailed` can become true (or set `error` from the mock when the handler throws — the Step 001 mock already has a try/catch that sets `error`).

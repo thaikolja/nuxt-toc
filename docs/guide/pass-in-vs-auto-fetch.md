@@ -10,8 +10,8 @@ description: >-
 
 ## The two modes in one sentence
 
-- **Pass-in** → you fetch the page *once* in your page (`useAsyncData` + `queryCollection`/`queryContent`) and hand `page.body.toc` to the component: `<TableOfContents :toc="page.body?.toc" />`.
-- **Auto-fetch** → you omit `:toc` and the component fetches the page *itself* by path (and collection on v3): `<TableOfContents path="/guide/intro" />`.
+- **Pass-in** → you fetch the page _once_ in your page (`useAsyncData` + `queryCollection`/`queryContent`) and hand `page.body.toc` to the component: `<TableOfContents :toc="page.body?.toc" />`.
+- **Auto-fetch** → you omit `:toc` and the component fetches the page _itself_ by path (and collection on v3): `<TableOfContents path="/guide/intro" />`.
 
 Technically, the component checks `props.toc == null` (`src/runtime/components/TableOfContents.vue:275`) — when `toc` is `null/undefined` it calls the injected `$nuxtTocFetch` helper; otherwise it runs `normalizeToc(toc)` and skips fetching.
 
@@ -29,7 +29,7 @@ Technically, the component checks `props.toc == null` (`src/runtime/components/T
 <script setup lang="ts">
 const route = useRoute()
 const { data: page } = await useAsyncData(route.path, () =>
-  queryCollection('content').path(route.path).first()
+  queryCollection('content').path(route.path).first(),
 )
 </script>
 
@@ -44,9 +44,7 @@ const { data: page } = await useAsyncData(route.path, () =>
 ```vue
 <script setup lang="ts">
 const route = useRoute()
-const { data: page } = await useAsyncData(route.path, () =>
-  queryContent(route.path).findOne()
-)
+const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
 </script>
 
 <template>
@@ -101,8 +99,10 @@ They still affect other behaviors (`scrollOffset` etc. keep working).
 
 ```ts
 // src/runtime/components/TableOfContents.vue:216
-const resolvedPath       = computed(() => (props.path || route.path || '/').replace(/\/$/, '') || '/')
-const resolvedCollection = computed(() => props.collection || runtimeConfig.public.nuxtToc.collection || 'content')
+const resolvedPath = computed(() => (props.path || route.path || '/').replace(/\/$/, '') || '/')
+const resolvedCollection = computed(
+  () => props.collection || runtimeConfig.public.nuxtToc.collection || 'content',
+)
 ```
 
 - Empty `path` → falls back to `route.path` → `"/"`. Trailing slash is stripped (`/guide/` → `/guide`).
@@ -118,14 +118,14 @@ Both soft-fail on error: they log a warning in dev and return `null`, which make
 
 ## Visual comparison
 
-| Aspect | Pass-in | Auto-fetch |
-|---|---|---|
-| Queries | 0 extra (reuse page query) | 1 extra per TOC instance |
-| Props needed | `:toc="page.body?.toc"` | none (or `path` / `collection`) |
-| SSR | Same fetch as page — one trip | Second `useAsyncData` — still SSR, but more work |
-| Works without Content? | Yes — give it `{ links: [...] }` manually | No — needs `queryContent` / `queryCollection` |
-| Error states | “No headings” when `links: []` | + “Loading…”, “Could not load”, “No content found for /path” |
-| Title when empty | `isTitleShownWithNoContent` still works | same |
+| Aspect                 | Pass-in                                   | Auto-fetch                                                   |
+| ---------------------- | ----------------------------------------- | ------------------------------------------------------------ |
+| Queries                | 0 extra (reuse page query)                | 1 extra per TOC instance                                     |
+| Props needed           | `:toc="page.body?.toc"`                   | none (or `path` / `collection`)                              |
+| SSR                    | Same fetch as page — one trip             | Second `useAsyncData` — still SSR, but more work             |
+| Works without Content? | Yes — give it `{ links: [...] }` manually | No — needs `queryContent` / `queryCollection`                |
+| Error states           | “No headings” when `links: []`            | + “Loading…”, “Could not load”, “No content found for /path” |
+| Title when empty       | `isTitleShownWithNoContent` still works   | same                                                         |
 
 ## Empty and loading states (auto-fetch only)
 
@@ -155,4 +155,4 @@ Because `shouldAutoFetch` is `props.toc == null`. If `toc` is present, `path` is
 **“Auto-fetch warns `empty path`.”**  
 Both plugins guard against `''` — see `fetch-v2.ts:31` / `fetch-v3.ts:31`. This happens if `route.path` is `''` during a static prerender glitch. Passing an explicit `path` fixes it.
 
-Next: [Active highlighting](/guide/active-highlighting) explains what happens *after* the TOC has data — how the scroll-spy decides which item is active.
+Next: [Active highlighting](/guide/active-highlighting) explains what happens _after_ the TOC has data — how the scroll-spy decides which item is active.

@@ -27,11 +27,11 @@ npm run dev:v3
 
 ## Routes
 
-| Route | Purpose |
-|---|---|
-| `/` | **Pass-in** (`:toc="page.body.toc"`) + sticky sidebar layout. Mirrors typical docs. |
-| `/auto-fetch` | Auto-fetch by `path` / `collection`. Try missing path, empty headings, different collections. |
-| `/props` | Parameter matrix — toggles `depth`, `isSublistShown`, `isTitleShownWithNoContent`, `title`, `scrollSpy`, `rootMargin`, `smooth`, `scrollOffset`. Best for tuning scroll-spy. |
-| `/settings` | Module-option defaults vs prop overrides exercise. |
+| Route         | Purpose                                                                                                                                                                      |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/`           | **Pass-in** (`:toc="page.body.toc"`) + sticky sidebar layout. Mirrors typical docs.                                                                                          |
+| `/auto-fetch` | Auto-fetch by `path` / `collection`. Try missing path, empty headings, different collections.                                                                                |
+| `/props`      | Parameter matrix — toggles `depth`, `isSublistShown`, `isTitleShownWithNoContent`, `title`, `scrollSpy`, `rootMargin`, `smooth`, `scrollOffset`. Best for tuning scroll-spy. |
+| `/settings`   | Module-option defaults vs prop overrides exercise.                                                                                                                           |
 
 See also the v2 equivalent: [Content v2 playground](/content-v2/playground). E2e tests hit both playgrounds (`test/content-v3.test.ts`, `test/content-v2.test.ts`).

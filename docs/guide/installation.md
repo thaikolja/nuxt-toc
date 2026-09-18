@@ -58,12 +58,12 @@ export default defineNuxtConfig({
 
   // Global defaults for every TableOfContents (all optional)
   nuxtToc: {
-    collection: 'content',          // Content v3 only — ignored on v2
-    depth: 2,                       // show h2 + h3 by default
-    scrollSpy: true,                // highlight active section
+    collection: 'content', // Content v3 only — ignored on v2
+    depth: 2, // show h2 + h3 by default
+    scrollSpy: true, // highlight active section
     rootMargin: '0px 0px -80% 0px', // when a heading becomes “active”
-    smooth: false,                  // smooth scroll on click
-    scrollOffset: 0,                // e.g. 64 for a 64px sticky header
+    smooth: false, // smooth scroll on click
+    scrollOffset: 0, // e.g. 64 for a 64px sticky header
   },
 })
 ```
@@ -86,8 +86,8 @@ export default defineContentConfig({
   collections: {
     // name “content” matches nuxtToc.collection above
     content: defineCollection({
-      type: 'page',       // “page” gives you body.toc automatically
-      source: '**/*.md',  // every .md under content/
+      type: 'page', // “page” gives you body.toc automatically
+      source: '**/*.md', // every .md under content/
     }),
   },
 })
@@ -121,7 +121,7 @@ Create `pages/[...slug].vue` if you do not already have a catch-all Content rout
 const route = useRoute()
 // For v3:
 const { data: page } = await useAsyncData(route.path, () =>
-  queryCollection('content').path(route.path).first()
+  queryCollection('content').path(route.path).first(),
 )
 // For v2, use: () => queryContent(route.path).findOne()
 </script>
@@ -147,13 +147,13 @@ You should see a TOC on any page that has at least two `##` headings. Pages with
 
 ## When something looks wrong
 
-| Symptom | Likely cause | Fix |
-|---|---|---|
-| `TableOfContents` unknown component | Module not in `modules` or `nuxi prepare` not run | Add `'nuxt-toc'` to `nuxt.config.ts`, then `npx nuxi prepare` and restart dev |
-| TOC always empty | Headings have no IDs, or Markdown has only `# h1` | Use `## h2` / `### h3` — Content only includes those in `body.toc`. Check `page.body.toc.links` in Vue devtools |
-| Auto-fetch warns `"$nuxtTocFetch missing"` | Content not installed or not registered | `npm ls @nuxt/content` should print v2 or v3; ensure `modules: ['@nuxt/content']` |
-| `collection "xyz" not found` (v3) | `nuxtToc.collection` does not match a key in `content.config.ts` | Make them match, or pass `<TableOfContents collection="xyz" />` explicitly |
-| App cannot install both Content v2 and v3 | Expected — they conflict | Pick one major per app. The module supports both majors, but one app uses one |
+| Symptom                                    | Likely cause                                                     | Fix                                                                                                             |
+| ------------------------------------------ | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `TableOfContents` unknown component        | Module not in `modules` or `nuxi prepare` not run                | Add `'nuxt-toc'` to `nuxt.config.ts`, then `npx nuxi prepare` and restart dev                                   |
+| TOC always empty                           | Headings have no IDs, or Markdown has only `# h1`                | Use `## h2` / `### h3` — Content only includes those in `body.toc`. Check `page.body.toc.links` in Vue devtools |
+| Auto-fetch warns `"$nuxtTocFetch missing"` | Content not installed or not registered                          | `npm ls @nuxt/content` should print v2 or v3; ensure `modules: ['@nuxt/content']`                               |
+| `collection "xyz" not found` (v3)          | `nuxtToc.collection` does not match a key in `content.config.ts` | Make them match, or pass `<TableOfContents collection="xyz" />` explicitly                                      |
+| App cannot install both Content v2 and v3  | Expected — they conflict                                         | Pick one major per app. The module supports both majors, but one app uses one                                   |
 
 More help: [Writing content](/guide/writing-content), [Pass-in vs auto-fetch](/guide/pass-in-vs-auto-fetch), and [Troubleshooting](/guide/troubleshooting).
 

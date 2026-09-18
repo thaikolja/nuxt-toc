@@ -55,8 +55,10 @@ content/
 title: Intro
 ---
 
-## Getting started  <!-- appears in TOC -->
+## Getting started <!-- appears in TOC -->
+
 ### Requirements
+
 ## Installation
 ```
 
@@ -70,9 +72,7 @@ Only `##` (`h2`) and deeper headings generate TOC entries — see [Writing conte
 <!-- pages/[...slug].vue -->
 <script setup lang="ts">
 const route = useRoute()
-const { data: page } = await useAsyncData(route.path, () =>
-  queryContent(route.path).findOne()
-)
+const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
 </script>
 
 <template>

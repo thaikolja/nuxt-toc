@@ -6,8 +6,6 @@
 
 Starting from `v3.0.0`, **nuxt-toc** offers full, unified support for both `v2` and `v3` of `@nuxt/content`, ensuring seamless integration regardless of which content version you are using. The module is fully compatible with both Nuxt 3 and Nuxt 4.
 
-
-
 **Languages:** [🇺🇸 English](./README.md) · [🇹🇼 中文](./README_zh.md) · [🇩🇪 Deutsch](./README_de.md) · [🇪🇸 Español](./README_es.md) · [🇫🇷 Français](./README_fr.md) · [🇸🇦 فارسی](./README_fa.md)
 
 ## ⚡️ Features

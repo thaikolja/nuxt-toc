@@ -15,7 +15,7 @@ The most common `nuxt-toc` layout: article column beside a TOC sidebar that stay
 <script setup lang="ts">
 const route = useRoute()
 const { data: page } = await useAsyncData(route.path, () =>
-  queryCollection('content').path(route.path).first()
+  queryCollection('content').path(route.path).first(),
 )
 // On v2 use: queryContent(route.path).findOne()
 </script>
@@ -36,9 +36,10 @@ const { data: page } = await useAsyncData(route.path, () =>
   display: grid;
   grid-template-columns: minmax(0, 1fr) 16rem;
   gap: 2rem;
-  align-items: start;  /* so sticky works inside grid */
+  align-items: start; /* so sticky works inside grid */
 }
-.content :deep(h2), .content :deep(h3) {
+.content :deep(h2),
+.content :deep(h3) {
   scroll-margin-top: 1rem;
 }
 .toc {
@@ -54,8 +55,13 @@ const { data: page } = await useAsyncData(route.path, () =>
   font-size: 0.9rem;
 }
 @media (max-width: 900px) {
-  .page { grid-template-columns: 1fr; }
-  .toc  { position: static; order: -1; } /* TOC above article on mobile */
+  .page {
+    grid-template-columns: 1fr;
+  }
+  .toc {
+    position: static;
+    order: -1;
+  } /* TOC above article on mobile */
 }
 </style>
 ```
@@ -69,8 +75,13 @@ If your header is 64px tall, keep clicks from landing under it:
 ```
 
 ```css
-.page .toc { top: 4.5rem; } /* below header */
-.content :deep(h2), .content :deep(h3) { scroll-margin-top: 4.5rem; }
+.page .toc {
+  top: 4.5rem;
+} /* below header */
+.content :deep(h2),
+.content :deep(h3) {
+  scroll-margin-top: 4.5rem;
+}
 ```
 
 See [Active highlighting — sticky header tuning](/guide/active-highlighting#tuning-for-a-sticky-header).

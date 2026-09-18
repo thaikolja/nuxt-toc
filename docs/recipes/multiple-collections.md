@@ -35,7 +35,7 @@ Reuse the collection you already queried for the page:
 <script setup lang="ts">
 const route = useRoute()
 const { data: page } = await useAsyncData(route.path, () =>
-  queryCollection('docs').path(route.path).first()
+  queryCollection('docs').path(route.path).first(),
 )
 </script>
 
@@ -51,7 +51,7 @@ And for a blog page:
 ```vue
 <script setup lang="ts">
 const { data: post } = await useAsyncData(route.path, () =>
-  queryCollection('blog').path(route.path).first()
+  queryCollection('blog').path(route.path).first(),
 )
 </script>
 
@@ -80,12 +80,16 @@ Resolution: `props.collection || runtimeConfig.public.nuxtToc.collection || 'con
 
 ```ts
 // nuxt.config.ts — global default for auto-fetch
-nuxtToc: { collection: 'docs' }
+nuxtToc: {
+  collection: 'docs'
+}
 ```
 
 ```vue
-<TableOfContents path="/docs/intro" />  <!-- inherits "docs" -->
-<TableOfContents path="/blog/hello" collection="blog" /> <!-- override -->
+<TableOfContents path="/docs/intro" />
+<!-- inherits "docs" -->
+<TableOfContents path="/blog/hello" collection="blog" />
+<!-- override -->
 ```
 
 ## Option 3: Two TOCs with different collections on one page? Use pass-in
@@ -97,8 +101,12 @@ Auto-fetch per-instance fetches exactly one document, keyed `nuxt-toc-${collecti
 const route = useRoute()
 const docsPath = '/docs/intro'
 const blogPath = '/blog/hello'
-const { data: docsPage } = await useAsyncData(docsPath, () => queryCollection('docs').path(docsPath).first())
-const { data: blogPage } = await useAsyncData(blogPath, () => queryCollection('blog').path(blogPath).first())
+const { data: docsPage } = await useAsyncData(docsPath, () =>
+  queryCollection('docs').path(docsPath).first(),
+)
+const { data: blogPage } = await useAsyncData(blogPath, () =>
+  queryCollection('blog').path(blogPath).first(),
+)
 </script>
 
 <template>

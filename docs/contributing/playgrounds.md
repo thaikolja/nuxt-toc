@@ -10,8 +10,8 @@ Every feature must be visibly verified against **both** Content majors. The repo
 
 ## Layout
 
-| Folder | Stack | Port | Demo | Command |
-|---|---|---|---|---|
+| Folder                   | Stack                       | Port | Demo               | Command          |
+| ------------------------ | --------------------------- | ---- | ------------------ | ---------------- |
 | `playgrounds/content-v3` | Nuxt 4 + `@nuxt/content@^3` | 3000 | Content v3 queries | `npm run dev:v3` |
 | `playgrounds/content-v2` | Nuxt 4 + `@nuxt/content@^2` | 3001 | Content v2 queries | `npm run dev:v2` |
 
@@ -19,12 +19,12 @@ Each has its own `package.json` → own `node_modules`. The TOC runtime (`TableO
 
 ## Shared demo routes
 
-| Path | Exercises |
-|---|---|
-| `/` | **Pass-in** `:toc="page.body.toc"` + sticky sidebar grid (`pages/index.vue`) |
-| `/auto-fetch` | Auto-fetch by `path`, `collection` (v3), missing-path / empty states |
-| `/props` | Title, `depth`, `isSublistShown`, `isTitleShownWithNoContent`, `path`, `collection` |
-| `/settings` | Global `nuxtToc` options vs prop overrides + `content.build.markdown.toc` interaction |
+| Path          | Exercises                                                                             |
+| ------------- | ------------------------------------------------------------------------------------- |
+| `/`           | **Pass-in** `:toc="page.body.toc"` + sticky sidebar grid (`pages/index.vue`)          |
+| `/auto-fetch` | Auto-fetch by `path`, `collection` (v3), missing-path / empty states                  |
+| `/props`      | Title, `depth`, `isSublistShown`, `isTitleShownWithNoContent`, `path`, `collection`   |
+| `/settings`   | Global `nuxtToc` options vs prop overrides + `content.build.markdown.toc` interaction |
 
 Plugins and `ContentRenderer` vs `ContentDoc` differences are most visible under `/props` and `/settings`.
 

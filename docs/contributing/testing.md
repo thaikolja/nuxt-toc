@@ -29,13 +29,13 @@ Config: `vitest.config.ts` (environment `happy-dom`), `test/*` as `run` entries.
 
 ## Suites
 
-| File | Coverage |
-|---|---|
-| `test/detect-content-major.test.ts` | `src/utils/detect-content-major.ts:32` — walking detection for `2 | 3 | null`, hoisted installs, bad/missing `package.json` |
-| `test/normalize-toc.test.ts` | `src/runtime/utils/normalize-toc.ts:21` — `Toc` vs `body.toc` vs `toc` vs garbage, `TocLink` shape guard |
-| `test/limit-toc-depth.test.ts` (if present) | `limitTocDepth` / `resolveEffectiveDepth` / `isSublistShown` legacy |
-| `test/content-v3.test.ts` | E2e against **content-v3 playground** — pass-in, auto-fetch, props, settings, `contentMajor === 3` runtime config |
-| `test/content-v2.test.ts` | E2e against **content-v2 playground** — `queryContent`, pass-in, auto-fetch (`path` only), `contentMajor === 2` |
+| File                                        | Coverage                                                                                                          |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `test/detect-content-major.test.ts`         | `src/utils/detect-content-major.ts:32` — walking detection for `2                                                 | 3   | null`, hoisted installs, bad/missing `package.json` |
+| `test/normalize-toc.test.ts`                | `src/runtime/utils/normalize-toc.ts:21` — `Toc` vs `body.toc` vs `toc` vs garbage, `TocLink` shape guard          |
+| `test/limit-toc-depth.test.ts` (if present) | `limitTocDepth` / `resolveEffectiveDepth` / `isSublistShown` legacy                                               |
+| `test/content-v3.test.ts`                   | E2e against **content-v3 playground** — pass-in, auto-fetch, props, settings, `contentMajor === 3` runtime config |
+| `test/content-v2.test.ts`                   | E2e against **content-v2 playground** — `queryContent`, pass-in, auto-fetch (`path` only), `contentMajor === 2`   |
 
 New functionality should add:
 

@@ -12,14 +12,14 @@ Module interface: `src/module.ts:31` (`ModuleOptions`). Normalization: `src/modu
 
 ## Reference
 
-| Option | Type | Default | Normalization | Per-component prop |
-|---|---|---|---|---|
-| `collection` | `string` | `'content'` | non-empty trimmed string, else `'content'` | `collection` (v3 only, ignored on v2) |
-| `depth` | `number` | `2` | `max(1, floor(Number(depth)))`, else `2` | `depth` |
-| `scrollSpy` | `boolean` | `true` | `options.scrollSpy !== false` | `scrollSpy` |
-| `rootMargin` | `string` | `'0px 0px -80% 0px'` | non-empty trimmed string, else `'0px 0px -80% 0px'` | `rootMargin` |
-| `smooth` | `boolean` | `false` | `!!options.smooth` | `smooth` |
-| `scrollOffset` | `number` | `0` | `max(0, floor(Number(offset)))`, else `0` | `scrollOffset` |
+| Option         | Type      | Default              | Normalization                                       | Per-component prop                    |
+| -------------- | --------- | -------------------- | --------------------------------------------------- | ------------------------------------- |
+| `collection`   | `string`  | `'content'`          | non-empty trimmed string, else `'content'`          | `collection` (v3 only, ignored on v2) |
+| `depth`        | `number`  | `2`                  | `max(1, floor(Number(depth)))`, else `2`            | `depth`                               |
+| `scrollSpy`    | `boolean` | `true`               | `options.scrollSpy !== false`                       | `scrollSpy`                           |
+| `rootMargin`   | `string`  | `'0px 0px -80% 0px'` | non-empty trimmed string, else `'0px 0px -80% 0px'` | `rootMargin`                          |
+| `smooth`       | `boolean` | `false`              | `!!options.smooth`                                  | `smooth`                              |
+| `scrollOffset` | `number`  | `0`                  | `max(0, floor(Number(offset)))`, else `0`           | `scrollOffset`                        |
 
 These values are merged into `nuxt.schema` defaults (`src/module.ts:162`) and then published at build time to `runtimeConfig.public.nuxtToc` together with `contentMajor: 2 | 3 | null`. See [Runtime config](/api/runtime-config).
 
@@ -32,12 +32,12 @@ export default defineNuxtConfig({
 
   // Global defaults — override per-component when needed
   nuxtToc: {
-    collection: 'docs',                // v3 Content collection
-    depth: 2,                          // show h2 + h3 everywhere by default
-    scrollSpy: true,                   // active highlighting on
-    rootMargin: '0px 0px -80% 0px',     // active zone = top 20% of viewport
-    smooth: true,                      // animate scrolls
-    scrollOffset: 72,                  // header height in px
+    collection: 'docs', // v3 Content collection
+    depth: 2, // show h2 + h3 everywhere by default
+    scrollSpy: true, // active highlighting on
+    rootMargin: '0px 0px -80% 0px', // active zone = top 20% of viewport
+    smooth: true, // animate scrolls
+    scrollOffset: 72, // header height in px
   },
 })
 ```

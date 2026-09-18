@@ -15,15 +15,15 @@ description: >-
 <script setup lang="ts">
 const route = useRoute()
 
-const { data: page } = await useAsyncData(route.path, () =>
-  queryContent(route.path).findOne()
-)
+const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
 </script>
 
 <template>
   <ContentRenderer v-if="page" :value="page" />
   <!-- Older apps may use <ContentDoc> instead of ContentRenderer -->
-  <p v-else>Page not found at <code>{{ route.path }}</code></p>
+  <p v-else>
+    Page not found at <code>{{ route.path }}</code>
+  </p>
 
   <!-- Pass-in TOC — no second query -->
   <TableOfContents :toc="page?.body?.toc" title="On this page" :depth="2" />
@@ -37,10 +37,16 @@ const { data: page } = await useAsyncData(route.path, () =>
 Same shape as on v3:
 
 ```ts
-{ links: [
-  { id: 'installation', text: 'Installation', depth: 2,
-    children: [{ id: 'prereqs', text: 'Prereqs', depth: 3 }] },
-]}
+{
+  links: [
+    {
+      id: 'installation',
+      text: 'Installation',
+      depth: 2,
+      children: [{ id: 'prereqs', text: 'Prereqs', depth: 3 }],
+    },
+  ]
+}
 ```
 
 So `<TableOfContents :toc="page?.body?.toc" />` works identically regardless of whether the data came from `queryContent` or `queryCollection` — the module normalizes via `normalizeToc` (`src/runtime/utils/normalize-toc.ts:21`), and render trimming via `limitTocDepth` is the same.

@@ -21,7 +21,7 @@ This recipe assembles a typical **header + left nav + centered article + right T
 └────────────┴──────────────────────────────────┴────────┘
 ```
 
-**Left nav** is not provided by `nuxt-toc` — build it from a Content query or a hand-written list. The TOC is only the *per-page outline* (right column).
+**Left nav** is not provided by `nuxt-toc` — build it from a Content query or a hand-written list. The TOC is only the _per-page outline_ (right column).
 
 ## Full page (`pages/[...slug].vue`)
 
@@ -32,12 +32,13 @@ const route = useRoute()
 // Pass-in: reuse the same fetch for ContentRenderer + TOC
 // On v2 replace with: queryContent(route.path).findOne()
 const { data: page } = await useAsyncData(route.path, () =>
-  queryCollection('content').path(route.path).first()
+  queryCollection('content').path(route.path).first(),
 )
 
 // Left-nav list — one query for all docs (cached by list key)
-const { data: nav } = await useAsyncData('nav', () =>
-  queryCollection('content').all()  // or queryCollectionNavigation in Content's helper
+const { data: nav } = await useAsyncData(
+  'nav',
+  () => queryCollection('content').all(), // or queryCollectionNavigation in Content's helper
 )
 </script>
 
@@ -64,11 +65,20 @@ const { data: nav } = await useAsyncData('nav', () =>
     </aside>
   </div>
 
-  <div v-else class="not-found">Page not found at <code>{{ route.path }}</code></div>
+  <div v-else class="not-found">
+    Page not found at <code>{{ route.path }}</code>
+  </div>
 </template>
 
 <style scoped>
-.header { position: sticky; top: 0; z-index: 10; background: #fff; border-bottom: 1px solid #e5e7eb; padding: 0.75rem 1rem; }
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0.75rem 1rem;
+}
 
 .shell {
   display: grid;
@@ -80,12 +90,39 @@ const { data: nav } = await useAsyncData('nav', () =>
   padding: 1.5rem;
 }
 
-.nav { display: flex; flex-direction: column; gap: 0.5rem; }
-.main :deep(h2), .main :deep(h3) { scroll-margin-top: 5rem; } /* 72px header */
-.toc  { position: sticky; top: 5rem; max-height: calc(100vh - 6rem); overflow: auto; font-size: 0.875rem; }
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.main :deep(h2),
+.main :deep(h3) {
+  scroll-margin-top: 5rem;
+} /* 72px header */
+.toc {
+  position: sticky;
+  top: 5rem;
+  max-height: calc(100vh - 6rem);
+  overflow: auto;
+  font-size: 0.875rem;
+}
 
-@media (max-width: 1100px) { .shell { grid-template-columns: 14rem minmax(0, 1fr); } .toc { display: none; } }
-@media (max-width: 700px)  { .shell { grid-template-columns: 1fr; } .nav { display: none; } }
+@media (max-width: 1100px) {
+  .shell {
+    grid-template-columns: 14rem minmax(0, 1fr);
+  }
+  .toc {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+  .nav {
+    display: none;
+  }
+}
 </style>
 ```
 

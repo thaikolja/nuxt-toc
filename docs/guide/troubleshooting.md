@@ -34,22 +34,30 @@ Add temporarily in your page:
 Compare Content’s generated `.path` (`content/guide.md` → `/guide`, not `/content/guide`) with what you pass.
 
 **4. Wrong collection? (Content v3)**
+
 ```
 [v3] Content fetch failed for collection "docs"
 ```
+
 `nuxtToc.collection` (or the `collection` prop) must equal a key in `content.config.ts`:
 
 ```ts
 // content.config.ts
-collections: { docs: defineCollection({ type: 'page', source: 'docs/**' }) }
+collections: {
+  docs: defineCollection({ type: 'page', source: 'docs/**' })
+}
 // nuxt.config.ts
-nuxtToc: { collection: 'docs' }  // must match
+nuxtToc: {
+  collection: 'docs'
+} // must match
 ```
 
 **5. No Content installed at all?**
+
 ```
 [nuxt-toc] @nuxt/content v2 or v3 not found. Auto-fetch disabled
 ```
+
 Install one major: `npm install @nuxt/content@^3` (or `^2`) and list it in `modules`. Pass-in `:toc="{ links: [...] }"` works without Content, but auto-fetch requires it.
 
 ## “Unknown component: TableOfContents”
@@ -62,12 +70,12 @@ Install one major: `npm install @nuxt/content@^3` (or `^2`) and list it in `modu
 
 When `:toc` is omitted the component shows one of these (never in pass-in mode):
 
-| Message | Cause |
-|---|---|
-| `Loading table of contents…` | Query still pending (`.nuxt-toc--pending`). Normal briefly; if stuck, Content query is hanging. |
+| Message                                       | Cause                                                                                                               |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `Loading table of contents…`                  | Query still pending (`.nuxt-toc--pending`). Normal briefly; if stuck, Content query is hanging.                     |
 | `Could not load table of contents for /path.` | Plugin missing or threw (`autoFetchFailed`). Check dev console warning — missing `$nuxtTocFetch` or file not found. |
-| `No content found for /path.` | Content returned `null` — path or collection wrong. |
-| `No headings found for /path.` | Document exists but has no extractable headings. Add `##`. |
+| `No content found for /path.`                 | Content returned `null` — path or collection wrong.                                                                 |
+| `No headings found for /path.`                | Document exists but has no extractable headings. Add `##`.                                                          |
 
 ## Always loud error in dev
 
@@ -96,7 +104,10 @@ Use `scrollOffset` (click math) **and** `scroll-margin-top` (native hash) togeth
 ```
 
 ```css
-.content :deep(h2), .content :deep(h3) { scroll-margin-top: 64px; }
+.content :deep(h2),
+.content :deep(h3) {
+  scroll-margin-top: 64px;
+}
 ```
 
 `scrollOffset` is `Math.max(0, floor(value))` — non-finite values become `0`. See [Active highlighting](/guide/active-highlighting).

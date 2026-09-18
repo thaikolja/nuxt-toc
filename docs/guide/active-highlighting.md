@@ -15,7 +15,12 @@ You do not need to configure anything for the default behavior, but when you hav
 ```vue
 <TableOfContents :toc="page?.body?.toc" />
 <!-- equivalent to: -->
-<TableOfContents :toc="page?.body?.toc" :scroll-spy="true" root-margin="0px 0px -80% 0px" :scroll-offset="0" />
+<TableOfContents
+  :toc="page?.body?.toc"
+  :scroll-spy="true"
+  root-margin="0px 0px -80% 0px"
+  :scroll-offset="0"
+/>
 ```
 
 What happens on the client (`src/runtime/components/TableOfContents.vue:543`):
@@ -48,9 +53,9 @@ If your page has a fixed header (e.g. 64px tall), the default `0px 0px -80% 0px`
 
 Two props solve this — they handle **different phases** of the interaction:
 
-| Prop | When it matters | What it does |
-|---|---|---|
-| `rootMargin` | While **scrolling** (observer) | Shrinks/expands the viewport zone where a heading counts as “visible”. Default shrinks the bottom 80%, so a heading is active when it is near the **top**. |
+| Prop           | When it matters                                | What it does                                                                                                                                                 |
+| -------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `rootMargin`   | While **scrolling** (observer)                 | Shrinks/expands the viewport zone where a heading counts as “visible”. Default shrinks the bottom 80%, so a heading is active when it is near the **top**.   |
 | `scrollOffset` | When **clicking** a link (and on initial hash) | Pixels to subtract from the scroll target so the heading lands below the sticky header. Also applied in `applyInitialHash` when you land on `/page#section`. |
 
 **Typical sticky header (64px):**
@@ -63,7 +68,8 @@ And pair it with CSS so native hash links also offset correctly:
 
 ```css
 /* Makes headings leave room for the sticky header */
-.content :deep(h2), .content :deep(h3) {
+.content :deep(h2),
+.content :deep(h3) {
   scroll-margin-top: 72px;
 }
 ```
@@ -82,7 +88,7 @@ export default defineNuxtConfig({
     rootMargin: '0px 0px -80% 0px',
     smooth: false,
     scrollOffset: 0,
-  }
+  },
 })
 ```
 
@@ -96,7 +102,7 @@ Turns the observer off entirely (`observeSections` disconnects and clears `activ
 
 ### `rootMargin` — the “active zone”
 
-String with CSS margin syntax (four values + unit). The default `0px 0px -80% 0px` means *expand top/right/left by 0, shrink bottom by 80%* — so only the top 20% of the viewport counts.
+String with CSS margin syntax (four values + unit). The default `0px 0px -80% 0px` means _expand top/right/left by 0, shrink bottom by 80%_ — so only the top 20% of the viewport counts.
 
 - **Makes active jump earlier:** shrink less (e.g. `-60%`).
 - **Makes active jump later:** shrink more (e.g. `-85%`).
@@ -141,16 +147,25 @@ Per-item wrapper also gets `id="toc-item-${id}"` so a single section can be targ
 
 ```css
 /* Color the whole item */
-.active-toc-item { color: #4ade80; font-weight: 600; }
+.active-toc-item {
+  color: #4ade80;
+  font-weight: 600;
+}
 
 /* Only the top-level (h2) highlight */
-.active-toc-topitem { border-left: 2px solid currentColor; }
+.active-toc-topitem {
+  border-left: 2px solid currentColor;
+}
 
 /* Only nested (h3+) highlight */
-.active-toc-sublist-item { opacity: 1; }
+.active-toc-sublist-item {
+  opacity: 1;
+}
 
 /* Pinpoint one heading */
-#toc-item-custom-section { scroll-margin-top: 80px; }
+#toc-item-custom-section {
+  scroll-margin-top: 80px;
+}
 ```
 
 See [Styling](/guide/styling) and [Custom active styles recipe](/recipes/custom-active-styles) for a full selector table.

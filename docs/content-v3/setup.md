@@ -34,7 +34,7 @@ export default defineNuxtConfig({
 
   // Optional: global defaults (see /api/module-options)
   nuxtToc: {
-    collection: 'content',   // must match a key in content.config.ts below
+    collection: 'content', // must match a key in content.config.ts below
     depth: 2,
   },
 
@@ -60,8 +60,8 @@ import { defineContentConfig, defineCollection } from '@nuxt/content'
 export default defineContentConfig({
   collections: {
     content: defineCollection({
-      type: 'page',         // 'page' adds body.toc automatically
-      source: '**/*.md',    // every .md under content/
+      type: 'page', // 'page' adds body.toc automatically
+      source: '**/*.md', // every .md under content/
     }),
   },
 })
@@ -97,7 +97,9 @@ title: Welcome
 ---
 
 ## Getting started
+
 ## Installation
+
 ### Via nuxi
 ```
 
@@ -110,7 +112,7 @@ title: Welcome
 <script setup lang="ts">
 const route = useRoute()
 const { data: page } = await useAsyncData(route.path, () =>
-  queryCollection('content').path(route.path).first()
+  queryCollection('content').path(route.path).first(),
 )
 </script>
 
@@ -133,10 +135,10 @@ Open a page with at least two `##` headings — the TOC should list them. If it 
 
 ## Common errors
 
-| Message | Fix |
-|---|---|
-| `collection "…"` not found | `nuxtToc.collection` does not match any key in `content.config.ts` — make them match or pass `collection` per-component |
-| `Could not load …` / `No content found` | Path does not match Content’s generated path — `content/guide.md` → `/guide`, not `/content/guide` |
-| `better-sqlite3` native build failure | Follow the link Content prints (requires build tools on Windows / Alpine) |
+| Message                                 | Fix                                                                                                                     |
+| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `collection "…"` not found              | `nuxtToc.collection` does not match any key in `content.config.ts` — make them match or pass `collection` per-component |
+| `Could not load …` / `No content found` | Path does not match Content’s generated path — `content/guide.md` → `/guide`, not `/content/guide`                      |
+| `better-sqlite3` native build failure   | Follow the link Content prints (requires build tools on Windows / Alpine)                                               |
 
 Next: [Collections](/content-v3/collections) explains naming in detail, and [queryCollection](/content-v3/query-collection) shows the pass-in query shape.

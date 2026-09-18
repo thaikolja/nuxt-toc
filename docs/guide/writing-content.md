@@ -17,23 +17,23 @@ In Markdown:
 title: Installing nuxt-toc     <!-- page title: not from a heading -->
 ---
 
-# Installing nuxt-toc           <!-- h1 — the page title in the body (not in TOC) -->
+# Installing nuxt-toc <!-- h1 — the page title in the body (not in TOC) -->
 
 Some intro.
 
-## Installation                 <!-- h2 — top-level TOC item -->
+## Installation <!-- h2 — top-level TOC item -->
 
-### Prerequisites               <!-- h3 — nested child when depth >= 2 -->
+### Prerequisites <!-- h3 — nested child when depth >= 2 -->
 
 ### Via nuxi
 
-## Usage                        <!-- h2 — new top-level item -->
+## Usage <!-- h2 — new top-level item -->
 
-### Content v3 example          <!-- h3 -->
+### Content v3 example <!-- h3 -->
 
-#### Deeper detail              <!-- h4 — only when searchDepth/depth ≥ 3–4 -->
+#### Deeper detail <!-- h4 — only when searchDepth/depth ≥ 3–4 -->
 
-## Troubleshooting              <!-- h2 -->
+## Troubleshooting <!-- h2 -->
 ```
 
 The resulting `page.body.toc` (readable with `JSON.stringify(page.body.toc, null, 2)` in dev):
@@ -41,18 +41,25 @@ The resulting `page.body.toc` (readable with `JSON.stringify(page.body.toc, null
 ```json
 {
   "links": [
-    { "id": "installation", "text": "Installation", "depth": 2,
+    {
+      "id": "installation",
+      "text": "Installation",
+      "depth": 2,
       "children": [
         { "id": "prerequisites", "text": "Prerequisites", "depth": 3 },
         { "id": "via-nuxi", "text": "Via nuxi", "depth": 3 }
       ]
     },
-    { "id": "usage", "text": "Usage", "depth": 2,
+    {
+      "id": "usage",
+      "text": "Usage",
+      "depth": 2,
       "children": [
-        { "id": "content-v3-example", "text": "Content v3 example", "depth": 3,
-          "children": [
-            { "id": "deeper-detail", "text": "Deeper detail", "depth": 4 }
-          ]
+        {
+          "id": "content-v3-example",
+          "text": "Content v3 example",
+          "depth": 3,
+          "children": [{ "id": "deeper-detail", "text": "Deeper detail", "depth": 4 }]
         }
       ]
     },
@@ -69,10 +76,10 @@ Rules:
 
 ## Two “depth” concepts (beginners mix these up)
 
-| Name | Where it lives | What it controls |
-|---|---|---|
-| **Content `toc.depth` / `searchDepth`** | `content.config.ts` (`defineCollection`) **or** `nuxt.config.ts → content.build.markdown.toc` | How many heading levels Content *extracts* into `body.toc`. If this is `1`, even if your Markdown has `###`, they never appear in `links`. |
-| **TOC display `depth` prop / `nuxtToc.depth`** | `src/runtime/utils/limit-toc-depth.ts` (`limitTocDepth` / `resolveEffectiveDepth`) | How many *levels of the already-extracted tree* are *rendered*. Trimmed copy is created; original is not mutated. |
+| Name                                           | Where it lives                                                                                | What it controls                                                                                                                           |
+| ---------------------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Content `toc.depth` / `searchDepth`**        | `content.config.ts` (`defineCollection`) **or** `nuxt.config.ts → content.build.markdown.toc` | How many heading levels Content _extracts_ into `body.toc`. If this is `1`, even if your Markdown has `###`, they never appear in `links`. |
+| **TOC display `depth` prop / `nuxtToc.depth`** | `src/runtime/utils/limit-toc-depth.ts` (`limitTocDepth` / `resolveEffectiveDepth`)            | How many _levels of the already-extracted tree_ are _rendered_. Trimmed copy is created; original is not mutated.                          |
 
 Make both generous enough, then limit display with the prop:
 
@@ -81,10 +88,10 @@ Make both generous enough, then limit display with the prop:
 export default defineNuxtConfig({
   content: {
     build: {
-      markdown: { toc: { depth: 4, searchDepth: 4 } }
-    }
+      markdown: { toc: { depth: 4, searchDepth: 4 } },
+    },
   },
-  nuxtToc: { depth: 2 }  // but show h2 + h3 by default
+  nuxtToc: { depth: 2 }, // but show h2 + h3 by default
 })
 ```
 

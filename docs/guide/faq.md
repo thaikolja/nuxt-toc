@@ -17,7 +17,9 @@ Pass-in is three lines in your page:
 ```vue
 <script setup lang="ts">
 const route = useRoute()
-const { data: page } = await useAsyncData(route.path, () => queryCollection('content').path(route.path).first())
+const { data: page } = await useAsyncData(route.path, () =>
+  queryCollection('content').path(route.path).first(),
+)
 </script>
 
 <template>
@@ -56,7 +58,7 @@ Yes — auto-fetch handles that:
 <TableOfContents path="/docs/intro" collection="docs" />
 ```
 
-It still observes only the headings of *that* document, not the current page’s headings, so make sure the headings for `/docs/intro` are actually rendered somewhere on the screen if you expect scroll-spy to light up.
+It still observes only the headings of _that_ document, not the current page’s headings, so make sure the headings for `/docs/intro` are actually rendered somewhere on the screen if you expect scroll-spy to light up.
 
 ### I manually call `queryContent` but the TOC is still empty — why?
 
@@ -97,6 +99,7 @@ The rendered depth (`:depth`) trims the already-extracted tree. Start broad in C
 nuxtToc: { depth: 2 }
 <TableOfContents :toc="page?.body?.toc" :depth="3" />
 ```
+
 See [Writing content — two depths](/guide/writing-content#two-depth-concepts).
 
 ### Legacy `isSublistShown` — should I use it?
@@ -106,8 +109,13 @@ Only if you already use it (v2.x carryover). It forces effective depth to `1` (`
 ### How do I style the active item?
 
 ```css
-.active-toc-item { color: #38bdf8; font-weight: 600; }
-.active-toc-topitem { border-left: 2px solid currentColor; }
+.active-toc-item {
+  color: #38bdf8;
+  font-weight: 600;
+}
+.active-toc-topitem {
+  border-left: 2px solid currentColor;
+}
 ```
 
 See [Styling](/guide/styling) and [Custom active styles](/recipes/custom-active-styles).

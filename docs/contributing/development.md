@@ -37,24 +37,24 @@ Re-run `dev:prepare` whenever `src/` or root dependencies change.
 
 ## Useful scripts
 
-| Script | What it does |
-|---|---|
-| `npm run dev` | Alias for `dev:v3` |
-| `npm run dev:v3` | `nuxi dev playgrounds/content-v3 --port 3000` |
-| `npm run dev:v2` | `nuxi dev playgrounds/content-v2 --port 3001` |
-| `npm run dev:build:v3/v2` | `nuxi build` per playground |
-| `npm run playgrounds:install` | `npm install --prefix` both playgrounds |
-| `npm run playgrounds:prepare` | `nuxi prepare` both playgrounds |
-| `npm run docs:dev` | `vitepress dev docs` (this site) → `http://localhost:5173` |
-| `npm run docs:build` | `vitepress build docs` |
-| `npm run lint` / `lint:fix` | `eslint .` (project uses `eslint.config.ts` prettier-aware) |
-| `npm run format` / `format:check` | `prettier --write/check .` |
-| `npm run test` / `test:watch` | `vitest run/watch` (happy-dom, see `test/…`) |
-| `npm run test:coverage` | `vitest run --coverage` |
-| `npm run test:types` | `vue-tsc --noEmit` |
-| `npm run check` | `lint && format:check && test` — the CI gate |
-| `npm run prepack` | `nuxt-module-build prepare && build` → `dist/` |
-| `npm run release` | `check && prepack && changelogen --release && npm publish && git push --follow-tags` |
+| Script                            | What it does                                                                         |
+| --------------------------------- | ------------------------------------------------------------------------------------ |
+| `npm run dev`                     | Alias for `dev:v3`                                                                   |
+| `npm run dev:v3`                  | `nuxi dev playgrounds/content-v3 --port 3000`                                        |
+| `npm run dev:v2`                  | `nuxi dev playgrounds/content-v2 --port 3001`                                        |
+| `npm run dev:build:v3/v2`         | `nuxi build` per playground                                                          |
+| `npm run playgrounds:install`     | `npm install --prefix` both playgrounds                                              |
+| `npm run playgrounds:prepare`     | `nuxi prepare` both playgrounds                                                      |
+| `npm run docs:dev`                | `vitepress dev docs` (this site) → `http://localhost:5173`                           |
+| `npm run docs:build`              | `vitepress build docs`                                                               |
+| `npm run lint` / `lint:fix`       | `eslint .` (project uses `eslint.config.ts` prettier-aware)                          |
+| `npm run format` / `format:check` | `prettier --write/check .`                                                           |
+| `npm run test` / `test:watch`     | `vitest run/watch` (happy-dom, see `test/…`)                                         |
+| `npm run test:coverage`           | `vitest run --coverage`                                                              |
+| `npm run test:types`              | `vue-tsc --noEmit`                                                                   |
+| `npm run check`                   | `lint && format:check && test` — the CI gate                                         |
+| `npm run prepack`                 | `nuxt-module-build prepare && build` → `dist/`                                       |
+| `npm run release`                 | `check && prepack && changelogen --release && npm publish && git push --follow-tags` |
 
 ## Repository conventions
 

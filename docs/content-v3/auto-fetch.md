@@ -37,7 +37,7 @@ Registered only when the detected major is `3` (`src/module.ts:207`). Uses `defi
 
 ```ts
 // TableOfContents.vue:216 and 230
-resolvedPath       = (props.path || route.path || '/').replace(/\/$/, '') || '/'
+resolvedPath = (props.path || route.path || '/').replace(/\/$/, '') || '/'
 resolvedCollection = props.collection || nuxtToc.collection || 'content'
 ```
 
@@ -51,12 +51,12 @@ resolvedCollection = props.collection || nuxtToc.collection || 'content'
 
 Only in auto-fetch mode — pass-in mode (`:toc` provided) never shows “Loading…”.
 
-| UI text | Class | Cause |
-|---|---|---|
-| `Loading table of contents…` | `.nuxt-toc--pending` | `useAsyncData` pending |
-| `Could not load table of contents for /path.` | `.nuxt-toc--error` | Plugin missing (`$nuxtTocFetch` undefined) or query threw — dev console warns with details |
-| `No content found for /path.` | `.nuxt-toc--empty` | Query returned `null` |
-| `No headings found for /path.` | `.nuxt-toc--empty` | Document found but `body.toc.links` is `[]` |
+| UI text                                       | Class                | Cause                                                                                      |
+| --------------------------------------------- | -------------------- | ------------------------------------------------------------------------------------------ |
+| `Loading table of contents…`                  | `.nuxt-toc--pending` | `useAsyncData` pending                                                                     |
+| `Could not load table of contents for /path.` | `.nuxt-toc--error`   | Plugin missing (`$nuxtTocFetch` undefined) or query threw — dev console warns with details |
+| `No content found for /path.`                 | `.nuxt-toc--empty`   | Query returned `null`                                                                      |
+| `No headings found for /path.`                | `.nuxt-toc--empty`   | Document found but `body.toc.links` is `[]`                                                |
 
 ## When not to use auto-fetch
 

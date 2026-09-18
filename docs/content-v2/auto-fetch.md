@@ -43,12 +43,12 @@ resolvedPath = (props.path || route.path || '/').replace(/\/$/, '') || '/'
 
 ## Render states (auto-fetch only)
 
-| UI text | Class | Cause |
-|---|---|---|
-| `Loading table of contents…` | `.nuxt-toc--pending` | `pending` |
-| `Could not load table of contents for /path.` | `.nuxt-toc--error` | Plugin missing / query threw (dev warns) |
-| `No content found for /path.` | `.nuxt-toc--empty` | Query returned `null` — wrong path? |
-| `No headings found for /path.` | `.nuxt-toc--empty` | Document exists but has no extractable headings |
+| UI text                                       | Class                | Cause                                           |
+| --------------------------------------------- | -------------------- | ----------------------------------------------- |
+| `Loading table of contents…`                  | `.nuxt-toc--pending` | `pending`                                       |
+| `Could not load table of contents for /path.` | `.nuxt-toc--error`   | Plugin missing / query threw (dev warns)        |
+| `No content found for /path.`                 | `.nuxt-toc--empty`   | Query returned `null` — wrong path?             |
+| `No headings found for /path.`                | `.nuxt-toc--empty`   | Document exists but has no extractable headings |
 
 Pass-in mode (`:toc` set) never shows the loading rows — see [Pass-in vs auto-fetch](/guide/pass-in-vs-auto-fetch).
 

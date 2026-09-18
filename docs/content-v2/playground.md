@@ -27,11 +27,11 @@ npm run dev:v2
 
 ## Routes
 
-| Route | Purpose |
-|---|---|
-| `/` | Pass-in (`:toc="page.body.toc"`) — `queryContent(route.path).findOne()` |
-| `/auto-fetch` | Auto-fetch by `path` (no `collection`) — missing-path and empty states |
-| `/props` | `title`, `depth`, `isSublistShown`, `isTitleShownWithNoContent` matrix |
+| Route         | Purpose                                                                 |
+| ------------- | ----------------------------------------------------------------------- |
+| `/`           | Pass-in (`:toc="page.body.toc"`) — `queryContent(route.path).findOne()` |
+| `/auto-fetch` | Auto-fetch by `path` (no `collection`) — missing-path and empty states  |
+| `/props`      | `title`, `depth`, `isSublistShown`, `isTitleShownWithNoContent` matrix  |
 
 ::: tip Check dual support without two machines
 Run both playgrounds at once (`npm run dev:v3` in one terminal, `npm run dev:v2` in another) and compare a props tweak on v3 vs v2 side-by-side. The TOC render (`TocTree` + `.nuxt-toc` classes) is identical — only the query helper differs.

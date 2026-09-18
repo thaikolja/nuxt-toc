@@ -17,13 +17,15 @@ const route = useRoute()
 
 // Cached by route.path, re-fetched on navigation
 const { data: page } = await useAsyncData(route.path, () =>
-  queryCollection('content').path(route.path).first()
+  queryCollection('content').path(route.path).first(),
 )
 </script>
 
 <template>
   <ContentRenderer v-if="page" :value="page" />
-  <p v-else>Page not found at <code>{{ route.path }}</code></p>
+  <p v-else>
+    Page not found at <code>{{ route.path }}</code>
+  </p>
 
   <!-- Pass-in TOC — no extra query -->
   <TableOfContents :toc="page?.body?.toc" title="On this page" :depth="2" />
@@ -38,9 +40,13 @@ const { data: page } = await useAsyncData(route.path, () =>
 // page.body.toc — shape from Content v3's toc extractor
 {
   links: [
-    { id: 'installation', text: 'Installation', depth: 2,
-      children: [{ id: 'prereqs', text: 'Prereqs', depth: 3 }] },
-    { id: 'usage', text: 'Usage', depth: 2 }
+    {
+      id: 'installation',
+      text: 'Installation',
+      depth: 2,
+      children: [{ id: 'prereqs', text: 'Prereqs', depth: 3 }],
+    },
+    { id: 'usage', text: 'Usage', depth: 2 },
   ]
 }
 ```

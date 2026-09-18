@@ -21,7 +21,7 @@ const route = useRoute()
 
 // Fetch the current page once. `queryCollection` is auto-imported by @nuxt/content v3.
 const { data: page } = await useAsyncData(route.path, () =>
-  queryCollection('content').path(route.path).first()
+  queryCollection('content').path(route.path).first(),
 )
 </script>
 
@@ -41,10 +41,13 @@ What `page?.body?.toc` looks like (from Content):
 // Simplified — every heading becomes a link
 {
   links: [
-    { id: 'installation', text: 'Installation', depth: 2, children: [
-      { id: 'requirements', text: 'Requirements', depth: 3 }
-    ]},
-    { id: 'usage', text: 'Usage', depth: 2 }
+    {
+      id: 'installation',
+      text: 'Installation',
+      depth: 2,
+      children: [{ id: 'requirements', text: 'Requirements', depth: 3 }],
+    },
+    { id: 'usage', text: 'Usage', depth: 2 },
   ]
 }
 ```
@@ -56,9 +59,7 @@ Same idea — only the query helper changes:
 ```vue
 <script setup lang="ts">
 const route = useRoute()
-const { data: page } = await useAsyncData(route.path, () =>
-  queryContent(route.path).findOne()
-)
+const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
 </script>
 
 <template>
@@ -115,13 +116,18 @@ Behind the scenes:
 <TableOfContents :toc="page?.body?.toc" :is-sublist-shown="false" />
 
 <!-- Keep the title even when links are empty -->
-<TableOfContents :toc="page?.body?.toc" title="On this page" :is-title-shown-with-no-content="true" />
+<TableOfContents
+  :toc="page?.body?.toc"
+  title="On this page"
+  :is-title-shown-with-no-content="true"
+/>
 
 <!-- v3: override the default collection from nuxtToc.collection -->
 <TableOfContents collection="docs" path="/docs/intro" />
 
 <!-- Scroll behavior -->
-<TableOfContents :scroll-spy="false" />   <!-- disable active highlighting -->
+<TableOfContents :scroll-spy="false" />
+<!-- disable active highlighting -->
 <TableOfContents smooth :scroll-offset="72" root-margin="0px 0px -60% 0px" />
 ```
 
@@ -163,8 +169,13 @@ Both playgrounds (`playgrounds/content-v3/pages/index.vue:22`, `playgrounds/cont
   font-size: 0.9rem;
 }
 @media (max-width: 900px) {
-  .page { grid-template-columns: 1fr; }
-  .toc  { position: static; order: -1; }
+  .page {
+    grid-template-columns: 1fr;
+  }
+  .toc {
+    position: static;
+    order: -1;
+  }
 }
 </style>
 ```
@@ -179,7 +190,10 @@ If you have a fixed header, pass its height so clicks land below it:
 And add `scroll-margin-top` to headings:
 
 ```css
-.content :deep(h2), .content :deep(h3) { scroll-margin-top: 72px; }
+.content :deep(h2),
+.content :deep(h3) {
+  scroll-margin-top: 72px;
+}
 ```
 
 See [Scroll-to-heading helper](/guide/active-highlighting#smooth-scroll-and-offset).

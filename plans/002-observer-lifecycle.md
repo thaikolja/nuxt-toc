@@ -59,12 +59,12 @@ Also fix while you are in the same functions (small, same file):
 
 ## Commands you will need
 
-| Purpose | Command | Expected |
-| --- | --- | --- |
+| Purpose         | Command                                         | Expected |
+| --------------- | ----------------------------------------------- | -------- |
 | Component tests | `npx vitest run test/table-of-contents.test.ts` | all pass |
-| Scroll helper | `npx vitest run test/scroll-to-heading.test.ts` | all pass |
-| Full suite | `npm test` | all pass |
-| Lint / format | `npm run lint` && `npm run format:check` | exit 0 |
+| Scroll helper   | `npx vitest run test/scroll-to-heading.test.ts` | all pass |
+| Full suite      | `npm test`                                      | all pass |
+| Lint / format   | `npm run lint` && `npm run format:check`        | exit 0   |
 
 ## Scope
 
@@ -145,7 +145,7 @@ Add to `test/table-of-contents.test.ts` (same harness as 001):
 
 1. **Retries do not rebuild when all headings exist** — mount with headings present; `vi.useFakeTimers()`; advance 500ms; `fakeObservers.length` stays `1` (only the initial observer).
 2. **Hash + offset does not scroll again on timers** — stub `window.scrollTo`; set `location.hash = '#a'`; mount with `scrollOffset={16}`; record call count after mount flush; advance 500ms; call count must **not** increase.
-3. **No observer after unmount of a pending nextTick** — mount; immediately `unmount()`; flush promises; `IntersectionObserver` instance count created *after* unmount is 0 (compare `fakeObservers` length before/after flush).
+3. **No observer after unmount of a pending nextTick** — mount; immediately `unmount()`; flush promises; `IntersectionObserver` instance count created _after_ unmount is 0 (compare `fakeObservers` length before/after flush).
 4. **Malformed hash does not throw** — `location.hash = '#%E0%A4%A'`; mount pass-in TOC; `wrapper` exists (no throw).
 5. **Missing heading + smooth does not preventDefault** — no `#missing` in the document; create a toc link to `missing` (or click after removing the heading); with `smooth` true, the click handler must not leave the app with a prevented native navigation and no scroll. Easiest: spy `Event.prototype.preventDefault` and assert it was **not** called when the heading node is absent.
 

@@ -8,7 +8,7 @@ description: >-
 
 **nuxt-toc** is a [Nuxt module](https://nuxt.com/docs/guide/directory-structure/modules) — a small plugin that teaches your Nuxt app a new trick. That trick is a **Table of Contents (TOC)**: a clickable outline on the side of a page that lists its headings and highlights the section you are currently reading.
 
-If you have ever read docs that show “On this page” with links like *Installation → Quick start → Configuration*, that is exactly what this module renders.
+If you have ever read docs that show “On this page” with links like _Installation → Quick start → Configuration_, that is exactly what this module renders.
 
 ## In 30 seconds
 
@@ -20,8 +20,9 @@ If you have ever read docs that show “On this page” with links like *Install
 <!-- pages/[...slug].vue — the whole wiring -->
 <script setup lang="ts">
 const route = useRoute()
-const { data: page } = await useAsyncData(route.path, () =>
-  queryCollection('content').path(route.path).first() // v3, or queryContent(route.path).findOne() for v2
+const { data: page } = await useAsyncData(
+  route.path,
+  () => queryCollection('content').path(route.path).first(), // v3, or queryContent(route.path).findOne() for v2
 )
 </script>
 

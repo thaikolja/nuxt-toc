@@ -35,10 +35,10 @@ CI `.github/workflows/ci.yml` quality job already runs `npm run test:types` afte
 
 ## Commands you will need
 
-| Purpose | Command | Expected |
-| --- | --- | --- |
-| Types | `npm run test:types` | exit 0 (run `npx nuxt-module-build prepare` first if `.nuxt` is missing) |
-| Check | `npm run check` | lint + format + types + test all exit 0 |
+| Purpose | Command              | Expected                                                                 |
+| ------- | -------------------- | ------------------------------------------------------------------------ |
+| Types   | `npm run test:types` | exit 0 (run `npx nuxt-module-build prepare` first if `.nuxt` is missing) |
+| Check   | `npm run check`      | lint + format + types + test all exit 0                                  |
 
 ## Scope
 
